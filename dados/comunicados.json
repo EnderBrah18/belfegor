@@ -1,0 +1,14 @@
+[
+  {
+    "codigo": "ECHO-01",
+    "titulo": "Acesso ao Registro Funcional",
+    "resumo": "O terminal de admissão está disponível para preenchimento da ficha e emissão da credencial.",
+    "href": "cadastro.html"
+  },
+  {
+    "codigo": "ECHO-02",
+    "titulo": "Consulta ao diretório institucional",
+    "resumo": "Consulte o diretório para identificar os complexos e as instalações da Fundação.",
+    "href": "departamentos.html"
+  }
+]

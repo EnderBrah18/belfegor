@@ -1,0 +1,5 @@
+.bf-nav { background:#131f2b; border-block:1px solid #354855; }
+.bf-nav ul { display:flex; flex-wrap:wrap; gap:.25rem .65rem; max-width:72rem; margin:0 auto; padding:.45rem 1rem; list-style:none; }
+.bf-nav a { display:block; padding:.5rem .65rem; color:#d0e1eb; text-decoration:none; border-radius:.25rem; }
+.bf-nav a:hover,.bf-nav a[aria-current=page] { background:#294454; color:#e8ffff; }
+@media print { .bf-nav { display:none; } }
