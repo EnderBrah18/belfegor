@@ -1,6 +1,6 @@
 import { contaEditorial, visivel } from './visibilidade.js?v=3';
 import { chaveSessao } from './credenciais.js?v=3';
-import { iconeArquivo } from './icones-arquivo.js';
+import { iconeArquivo } from './icones-arquivo.js?v=3';
 
 const $ = id => document.getElementById(id);
 const categorias = [...document.querySelectorAll('[data-bib-categoria]')];
