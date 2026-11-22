@@ -1,14 +1,31 @@
 [
   {
-    "codigo": "ECHO-01",
-    "titulo": "Acesso ao Registro Funcional",
-    "resumo": "O terminal de admissão está disponível para preenchimento da ficha e emissão da credencial.",
-    "href": "cadastro.html"
+    "codigo": "ECHO-05",
+    "titulo": "Credenciais no início do turno",
+    "resumo": "Tenha o crachá à mão ao passar pelas catracas do Grande Átrio. Encaminhe divergências de lotação ao atendimento.",
+    "setor": "E.C.H.O.",
+    "edicao": "recente"
   },
   {
-    "codigo": "ECHO-02",
-    "titulo": "Consulta ao diretório institucional",
-    "resumo": "Consulte o diretório para identificar os complexos e as instalações da Fundação.",
-    "href": "departamentos.html"
+    "codigo": "ECHO-04",
+    "titulo": "Retirada de material de bancada",
+    "resumo": "Registre a retirada e a devolução de material compartilhado no terminal da unidade.",
+    "setor": "E.C.H.O.",
+    "edicao": "recente"
+  },
+  {
+    "codigo": "ECHO-03",
+    "titulo": "Consulta aos itinerários internos",
+    "resumo": "Antes do embarque, confira o destino nos painéis do Grande Átrio de Triagem.",
+    "setor": "E.C.H.O.",
+    "edicao": "historico"
+  },
+  {
+    "codigo": "ECHO-01",
+    "titulo": "Acesso ao Registro Funcional",
+    "resumo": "O terminal de admissão está disponível para preenchimento da ficha e emissão do crachá.",
+    "href": "cadastro.html",
+    "setor": "E.C.H.O.",
+    "edicao": "historico"
   }
 ]

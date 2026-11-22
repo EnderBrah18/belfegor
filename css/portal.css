@@ -39,3 +39,18 @@ input { flex:1 1 14rem; min-width:0; font:inherit; padding:.55rem .7rem; border:
 #identificacao { border:1px solid #597481; margin:1rem 0; padding:1rem; min-width:0; }
 .credential-fields { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,14rem),1fr)); gap:.75rem; margin-bottom:1rem; }
 .credential-fields input,.credential-fields select { display:block; width:100%; margin-top:.25rem; font:inherit; color:inherit; background:#101923; border:1px solid #6f8b9b; border-radius:.25rem; padding:.55rem .7rem; }
+
+.portal-search { background:#192735; border-top:1px solid #3d5363; }
+.portal-search .frame { display:flex; flex-wrap:wrap; align-items:center; gap:.65rem; padding-block:.65rem; }
+.portal-search input { min-width:10rem; }
+.portal-search label { font-weight:700; }
+.portal-grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(14rem,18rem); gap:1.25rem; align-items:start; padding-block:clamp(1.25rem,4vw,3rem); }
+.portal-grid > main.frame { width:100%; min-width:0; padding:0; }
+.intercom-panel { margin-top:0; padding:1rem; }
+.intercom-panel .records li { padding-block:.65rem; }
+.intercom-panel .records p { margin:.3rem 0 0; font-size:.9rem; }
+[data-edicao] + h3 { margin-top:1.25rem; }
+@media (max-width:780px) {
+  .portal-grid { grid-template-columns:minmax(0,1fr); }
+  .portal-grid > main.frame { min-height:0; }
+}
