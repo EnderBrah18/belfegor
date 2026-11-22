@@ -1,5 +1,21 @@
 [
   {
+    "codigo": "BF-VIS-01",
+    "titulo": "Orientações a visitantes",
+    "resumo": "Chegada, atendimento e circulação pelo Grande Átrio.",
+    "setor": "S.I.G.M.A.",
+    "revisao": "01",
+    "href": "documentos/orientacoes-a-visitantes.html"
+  },
+  {
+    "codigo": "BF-VIS-02",
+    "titulo": "Atendimento no Grande Átrio",
+    "resumo": "Como confirmar visitas combinadas e encaminhar entregas.",
+    "setor": "S.I.G.M.A.",
+    "revisao": "01",
+    "href": "documentos/atendimento-no-atrio.html"
+  },
+  {
     "codigo": "BF-GUIA-01",
     "titulo": "Guia de consulta institucional",
     "resumo": "Orientação para uso dos serviços do portal.",
