@@ -701,3 +701,55 @@ body:has(.bf-statusbar) { padding-bottom:3.25rem; }
 .echo-aviso-meta { display:grid; justify-items:end; gap:.25rem; text-align:right; max-width:4.25rem; }
 .echo-todos { display:flex; align-items:center; justify-content:center; gap:.4rem; margin:.55rem .5rem .65rem; padding:.48rem .22rem; color:#e9fbff; border:1px solid #74e5f4; background:#0a3746; border-radius:.55rem; text-align:center; text-decoration:none; font-size:.86rem; font-weight:700; }
 .echo-todos:hover { background:#145267; }
+
+.bf-console .biblioteca-layout { grid-template-columns:minmax(10rem,12rem) minmax(0,1fr); gap:1rem; padding-top:1rem; }
+.biblioteca-main .biblioteca-hero { display:flex; align-items:center; gap:.9rem; min-height:9rem; background-image:linear-gradient(90deg,#061a26 8%,#061a26b0 52%,#061a261a),url("../imagens/sala-do-acervo.jpg"); }
+.biblioteca-hero > .arquivo-icone { width:2.5rem; height:2.5rem; color:#ffd27c; }
+.biblioteca-corpo { display:grid; grid-template-columns:minmax(0,1fr) minmax(14rem,18rem); gap:1rem; align-items:start; }
+.biblioteca-centro,.biblioteca-rail { min-width:0; display:grid; gap:.72rem; }
+.biblioteca-pesquisa { padding:.42rem; display:flex; align-items:start; flex-wrap:wrap; gap:.4rem; }
+#bib-buscar { display:flex; align-items:center; gap:.4rem; flex:1 1 16rem; min-width:0; }
+#bib-buscar .arquivo-busca { flex:1; min-width:0; }
+#bib-buscar input { width:100%; padding-inline-start:1.85rem; }
+#bib-avancada { flex:0 1 auto; }
+#bib-avancada[open] { flex-basis:100%; }
+#bib-avancada summary { cursor:pointer; list-style:none; background:#102f3e; color:#e1f2f8; border:1px solid #4896aa; border-radius:.25rem; padding:.45rem .5rem; }
+#bib-avancada summary::-webkit-details-marker { display:none; }
+#bib-filtros { display:flex; align-items:end; gap:.5rem; flex-wrap:wrap; padding:.55rem .2rem .15rem; }
+#bib-filtros label { display:grid; min-width:7rem; gap:.15rem; font-size:.85rem; }
+#bib-filtros select { background:#081d28; color:#eaf5f8; border:1px solid #4a91a4; border-radius:.23rem; padding:.28rem; font:inherit; }
+.biblioteca-categorias { display:grid; grid-template-columns:repeat(8,minmax(0,1fr)); gap:.38rem; }
+.biblioteca-categorias button { display:grid; align-content:start; justify-items:center; gap:.25rem; min-width:0; min-height:6rem; padding:.45rem .17rem; color:#e5f3f8; background:linear-gradient(160deg,#0f3547,#0a2430); border:1px solid #4c95a9; font-size:.82rem; line-height:1.25; }
+.biblioteca-categorias .arquivo-icone { width:1.45rem; height:1.45rem; margin:0; }
+.biblioteca-categorias strong { overflow-wrap:anywhere; }
+.biblioteca-categorias small { color:#c2dbe5; }
+.biblioteca-categorias button[aria-pressed=true] { background:#3b3422; border-color:#ffcd73; color:#fff1cf; box-shadow:0 0 .5rem #e7aa4b70; }
+.biblioteca-categorias button[aria-pressed=true] .arquivo-icone { color:#ffd27c; }
+.biblioteca-rail h2,.biblioteca-catalogo .intercom-list-head { background:#102c3a; border-bottom:1px solid #498397; }
+.bib-linha { display:grid; grid-template-columns:auto minmax(4.2rem,auto) minmax(0,1fr) auto auto; gap:.48rem; align-items:center; padding:.55rem .6rem; border-bottom:1px solid #31596b; font-size:.86rem; }
+.bib-linha:last-child { border-bottom:0; }
+.bib-linha[data-restrito=true] { background:#211f30; }
+.bib-linha a,.bib-linha p { overflow-wrap:anywhere; }
+.bib-linha p { margin:.1rem 0 0; color:#c2dbe5; line-height:1.35; }
+.bib-linha code { color:#bcebf4; }
+.bib-linha .bib-marca { padding:.22rem .32rem; color:#bcebf4; background:#102f3e; border:1px solid #4896aa; }
+.bib-linha .bib-marca[aria-pressed=true],.bib-linha .bib-marca[aria-pressed=true] svg { color:#ffd27c; }
+.bib-marca svg { margin:0; }
+.bib-linha .intercom-tag { font-size:.75rem; }
+#bib-destaque,#bib-leitura { padding:.65rem; }
+.bib-feature { display:grid; grid-template-columns:minmax(3.3rem,.65fr) minmax(0,1fr); gap:.65rem; align-items:start; }
+.bib-capa { display:grid; place-items:center; min-height:7rem; height:100%; background:linear-gradient(135deg,#142e3b,#0a202f); border:2px double #bf9966; box-shadow:inset .22rem 0 #5f513a; color:#ffd27c; }
+.bib-capa .arquivo-icone { width:1.6rem; height:1.6rem; margin:0; color:inherit; }
+.bib-feature p { margin:.25rem 0; font-size:.86rem; }
+.bib-feature a.action { font-size:.82rem; padding:.35rem .45rem; }
+.bib-atalhos { list-style:none; padding:.3rem .65rem; margin:0; }
+.bib-atalhos li + li { border-top:1px solid #31596b; }
+.bib-atalhos :is(a,button) { display:flex; align-items:center; gap:.3rem; width:100%; text-align:left; padding:.35rem .1rem; background:none; color:#eaf5f8; font:inherit; text-decoration:none; }
+.bib-atalhos :is(a,button):hover,.bib-atalhos [aria-pressed=true] { color:#ffd27c; }
+.bib-atalhos .arquivo-icone:last-child { margin-inline-start:auto; }
+.bib-leitura-item { margin-bottom:.55rem; font-size:.86rem; }
+.bib-leitura-item label { display:flex; justify-content:space-between; gap:.3rem; }
+.bib-leitura-item input { width:100%; padding:0; accent-color:#78e5f1; }
+@media(max-width:1390px) { .biblioteca-categorias { grid-template-columns:repeat(4,minmax(0,1fr)); } }
+@media(max-width:1050px) { .biblioteca-corpo { grid-template-columns:minmax(0,1fr); } .biblioteca-rail { grid-template-columns:repeat(auto-fit,minmax(min(100%,13rem),1fr)); } }
+@media(max-width:680px) { .bf-console .biblioteca-layout { display:block; } .biblioteca-categorias { grid-template-columns:repeat(2,minmax(0,1fr)); } .bib-linha { grid-template-columns:auto minmax(0,1fr) auto; } .bib-linha .bib-texto { grid-column:2; } .bib-linha .intercom-tag { grid-column:2; justify-self:start; } .bib-linha .bib-marca { grid-column:3; grid-row:1; } }
