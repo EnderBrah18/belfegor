@@ -54,3 +54,59 @@ input { flex:1 1 14rem; min-width:0; font:inherit; padding:.55rem .7rem; border:
   .portal-grid { grid-template-columns:minmax(0,1fr); }
   .portal-grid > main.frame { min-height:0; }
 }
+
+/* Rede interna da Fundação */
+:root { background:#07151f; color:#e7f2f7; }
+.bf-header { background:linear-gradient(100deg,#0b2635,#081923 68%); border-top-color:#40b9cf; border-bottom:1px solid #315d72; }
+.bf-header-inner { width:min(88rem,calc(100% - 2rem)); }
+.bf-brand:has(.bf-identity) { display:flex; align-items:center; gap:.75rem; }
+.bf-identity { display:grid; gap:.14rem; }
+.bf-identity strong { text-transform:uppercase; font-size:clamp(1rem,2vw,1.45rem); letter-spacing:.025em; }
+.bf-identity > span,.bf-system small { display:block; color:#b4d2df; font-size:.875rem; }
+.bf-emblem { display:block; flex:0 0 56px; width:56px; height:56px; background:url("../imagens/emblema-belfegor-origem.png") no-repeat -39px -13px / 648px auto; mix-blend-mode:screen; }
+.bf-system { color:#bceaf0; font:700 .9rem/1.4 ui-monospace,monospace; border-left:1px solid #315d72; padding-left:1rem; margin-right:auto; }
+.bf-system small { font:400 .875rem/1.4 system-ui,sans-serif; }
+.portal-search { background:#0d2432; border:0; }
+.portal-search .frame,.bf-nav ul { max-width:88rem; }
+.portal-search input { background:#091923; }
+.bf-nav { background:#0b1f2c; }
+.bf-nav a[aria-current=page] { box-shadow:inset 0 -2px #54cce0; }
+.portal-grid { width:min(88rem,calc(100% - 2rem)); grid-template-columns:minmax(0,1fr) minmax(15rem,19rem); }
+.intercom-panel,.dashboard-panel { background:#0e2533; border-color:#346075; border-radius:.4rem; }
+.dashboard .panel,.dashboard-rail .panel { margin:0; }
+.dashboard .panel[hidden] { display:none; }
+.dashboard { display:grid; gap:1rem; align-content:start; }
+.expediente-hero {
+  min-height:18rem; display:grid; align-content:end; justify-items:start;
+  border:1px solid #468399; border-radius:.4rem;
+  background:linear-gradient(90deg,rgba(5,20,30,.98),rgba(6,21,31,.64) 55%,rgba(6,21,31,.2)),
+    url("../imagens/grande-atrio.jpg") center 45% / cover, #14394b;
+}
+.expediente-hero h1 { font-size:clamp(1.75rem,5vw,3.25rem); }
+.expediente-hero p:not(.kicker) { max-width:44ch; margin:.2rem 0 1rem; }
+.expediente-hero .kicker { color:#ffe0a2; font:700 .9rem ui-monospace,monospace; text-transform:uppercase; }
+.dashboard-pair { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,1fr); gap:1rem; align-items:start; }
+.dashboard-turnos { grid-template-columns:repeat(2,minmax(0,1fr)); }
+.dashboard-rail { display:grid; gap:1rem; }
+.dashboard-panel { padding:0; overflow:hidden; }
+.dashboard-panel h2 { margin:0; padding:.7rem .9rem; background:#153546; border-bottom:1px solid #346075; font-size:1rem; }
+.dashboard-panel .records,.dashboard-link,.shift-list,.operational-state { padding-inline:.9rem; }
+.dashboard-panel .records li { border-top:0; border-bottom:1px solid #2b4858; padding-block:.65rem; }
+.dashboard-panel .records h3,.intercom-panel .records h3 { margin-bottom:.15rem; font-size:1rem; }
+.dashboard-panel .records p { font-size:.9rem; }
+.dashboard-link { margin:.7rem 0; }
+.shift-list { list-style:none; margin:0; }
+.shift-list li { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:baseline; gap:.25rem .65rem; padding:.6rem 0; border-bottom:1px solid #2b4858; }
+.shift-list li:last-child { border-bottom:0; }
+.shift-list small { color:#b2d2df; font-size:.875rem; }
+.operational-state { color:#a8e7c2; font-weight:650; }
+@media (max-width:1060px) { .bf-system { display:none; } }
+@media (max-width:780px) {
+  .portal-grid,.dashboard-pair,.dashboard-turnos { grid-template-columns:minmax(0,1fr); }
+  .expediente-hero { min-height:15rem; }
+}
+@media (max-width:420px) { .portal-search label { flex-basis:100%; } }
+
+.hero-actions { display:flex; flex-wrap:wrap; align-items:center; gap:.65rem 1rem; }
+.hero-actions .action { background:#a4e6ee; }
+@media (max-width:480px) { .bf-identity > span { max-width:25ch; } }
