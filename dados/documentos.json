@@ -1,5 +1,21 @@
 [
   {
+    "codigo": "BF-PC-01",
+    "titulo": "Conferência de instrumentos",
+    "resumo": "Verificações de rotina antes de retomar um ensaio.",
+    "setor": "Pesquisa e Ciência",
+    "revisao": "01",
+    "situacao": "Em vigor",
+    "href": "documentos/rotina-de-bancada.html",
+    "visibilidade": {
+      "naMinimo": 2,
+      "patenteMinima": 2,
+      "departamentos": [
+        "Pesquisa e Ciência"
+      ]
+    }
+  },
+  {
     "codigo": "BF-VIS-01",
     "titulo": "Orientações a visitantes",
     "resumo": "Chegada, atendimento e circulação pelo Grande Átrio.",

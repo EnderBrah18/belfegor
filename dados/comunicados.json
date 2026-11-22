@@ -1,5 +1,22 @@
 [
   {
+    "codigo": "ECHO-09",
+    "titulo": "Conferência de bancada no início do expediente",
+    "resumo": "Pesquisadores devem registrar a condição dos instrumentos antes de retomar ensaios.",
+    "setor": "E.C.H.O.",
+    "edicao": "recente",
+    "referencia": "Turno atual",
+    "situacao": "Em vigor",
+    "href": "documentos/rotina-de-bancada.html",
+    "visibilidade": {
+      "naMinimo": 2,
+      "patenteMinima": 2,
+      "departamentos": [
+        "Pesquisa e Ciência"
+      ]
+    }
+  },
+  {
     "codigo": "ECHO-08",
     "titulo": "Atendimento do Átrio aberto",
     "resumo": "O balcão está recebendo visitantes com compromisso agendado e orientando quem chega ao complexo pela primeira vez.",
