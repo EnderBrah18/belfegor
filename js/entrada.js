@@ -21,7 +21,8 @@ function identidade(dados) {
 
 function entrar(sessao) {
   try {
-    sessionStorage.setItem(chaveSessao, sessao);
+    localStorage.setItem(chaveSessao, sessao);
+    sessionStorage.removeItem(chaveSessao);
     window.location.assign('index.html');
   } catch {
     resultado.textContent = 'Não foi possível iniciar a sessão neste navegador.';
