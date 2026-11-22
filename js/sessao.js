@@ -19,7 +19,7 @@
   const entrar = painel.querySelector('[data-bf-login]');
   const perfil = painel.querySelector('[data-bf-profile]');
   const sair = painel.querySelector('[data-bf-logout]');
-  const aviso = painel.querySelector('[data-bf-status]');
+  const linkCadastro = perfil.getAttribute('href');
   const diretorio = document.querySelector('[data-bf-diretorio]');
 
   function lerFicha() {
@@ -39,15 +39,16 @@
   function fichaAtiva() {
     try {
       const ficha = lerFicha();
-      return ficha && sessionStorage.getItem(chaveSessao) === ficha.ident ? ficha : null;
+      const sessao = sessionStorage.getItem(chaveSessao);
+      if (!sessao) return null;
+      if (sessao.startsWith('{')) {
+        const perfilImportado = JSON.parse(sessao);
+        return { ...perfilImportado, importado: true };
+      }
+      return ficha && sessao === ficha.ident ? ficha : null;
     } catch {
       return null;
     }
-  }
-
-  function mostrarAviso(texto) {
-    aviso.textContent = texto;
-    aviso.hidden = !texto;
   }
 
   function atualizar() {
@@ -56,6 +57,7 @@
     entrar.hidden = Boolean(ficha);
     perfil.hidden = !ficha;
     sair.hidden = !ficha;
+    perfil.href = ficha?.importado ? entrar.href : linkCadastro;
     perfil.textContent = ficha ? [ficha.nome, ficha.patente, ficha.acesso].join(' · ') : '';
 
     if (diretorio) {
@@ -78,33 +80,11 @@
     }
   }
 
-  function iniciarSessao() {
-    const ficha = lerFicha();
-    if (!ficha) {
-      mostrarAviso('Salve um Registro Funcional com nome e identificação para entrar neste navegador.');
-      return;
-    }
-    try {
-      sessionStorage.setItem(chaveSessao, ficha.ident);
-      mostrarAviso('');
-      atualizar();
-      perfil.focus();
-    } catch {
-      mostrarAviso('A sessão está indisponível neste navegador.');
-    }
-  }
-
-  entrar.addEventListener('click', iniciarSessao);
   sair.addEventListener('click', () => {
-    try {
-      sessionStorage.removeItem(chaveSessao);
-      atualizar();
-      entrar.focus();
-    } catch {
-      mostrarAviso('Não foi possível encerrar a sessão.');
-    }
+    sessionStorage.removeItem(chaveSessao);
+    atualizar();
+    entrar.focus();
   });
-  addEventListener('belfegor:registro-salvo', iniciarSessao);
   addEventListener('pageshow', atualizar);
   addEventListener('storage', (evento) => {
     if (!evento.key || evento.key === chaveFicha) atualizar();
