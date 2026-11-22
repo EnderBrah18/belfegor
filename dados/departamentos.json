@@ -1,0 +1,38 @@
+[
+  {
+    "titulo": "Grande Átrio de Triagem",
+    "resumo": "Núcleo de chegada e distribuição de funcionários, com acesso ao transporte entre complexos."
+  },
+  {
+    "titulo": "Torre Central",
+    "resumo": "Administração e comando. A circulação regular nos setores internos exige patente G-4 ou superior."
+  },
+  {
+    "titulo": "Complexo Científico",
+    "resumo": "Pesquisa e análise, incluindo o Instituto de Pesquisa Anômala."
+  },
+  {
+    "titulo": "Complexo Industrial",
+    "resumo": "Engenharia, manutenção e fabricação."
+  },
+  {
+    "titulo": "Complexo de Segurança e Contenção",
+    "resumo": "Operações de segurança e instalações de contenção."
+  },
+  {
+    "titulo": "Complexo Administrativo e de Apoio",
+    "resumo": "Serviços de pessoal e apoio operacional."
+  },
+  {
+    "titulo": "Subsolo Técnico",
+    "resumo": "Infraestrutura, energia e manutenção."
+  },
+  {
+    "titulo": "Galerias Salinas",
+    "resumo": "Galerias subterrâneas e transporte por bondes suspensos."
+  },
+  {
+    "titulo": "Instalações Profundas",
+    "resumo": "Instalações remotas com acesso classificado."
+  }
+]
