@@ -7,7 +7,7 @@
     addEventListener('belfegor:registro-salvo', () => {
       try {
         const ficha = lerFicha();
-        if (ficha) sessionStorage.setItem(chaveSessao, ficha.ident);
+        if (ficha) localStorage.setItem(chaveSessao, ficha.ident);
       } catch {
         // O registro salvo continua disponível para entrar pelo portal.
       }
@@ -39,7 +39,12 @@
   function fichaAtiva() {
     try {
       const ficha = lerFicha();
-      const sessao = sessionStorage.getItem(chaveSessao);
+      const anterior = sessionStorage.getItem(chaveSessao);
+      const sessao = localStorage.getItem(chaveSessao) ?? anterior;
+      if (anterior !== null) {
+        if (sessao === anterior) localStorage.setItem(chaveSessao, sessao);
+        sessionStorage.removeItem(chaveSessao);
+      }
       if (!sessao) return null;
       if (sessao.startsWith('{')) {
         const perfilImportado = JSON.parse(sessao);
@@ -82,12 +87,14 @@
 
   sair.addEventListener('click', () => {
     sessionStorage.removeItem(chaveSessao);
+    localStorage.removeItem(chaveSessao);
     atualizar();
     entrar.focus();
   });
   addEventListener('pageshow', atualizar);
   addEventListener('storage', (evento) => {
-    if (!evento.key || evento.key === chaveFicha) atualizar();
+    if (!evento.key || evento.key === chaveSessao) sessionStorage.removeItem(chaveSessao);
+    if (!evento.key || evento.key === chaveSessao || evento.key === chaveFicha) atualizar();
   });
   atualizar();
 })();
