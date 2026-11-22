@@ -387,3 +387,56 @@ body:has(.bf-statusbar) { padding-bottom:3.25rem; }
 .bf-message-panel li { border-top:1px solid #346075; padding:.65rem 0; }
 .bf-message-panel p { margin:.25rem 0 0; overflow-wrap:anywhere; }
 .bf-message-panel small { color:#b4d2df; }
+
+/* Dossiê funcional */
+.personnel-heading { padding:.1rem 0 1rem; }
+.personnel-heading h1 { margin:0; font-size:clamp(1.85rem,4vw,3.2rem); }
+.personnel-heading .kicker { color:#a8e7f0; font:700 .85rem ui-monospace,monospace; text-transform:uppercase; letter-spacing:.07em; }
+.personnel-workspace { display:grid; gap:1rem; }
+.personnel-workspace[hidden] { display:none; }
+.personnel-overview { display:grid; grid-template-columns:minmax(0,1.5fr) minmax(11rem,1fr); gap:1rem; align-items:stretch; }
+.personnel-dossier,.personnel-view .personnel-panel {
+  min-width:0; margin:0; border:1px solid #4a8093;
+  border-radius:.28rem .8rem .28rem .8rem; overflow:hidden;
+}
+.personnel-dossier { background:#dce7e8; color:#142833; border-top-color:#ffd082; }
+.personnel-dossier h2,.personnel-view .personnel-panel h2 {
+  margin:0 0 .75rem; font:700 1rem/1.35 ui-monospace,monospace;
+}
+.personnel-dossier h2 { margin:0; padding:.65rem .85rem; background:#173547; color:#e7f4f8; border-bottom:1px solid #7599a7; }
+.personnel-sheet {
+  display:grid; grid-template-columns:auto minmax(0,1fr); align-items:center; gap:.8rem 1rem; padding:.9rem;
+  background:repeating-linear-gradient(0deg,transparent 0 19px,#58717c0c 19px 20px);
+}
+.personnel-seal {
+  display:grid; justify-items:center; gap:.25rem; padding:.4rem;
+  background:#102c3d; color:#bce4ee; border:1px solid #588395; border-radius:.25rem .65rem;
+  font:700 .7rem ui-monospace,monospace; white-space:nowrap;
+}
+.personnel-id { margin:0 0 .3rem; font:700 1rem ui-monospace,monospace; color:#345361; }
+.personnel-identity h3 { margin:0; font-size:clamp(1.25rem,2.6vw,2rem); overflow-wrap:anywhere; }
+.personnel-role { margin:.3rem 0 0; line-height:1.35; }
+.personnel-data { grid-column:1/-1; margin:0; }
+.personnel-data > div { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.2fr); gap:.5rem; padding:.5rem 0; border-top:1px solid #8ea5ad; }
+.personnel-data dt { font-weight:650; }
+.personnel-data dd { margin:0; overflow-wrap:anywhere; }
+.personnel-data dd:empty::before { content:"—"; }
+.personnel-view .personnel-panel { padding:.9rem; background:linear-gradient(155deg,#133345,#0b202e 70%); }
+.personnel-clearance { border-top-color:#ffd082 !important; }
+.personnel-na {
+  display:inline-block; margin:0; padding:.25rem .6rem; border:1px solid #a87d43;
+  border-radius:.2rem .5rem; color:#ffd082; background:#413222;
+  font:750 clamp(1.5rem,3vw,2.4rem) ui-monospace,monospace;
+}
+.personnel-clearance p:not(.personnel-na) { margin:.65rem 0 0; line-height:1.45; }
+.personnel-status { color:#9ee7bd; border-top:1px solid #346075; padding-top:.6rem; }
+.personnel-notice-content h2 { display:none; }
+.personnel-notice-content ul { list-style:none; padding:0; margin:0; }
+.personnel-notice-content li { border-top:1px solid #346075; padding:.5rem 0; }
+.personnel-notice-content p,.personnel-no-notices { margin:.3rem 0; }
+.personnel-notice-content:not([hidden]) + .personnel-no-notices { display:none; }
+.personnel-links a { display:grid; gap:.2rem; padding:.55rem 0; border-top:1px solid #346075; }
+.personnel-links span { font-size:.9rem; color:#b4d2df; }
+@media (max-width:1150px) and (min-width:981px), (max-width:760px) {
+  .personnel-overview { grid-template-columns:minmax(0,1fr); }
+}
