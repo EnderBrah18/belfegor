@@ -21,3 +21,7 @@ Cadastre os perfis de jogadores e de puzzles em `dados/funcionarios.json`. Os do
 Se quiser encerrar sessões existentes ao trocar a senha fictícia, incremente também `revisao`, que começa em 1. Alterações de patente, NA, setor ou avisos mantêm a senha e a sessão.
 
 Usuários e senhas de jogo são dados ficcionais públicos, editados diretamente no JSON. Nunca use a senha de um serviço real. A entrada serve para selecionar perfis da campanha. Veja as [regras de visibilidade editorial](dados/VISIBILIDADE.md).
+
+### Central de Mensagens
+
+Edite `avisos` no perfil fictício do destinatário em `dados/funcionarios.json` e ponha os avisos mais recentes no início da lista. Os cinco primeiros aparecem no sino. Cada aviso aceita texto simples ou um objeto com `texto` e, opcionalmente, `titulo` e `quando`. A interface seleciona os avisos do perfil em uso. Publique apenas mensagens ficcionais adequadas ao repositório público.

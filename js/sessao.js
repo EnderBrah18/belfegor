@@ -3,6 +3,10 @@ import { contaDaSessao, chaveSessao } from './credenciais.js?v=3';
 const painel = document.querySelector('[data-bf-account]');
 const menu = painel.querySelector('.bf-account-menu');
 const resumo = menu.querySelector('summary');
+const central = document.querySelector('.bf-message-menu');
+const sino = central.querySelector('summary');
+const indicador = central.querySelector('[data-bf-message-dot]');
+const caixa = central.querySelector('[data-bf-message-list]');
 const identificacao = menu.querySelector('[data-bf-account-id]');
 const funcao = menu.querySelector('[data-bf-account-role]');
 const cadastro = painel.querySelector('[data-bf-register]');
@@ -22,7 +26,39 @@ function texto(tag, valor) {
   return elemento;
 }
 
+function mensagensDoPerfil(conta) {
+  if (!Array.isArray(conta?.avisos)) return [];
+  return conta.avisos
+    .map(aviso => typeof aviso === 'string' ? { texto: aviso } : aviso)
+    .filter(aviso => typeof aviso?.texto === 'string' && aviso.texto.trim());
+}
+
+function preencherMensagens(destino, mensagens) {
+  const lista = document.createElement('ul');
+  for (const mensagem of mensagens) {
+    const item = document.createElement('li');
+    if (mensagem.titulo) item.append(texto('strong', mensagem.titulo));
+    if (mensagem.quando) item.append(texto('p', mensagem.quando));
+    item.append(texto('p', mensagem.texto));
+    lista.append(item);
+  }
+  destino.append(lista);
+}
+
+function mostrarCentral(conta, mensagens) {
+  const recentes = mensagens.slice(0, 5);
+  indicador.hidden = !recentes.length;
+  sino.setAttribute('aria-label', recentes.length
+    ? 'Central de Mensagens · ' + recentes.length + (recentes.length === 1 ? ' mensagem recente' : ' mensagens recentes')
+    : 'Central de Mensagens');
+  caixa.replaceChildren();
+  if (recentes.length) preencherMensagens(caixa, recentes);
+  else caixa.append(texto('p', conta ? 'Você não tem mensagens recentes.' : 'Entre no portal para consultar suas mensagens.'));
+}
+
 function mostrar(conta) {
+  const mensagens = mensagensDoPerfil(conta);
+  mostrarCentral(conta, mensagens);
   cadastro.hidden = Boolean(conta);
   entrar.hidden = Boolean(conta);
   perfil.hidden = !conta;
@@ -53,10 +89,12 @@ function mostrar(conta) {
     }
   }
   if (avisos) {
-    const mensagens = Array.isArray(conta?.avisos) ? conta.avisos : [];
     avisos.hidden = !mensagens.length;
     avisos.replaceChildren();
-    if (mensagens.length) avisos.append(texto('h2', 'Avisos da credencial'), ...mensagens.map(m => texto('p', m)));
+    if (mensagens.length) {
+      avisos.append(texto('h2', 'Avisos da credencial'));
+      preencherMensagens(avisos, mensagens);
+    }
   }
 }
 
@@ -97,11 +135,18 @@ sair.addEventListener('click', () => {
 });
 document.addEventListener('click', evento => {
   if (menu.open && !menu.contains(evento.target)) menu.open = false;
+  if (central.open && !central.contains(evento.target)) central.open = false;
 });
 menu.addEventListener('keydown', evento => {
   if (evento.key === 'Escape' && menu.open) {
     menu.open = false;
     resumo.focus();
+  }
+});
+central.addEventListener('keydown', evento => {
+  if (evento.key === 'Escape' && central.open) {
+    central.open = false;
+    sino.focus();
   }
 });
 addEventListener('pageshow', consultar);

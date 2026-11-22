@@ -371,3 +371,19 @@ body:has(.bf-statusbar) { padding-bottom:3.25rem; }
 .bf-account-options :is(a,button):hover { background:#22465a; }
 .bf-account-options [hidden] { display:none; }
 @media (max-width:680px) { .bf-account-options { inset-inline:0 auto; } }
+
+.bf-message-menu { position:relative; }
+.bf-message-menu .bf-comms { list-style:none; cursor:pointer; }
+.bf-message-menu .bf-comms::-webkit-details-marker { display:none; }
+.bf-message-menu[open] .bf-comms,.bf-message-menu .bf-comms:hover { border-color:#84d9e9; }
+.bf-message-panel {
+  position:absolute; z-index:16; inset:calc(100% + .45rem) 0 auto auto;
+  width:min(21rem,calc(100vw - 2rem)); max-height:min(26rem,65dvh); overflow:auto;
+  background:#0d2534; border:1px solid #477489; border-radius:.4rem;
+  box-shadow:0 .5rem 1rem #0008; padding:.85rem;
+}
+.bf-message-panel h2 { font-size:1.05rem; margin:0 0 .65rem; }
+.bf-message-panel ul { margin:0; padding:0; list-style:none; }
+.bf-message-panel li { border-top:1px solid #346075; padding:.65rem 0; }
+.bf-message-panel p { margin:.25rem 0 0; overflow-wrap:anywhere; }
+.bf-message-panel small { color:#b4d2df; }
