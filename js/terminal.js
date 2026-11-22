@@ -1,35 +1,45 @@
-const formulario = document.getElementById('consulta');
-const codigo = document.getElementById('codigo');
 const resultado = document.getElementById('resultado');
-let consultaAtual = 0;
+const entrada = document.getElementById('busca-global');
+const termo = new URLSearchParams(location.search).get('codigo')?.trim().slice(0, 64) ?? '';
+const normalizar = valor => valor.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase();
 
-formulario.addEventListener('submit', async (evento) => {
-  evento.preventDefault();
-  const consulta = ++consultaAtual;
-  const identificador = codigo.value.trim().toUpperCase();
-  if (!identificador) {
-    resultado.textContent = 'Digite um identificador para consultar.';
+async function buscar() {
+  if (!termo) {
+    resultado.textContent = 'Use a busca no topo para consultar o acervo.';
     return;
   }
+
+  entrada.value = termo;
   resultado.textContent = 'Consultando registros…';
-
   try {
-    const resposta = await fetch('dados/documentos.json');
-    if (!resposta.ok) throw new Error('Catálogo indisponível');
-    const documentos = await resposta.json();
-    if (consulta !== consultaAtual) return;
-
-    const documento = documentos.find((item) => item.codigo.toUpperCase() === identificador);
-    if (!documento) {
-      resultado.textContent = 'Nenhum documento encontrado para ' + identificador + '.';
+    const fontes = await Promise.all(['documentos', 'comunicados'].map(async nome => {
+      const resposta = await fetch('dados/' + nome + '.json');
+      if (!resposta.ok) throw new Error('Catálogo indisponível');
+      return resposta.json();
+    }));
+    const chave = normalizar(termo);
+    const registros = fontes.flat().filter(item => normalizar(item.codigo + ' ' + item.titulo).includes(chave));
+    if (!registros.length) {
+      resultado.textContent = 'Nenhum resultado para “' + termo + '”.';
       return;
     }
 
-    const link = document.createElement('a');
-    link.href = documento.href;
-    link.textContent = documento.titulo;
-    resultado.replaceChildren(documento.codigo + ' · ', link);
+    const lista = document.createElement('ul');
+    lista.className = 'records';
+    for (const registro of registros) {
+      const item = document.createElement('li');
+      const titulo = document.createElement('a');
+      titulo.href = registro.href || 'intercom.html';
+      titulo.textContent = registro.codigo + ' · ' + registro.titulo;
+      const resumo = document.createElement('p');
+      resumo.textContent = registro.resumo;
+      item.append(titulo, resumo);
+      lista.append(item);
+    }
+    resultado.replaceChildren(lista);
   } catch {
-    if (consulta === consultaAtual) resultado.textContent = 'Catálogo indisponível. Tente novamente.';
+    resultado.textContent = 'Consulta indisponível. Tente novamente.';
   }
-});
+}
+
+buscar();
