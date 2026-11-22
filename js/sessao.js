@@ -1,13 +1,26 @@
 (() => {
   const painel = document.querySelector('[data-bf-account]');
+  const chaveSessao = 'belfegor-sessao-v1';
+  const chaveFicha = 'belfegor-ficha-v1';
+
+  if (!painel) {
+    addEventListener('belfegor:registro-salvo', () => {
+      try {
+        const ficha = lerFicha();
+        if (ficha) sessionStorage.setItem(chaveSessao, ficha.ident);
+      } catch {
+        // O registro salvo continua disponível para entrar pelo portal.
+      }
+    });
+    return;
+  }
+
   const cadastro = painel.querySelector('[data-bf-register]');
   const entrar = painel.querySelector('[data-bf-login]');
   const perfil = painel.querySelector('[data-bf-profile]');
   const sair = painel.querySelector('[data-bf-logout]');
   const aviso = painel.querySelector('[data-bf-status]');
   const diretorio = document.querySelector('[data-bf-diretorio]');
-  const chaveSessao = 'belfegor-sessao-v1';
-  const chaveFicha = 'belfegor-ficha-v1';
 
   function lerFicha() {
     try {
