@@ -598,3 +598,15 @@ body:has(.bf-statusbar) { padding-bottom:3.25rem; }
   .proc-ficha .proc-metadata { grid-template-columns:repeat(2,minmax(0,1fr)); row-gap:.4rem; }
   .proc-ficha .proc-metadata > div:nth-child(3) { border-inline-start:0; }
 }
+
+@media(min-width:1161px) and (max-width:1400px) {
+  .bf-console .manual-procedimentos { grid-template-columns:10rem minmax(0,1fr) 16rem; gap:.7rem; }
+  .proc-workspace { grid-template-columns:minmax(9rem,.9fr) minmax(11rem,1.1fr) minmax(15rem,1.65fr); }
+}
+.proc-categorias button { padding:.45rem .35rem; gap:.25rem; font-size:.82rem; }
+.proc-categorias button > span { gap:.3rem; overflow-wrap:normal; }
+.proc-categorias button > span .proc-icon { width:.95rem; height:.95rem; }
+.proc-item { gap:.3rem; padding:.45rem .35rem; }
+.proc-item > .proc-icon { width:1.05rem; height:1.05rem; }
+.proc-item small { line-height:1.25; }
+.proc-metadata dd { overflow-wrap:normal; }
