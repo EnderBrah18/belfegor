@@ -499,3 +499,51 @@ body:has(.bf-statusbar) { padding-bottom:3.25rem; }
 #intercom-destaque .intercom-row summary { grid-template-columns:.55rem minmax(0,1fr); }
 #intercom-destaque .com-text,#intercom-destaque .intercom-tag { grid-column:2; }
 #intercom-destaque .intercom-tag { justify-self:start; }
+
+.manual-procedimentos { --manual-line:#4facc1; }
+.proc-tabs button { flex:1 1 10rem; }
+.proc-tabs button[aria-pressed=true] { background:#93e7f0; color:#0a2633; border-color:#8ae4f0; box-shadow:none; }
+.proc-workspace { display:grid; grid-template-columns:minmax(8rem,.85fr) minmax(11rem,1.15fr) minmax(15rem,1.55fr); gap:.55rem; align-items:stretch; }
+.proc-workspace h2,.proc-rail h2 { background:linear-gradient(100deg,#15384a,#0e2835); border-bottom:1px solid #39798c; }
+.proc-categorias button,#proc-categorias { width:100%; }
+.proc-categorias button,.proc-item {
+  display:flex; align-items:center; justify-content:space-between; gap:.45rem; border-radius:.27rem;
+  color:#e5f3f8; background:#0d2b39; border:1px solid #39798c; text-align:left; font-size:.87rem;
+}
+#proc-categorias { display:grid; gap:.3rem; padding:.4rem; }
+.proc-categorias button b { color:#b6e7f0; font-size:.75rem; }
+.proc-categorias button[aria-pressed=true],.proc-item[aria-pressed=true] { border-color:#ffca70; background:#4a3926; box-shadow:inset .13rem 0 #ffca70; }
+.proc-list-head { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; border-bottom:1px solid #39798c; }
+.proc-list-head h2 { background:none; border:0; }
+.proc-list-head label { margin:.2rem .45rem; }
+.proc-list-body,#proc-filtros { display:grid; gap:.45rem; padding:.55rem; }
+#proc-lista { display:grid; gap:.3rem; }
+.proc-item { width:100%; padding:.5rem; }
+.proc-item span:first-child { min-width:0; }
+.proc-item strong,.proc-item small { display:block; overflow-wrap:anywhere; }
+.proc-na { white-space:nowrap; color:#ffe095; border:1px solid #c29955; border-radius:.25rem; padding:.08rem .28rem; font:700 .75rem ui-monospace,monospace; }
+.manual-procedimentos :is(select,input[type=search]) { width:100%; min-width:0; padding:.32rem .42rem; background:#071b26; color:#e8f5f8; border:1px solid #4896aa; border-radius:.22rem; font:inherit; font-size:.85rem; }
+.proc-ficha { padding:.55rem; }
+.proc-ficha h2 { margin:-.55rem -.55rem .55rem; }
+.proc-ficha h3 { font-size:1rem; margin:0 0 .3rem; }
+.proc-metadata { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.35rem; margin:.3rem 0 .55rem; }
+.proc-metadata div,.proc-ficha section { border:1px solid #39798c; padding:.35rem .45rem; border-radius:.25rem; }
+.proc-metadata dt { color:#b4d2df; font-size:.8rem; }
+.proc-metadata dd { margin:0; overflow-wrap:anywhere; }
+.proc-ficha section { margin-top:.45rem; }
+.proc-ficha section p,.proc-ficha ol,.proc-ficha ul { margin:.28rem 0; font-size:.9rem; }
+.proc-ficha ol,.proc-ficha ul { padding-inline-start:1.35rem; }
+.proc-ficha li + li { margin-top:.35rem; }
+.proc-ficha .proc-atencao,.proc-destaque { border-color:#d8ab59; }
+.proc-ficha .proc-atencao { background:#382f20; color:#fff0c6; }
+#proc-filtros > label { display:grid; gap:.2rem; font-size:.85rem; }
+#proc-filtros fieldset { margin:0; border:1px solid #39798c; border-radius:.25rem; font-size:.85rem; }
+#proc-filtros fieldset label { display:flex; gap:.4rem; align-items:center; }
+#proc-filtros input[type=checkbox] { flex:0 0 auto; accent-color:#8ae4f0; }
+.proc-atalhos,#proc-destaque { margin:0; padding:.55rem .8rem; }
+.proc-atalhos { list-style:none; }
+.proc-atalhos li + li { border-top:1px solid #39798c; }
+.proc-atalhos a { display:block; padding:.3rem 0; }
+#proc-destaque p { margin:.25rem 0; }
+@media(max-width:1160px) { .proc-workspace { grid-template-columns:minmax(0,1fr) minmax(0,1.2fr); } .proc-ficha { grid-column:1/-1; } }
+@media(max-width:680px) { .proc-workspace { grid-template-columns:minmax(0,1fr); } }

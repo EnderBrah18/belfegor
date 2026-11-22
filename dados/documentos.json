@@ -14,7 +14,25 @@
         "Pesquisa e Ciência"
       ]
     },
-    "categoria": "procedimento"
+    "categoria": "procedimento",
+    "grupo": "Pesquisa e Análise",
+    "etapas": [
+      [
+        "Conferir",
+        "Verifique a condição dos instrumentos antes de retomar o ensaio."
+      ],
+      [
+        "Registrar",
+        "Anote a verificação no expediente da bancada."
+      ],
+      [
+        "Encaminhar",
+        "Preserve os registros e informe divergências à supervisão."
+      ]
+    ],
+    "relacionados": [
+      "BF-OP-01"
+    ]
   },
   {
     "codigo": "BF-VIS-01",
@@ -48,7 +66,27 @@
     "resumo": "Procedimentos de embarque no Grande Átrio de Triagem.",
     "href": "documentos/rotina-de-embarque.html",
     "categoria": "procedimento",
-    "situacao": "Em vigor"
+    "situacao": "Em vigor",
+    "grupo": "Logística",
+    "etapas": [
+      [
+        "Consultar o itinerário",
+        "Confira o destino nos painéis do Grande Átrio."
+      ],
+      [
+        "Preparar a credencial",
+        "Mantenha o crachá à mão nas catracas."
+      ],
+      [
+        "Confirmar o destino",
+        "Na chegada, apresente a credencial nos postos de controle quando solicitada."
+      ]
+    ],
+    "atencao": "O acesso aos setores internos depende da autorização aplicável.",
+    "relacionados": [
+      "BF-VIS-01",
+      "BF-REG-02"
+    ]
   },
   {
     "codigo": "BF-OP-01",
@@ -58,7 +96,25 @@
     "resumo": "Como registrar serviços pendentes e movimentação de material compartilhado.",
     "href": "documentos/passagem-de-turno.html",
     "categoria": "procedimento",
-    "situacao": "Em vigor"
+    "situacao": "Em vigor",
+    "grupo": "Operação Geral",
+    "etapas": [
+      [
+        "Devolver material",
+        "Devolva o equipamento compartilhado ou registre quem ficará responsável."
+      ],
+      [
+        "Anotar pendências",
+        "Registre o local, a condição do equipamento e a última ação realizada."
+      ],
+      [
+        "Receber o turno",
+        "Consulte o registro da unidade antes de retomar o serviço."
+      ]
+    ],
+    "relacionados": [
+      "BF-REG-01"
+    ]
   },
   {
     "codigo": "BF-REG-01",
@@ -78,6 +134,7 @@
     "setor": "S.I.G.M.A.",
     "categoria": "registro",
     "referencia": "Turno anterior",
-    "situacao": "Encerrado"
+    "situacao": "Encerrado",
+    "destaqueManual": true
   }
 ]
