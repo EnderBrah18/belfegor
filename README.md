@@ -15,4 +15,21 @@ O repositório é público. Publique somente materiais liberados para jogadores.
 
 O Registro Funcional está em `cadastro.html`. A ficha permanece no navegador, na chave `belfegor-ficha-v1`. Mantenha a mesma origem para aproveitar dados locais existentes. A exportação em JSON permite transportar a ficha entre origens ou navegadores.
 
-A página Entrar aceita a ficha salva no navegador, backups JSON e documentos PNG/JPG antigos. Backups preenchem os dados automaticamente. Imagens são exibidas localmente para confirmação manual. A entrada por documento usa apenas a identificação e não modifica o Registro Funcional salvo. A sessão permanece no mesmo navegador após fechar a página e pode ser encerrada sem apagar a ficha. Patente e NA personalizam a orientação de circulação. Esse perfil é narrativo e editável no navegador. Não use os dados locais como autorização de acesso. A hospedagem estática não autentica jogadores nem restringe o acesso aos arquivos publicados.
+## Emitir uma credencial
+
+O jogador preenche o Registro Funcional, baixa o crachá e a ficha e envia os documentos ao GM. O GM registra os dados aprovados em `dados/funcionarios.json`, com um objeto por funcionário.
+
+Execute `node scripts/emitir-credencial.mjs` para gerar uma senha exclusiva do RPG. Entregue o usuário e a senha em privado. Copie somente o verificador para o cadastro.
+
+| Campo | Valor |
+| --- | --- |
+| `usuario` | Usuário único em minúsculas |
+| `verificador` | Verificador gerado pelo script |
+| `nome`, `identificador`, `profissao` | Dados fictícios da ficha aprovada |
+| `patente`, `acesso` | Códigos como G-2 e NA-3 |
+| `ativo` | Booleano. Use false para desativar |
+| `avisos` | Lista opcional de mensagens |
+
+Publique as alterações de perfil para aplicá-las na próxima consulta do portal. Se o verificador mudar, o jogador precisará entrar com a nova credencial. Salvar ou editar uma ficha no navegador não altera o cadastro aprovado.
+
+O portal é estático. Os perfis, verificadores e avisos são visíveis no repositório público. Use apenas dados fictícios e senhas longas geradas para uso exclusivo no RPG. A credencial aplica regras narrativas e não protege arquivos ou mensagens confidenciais.
