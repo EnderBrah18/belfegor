@@ -124,7 +124,12 @@
     "setor": "S.I.G.M.A.",
     "categoria": "registro",
     "referencia": "Turno anterior",
-    "situacao": "Encerrado"
+    "situacao": "Encerrado",
+    "tipo": "Operacional",
+    "circulacao": [
+      "Registro do turno anterior vinculado ao procedimento BF-OP-01."
+    ],
+    "destaqueArquivo": true
   },
   {
     "codigo": "BF-REG-02",
@@ -135,6 +140,11 @@
     "categoria": "registro",
     "referencia": "Turno anterior",
     "situacao": "Encerrado",
-    "destaqueManual": true
+    "destaqueManual": true,
+    "tipo": "Circulação",
+    "circulacao": [
+      "Registro do turno anterior vinculado ao procedimento BF-TR-01."
+    ],
+    "destaqueArquivo": true
   }
 ]
