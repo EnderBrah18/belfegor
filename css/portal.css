@@ -110,3 +110,109 @@ input { flex:1 1 14rem; min-width:0; font:inherit; padding:.55rem .7rem; border:
 .hero-actions { display:flex; flex-wrap:wrap; align-items:center; gap:.65rem 1rem; }
 .hero-actions .action { background:#a4e6ee; }
 @media (max-width:480px) { .bf-identity > span { max-width:25ch; } }
+
+/* Painéis da estação de expediente */
+.console-layout {
+  --console-accent:#73e7f7;
+  --console-border:#3b8299;
+  padding-top:clamp(1rem,3vw,2rem);
+}
+.console-layout :is(.dashboard-panel,.intercom-panel) {
+  position:relative;
+  border-color:var(--console-border);
+  border-radius:.25rem .9rem .25rem .9rem;
+  background:linear-gradient(155deg,#102e3e,#0b202e 65%);
+  box-shadow:inset 0 1px #84ecff12,0 0 1rem #3fcbeb14;
+}
+.console-layout :is(.dashboard-panel,.intercom-panel)::before {
+  content:"";
+  position:absolute;
+  inset:0 auto auto 0;
+  width:2.1rem;
+  height:2px;
+  background:var(--console-accent);
+  box-shadow:0 0 .6rem var(--console-accent);
+  pointer-events:none;
+}
+.console-layout :is(.dashboard-panel h2,.intercom-panel h2) {
+  display:flex;
+  align-items:center;
+  gap:.6rem;
+  font-family:ui-monospace,"Cascadia Mono",monospace;
+  line-height:1.3;
+}
+.console-layout .dashboard-panel h2 {
+  background:linear-gradient(100deg,#1a485d,#102b39 80%);
+  border-bottom-color:#38768a;
+}
+.console-icon {
+  color:var(--console-accent);
+  display:inline-grid;
+  place-items:center;
+  flex:0 0 1.55rem;
+  height:1.55rem;
+  border:1px solid #73e7f760;
+  border-radius:.15rem .45rem;
+  background:#092733;
+  font-size:1.05rem;
+  text-shadow:0 0 .4rem #73e7f786;
+}
+.console-layout [aria-labelledby="comunicados-titulo"],
+.console-layout [aria-labelledby="agenda-titulo"] {
+  --console-accent:#ffd082;
+  --console-border:#887247;
+}
+.console-layout :is([aria-labelledby="comunicados-titulo"],[aria-labelledby="agenda-titulo"]) h2 {
+  background:linear-gradient(100deg,#4a3a27,#192c37 80%);
+  border-bottom-color:#887247;
+}
+.console-layout :is([aria-labelledby="comunicados-titulo"],[aria-labelledby="agenda-titulo"]) .console-icon {
+  background:#35291c;
+  border-color:#ffd08280;
+  text-shadow:0 0 .4rem #ffd08270;
+}
+.console-layout .expediente-hero {
+  position:relative;
+  border-radius:.3rem 1.15rem .3rem 1.15rem;
+  box-shadow:0 0 1.2rem #44d4f321;
+}
+.console-layout .expediente-hero::after {
+  content:"";
+  pointer-events:none;
+  position:absolute;
+  inset:.55rem .55rem auto auto;
+  width:2.25rem;
+  height:1rem;
+  border-top:1px solid #94eafa;
+  border-right:1px solid #94eafa;
+  opacity:.7;
+}
+.operational-state {
+  display:flex;
+  align-items:center;
+  gap:.65rem;
+  margin:.85rem;
+  padding:.6rem .65rem;
+  color:#b9f8d4;
+  border:1px solid #47866d;
+  background:#0b302c;
+  border-radius:.25rem;
+}
+.signal,.system-dot {
+  display:inline-block;
+  flex:none;
+  width:.65rem;
+  height:.65rem;
+  border-radius:50%;
+  background:currentColor;
+  box-shadow:0 0 .6rem currentColor;
+}
+.signal { color:#85f6bd; animation:console-signal 3.4s ease-in-out infinite; }
+@keyframes console-signal { 50% { box-shadow:0 0 .88rem currentColor; opacity:.62; } }
+.system-dot { margin-inline-end:.55rem; }
+.system-dot.echo { color:#7be7f4; }
+.system-dot.argos { color:#d3b1ff; }
+.system-dot.sigma { color:#92bdff; }
+.console-layout .shift-list small { font-family:ui-monospace,"Cascadia Mono",monospace; }
+.console-layout .dashboard-link a:focus-visible,.console-layout .dashboard-link a:hover { color:#fff; }
+@media (prefers-reduced-motion:reduce) { .signal { animation:none; } }
