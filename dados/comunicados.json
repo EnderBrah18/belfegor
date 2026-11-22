@@ -1,10 +1,40 @@
 [
   {
+    "codigo": "ECHO-08",
+    "titulo": "Atendimento do Átrio aberto",
+    "resumo": "O balcão está recebendo visitantes com compromisso agendado e orientando quem chega ao complexo pela primeira vez.",
+    "referencia": "Turno atual",
+    "situacao": "Em vigor",
+    "href": "documentos/atendimento-no-atrio.html",
+    "setor": "E.C.H.O.",
+    "edicao": "recente"
+  },
+  {
+    "codigo": "ECHO-07",
+    "titulo": "Painéis de embarque disponíveis",
+    "resumo": "Quem vai seguir de bonde pode conferir o destino no Grande Átrio antes de se dirigir à plataforma.",
+    "referencia": "Turno atual",
+    "situacao": "Em vigor",
+    "href": "documentos/rotina-de-embarque.html",
+    "setor": "E.C.H.O.",
+    "edicao": "recente"
+  },
+  {
+    "codigo": "ECHO-06",
+    "titulo": "Entrega de correspondência no turno anterior",
+    "resumo": "O recebimento do turno anterior foi encerrado. Novas entregas devem ser apresentadas no balcão de atendimento.",
+    "referencia": "Turno anterior",
+    "situacao": "Encerrado",
+    "href": "documentos/atendimento-no-atrio.html",
+    "setor": "E.C.H.O.",
+    "edicao": "historico"
+  },
+  {
     "codigo": "ECHO-05",
     "titulo": "Credenciais no início do turno",
     "resumo": "Tenha o crachá à mão ao passar pelas catracas do Grande Átrio. Encaminhe divergências de lotação ao atendimento.",
     "setor": "E.C.H.O.",
-    "edicao": "recente",
+    "edicao": "historico",
     "referencia": "Turno atual",
     "situacao": "Em vigor",
     "href": "documentos/rotina-de-embarque.html"
@@ -14,7 +44,7 @@
     "titulo": "Retirada de material de bancada",
     "resumo": "Registre a retirada e a devolução de material compartilhado no terminal da unidade.",
     "setor": "E.C.H.O.",
-    "edicao": "recente",
+    "edicao": "historico",
     "referencia": "Turno anterior",
     "situacao": "Em vigor",
     "href": "documentos/passagem-de-turno.html"
