@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entrar | Fundação Belfegor</title>
+<link rel="stylesheet" href="css/portal.css?v=4">
+<script src="js/entrada.js" defer></script>
+</head>
+<body>
+<header class="bf-header"><div class="bf-header-inner"><div><a class="bf-brand" href="index.html">Fundação Belfegor</a><span class="bf-subtitle">Identificação funcional</span></div><a class="bf-back" href="index.html">Voltar ao portal</a></div></header>
+<main class="frame">
+<h1>Entrar no portal</h1>
+<section class="panel" id="registro-local" hidden>
+<h2>Ficha salva neste navegador</h2>
+<p id="nome-local"></p>
+<button type="button" id="entrar-local">Entrar com esta ficha</button>
+</section>
+<section class="panel">
+<h2>Usar documentos já emitidos</h2>
+<p>Selecione o crachá, a ficha ou a imagem que contém os dois. Se tiver o backup JSON, ele preenche a identificação automaticamente.</p>
+<form id="entrada">
+<label for="documentos">Crachá ou ficha (PNG, JPG ou JSON)</label>
+<div class="field"><input id="documentos" type="file" multiple accept=".png,.jpg,.jpeg,.json,image/png,image/jpeg,application/json" required></div>
+<p id="estado-arquivos" role="status"></p>
+<div id="previews" class="credential-previews"></div>
+<fieldset id="identificacao" hidden>
+<legend>Confirme a identificação funcional</legend>
+<p>Confira os campos com os dados do documento selecionado.</p>
+<div class="credential-fields">
+<label>Nome da personagem<input name="nome" required maxlength="100"></label>
+<label>Identificador BF<input name="ident" placeholder="BF-12345" required maxlength="8" pattern="[Bb][Ff]-[0-9]{5}"></label>
+<label>Patente<select name="patente" required><option value="">Selecione</option><option>G-0</option><option>G-1</option><option>G-2</option><option>G-3</option><option>G-4</option><option>G-5</option><option>G-6</option></select></label>
+<label>Nível de acesso<select name="acesso" required><option value="">Selecione</option><option>NA-0</option><option>NA-1</option><option>NA-2</option><option>NA-3</option><option>NA-4</option></select></label>
+</div>
+<button type="submit">Entrar com estes dados</button>
+</fieldset>
+</form>
+<p id="resultado" role="status"></p>
+<p>Os documentos são lidos no navegador. O portal usa a identificação para esta sessão.</p>
+</section>
+<p>Primeiro acesso sem ficha? <a href="cadastro.html">Abra o Registro Funcional</a>.</p>
+</main>
+</body>
+</html>
