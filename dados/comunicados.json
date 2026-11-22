@@ -14,7 +14,9 @@
       "departamentos": [
         "Pesquisa e Ciência"
       ]
-    }
+    },
+    "categoria": "Pesquisa",
+    "prioridade": "Média"
   },
   {
     "codigo": "ECHO-08",
@@ -24,7 +26,10 @@
     "situacao": "Em vigor",
     "href": "documentos/atendimento-no-atrio.html",
     "setor": "E.C.H.O.",
-    "edicao": "recente"
+    "edicao": "recente",
+    "categoria": "Oficiais",
+    "prioridade": "Média",
+    "fixado": true
   },
   {
     "codigo": "ECHO-07",
@@ -34,7 +39,11 @@
     "situacao": "Em vigor",
     "href": "documentos/rotina-de-embarque.html",
     "setor": "E.C.H.O.",
-    "edicao": "recente"
+    "edicao": "recente",
+    "categoria": "Operacionais",
+    "prioridade": "Alta",
+    "fixado": true,
+    "destaque": true
   },
   {
     "codigo": "ECHO-06",
@@ -44,7 +53,10 @@
     "situacao": "Encerrado",
     "href": "documentos/atendimento-no-atrio.html",
     "setor": "E.C.H.O.",
-    "edicao": "historico"
+    "edicao": "historico",
+    "categoria": "Operacionais",
+    "prioridade": "Rotina",
+    "arquivado": true
   },
   {
     "codigo": "ECHO-05",
@@ -54,7 +66,9 @@
     "edicao": "historico",
     "referencia": "Turno atual",
     "situacao": "Em vigor",
-    "href": "documentos/rotina-de-embarque.html"
+    "href": "documentos/rotina-de-embarque.html",
+    "categoria": "Pessoal",
+    "prioridade": "Rotina"
   },
   {
     "codigo": "ECHO-04",
@@ -64,7 +78,9 @@
     "edicao": "historico",
     "referencia": "Turno anterior",
     "situacao": "Em vigor",
-    "href": "documentos/passagem-de-turno.html"
+    "href": "documentos/passagem-de-turno.html",
+    "categoria": "Operacionais",
+    "prioridade": "Rotina"
   },
   {
     "codigo": "ECHO-03",
@@ -74,7 +90,10 @@
     "edicao": "historico",
     "referencia": "Arquivo de transporte",
     "situacao": "Orientação incorporada",
-    "href": "documentos/rotina-de-embarque.html"
+    "href": "documentos/rotina-de-embarque.html",
+    "categoria": "Operacionais",
+    "prioridade": "Rotina",
+    "arquivado": true
   },
   {
     "codigo": "ECHO-01",
@@ -84,7 +103,9 @@
     "setor": "E.C.H.O.",
     "edicao": "historico",
     "referencia": "Arquivo de admissão",
-    "situacao": "Em vigor"
+    "situacao": "Em vigor",
+    "categoria": "Pessoal",
+    "prioridade": "Rotina"
   },
   {
     "codigo": "ECHO-02",
@@ -94,6 +115,9 @@
     "edicao": "historico",
     "referencia": "Arquivo de operações",
     "situacao": "Encerrado",
-    "href": "documentos/passagem-de-turno.html"
+    "href": "documentos/passagem-de-turno.html",
+    "categoria": "Operacionais",
+    "prioridade": "Rotina",
+    "arquivado": true
   }
 ]
