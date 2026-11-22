@@ -1,5 +1,5 @@
-import { contaEditorial, visivel } from './visibilidade.js?v=2';
-import { chaveSessao } from './credenciais.js?v=2';
+import { contaEditorial, visivel } from './visibilidade.js?v=3';
+import { chaveSessao } from './credenciais.js?v=3';
 
 const raizPortal = new URL('../', import.meta.url);
 const fontes = new Map();

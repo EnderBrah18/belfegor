@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Entrar | Fundação Belfegor</title>
 <link rel="stylesheet" href="css/portal.css?v=8">
-<script type="module" src="js/entrada.js?v=7"></script>
+<script type="module" src="js/entrada.js?v=8"></script>
 </head>
 <body>
 <header class="bf-header"><div class="bf-header-inner"><div><a class="bf-brand" href="index.html"><span class="bf-emblem" aria-hidden="true"></span><span class="bf-identity"><strong>Fundação Belfegor</strong></span></a><span class="bf-subtitle">Identificação funcional</span></div><a class="bf-back" href="index.html">Voltar ao portal</a></div></header>
@@ -13,12 +13,12 @@
 <h1>Entrar no portal</h1>
 <section class="panel">
 <h2>Credencial da Fundação</h2>
-<p>Use o usuário e o código de jogo que o GM entregou após aprovar sua ficha.</p>
+<p>Informe o usuário e a senha de jogo fornecidos pelo GM. Use apenas credenciais fictícias da campanha.</p>
 <form id="entrada">
 <label for="usuario">Usuário</label>
 <div class="field"><input id="usuario" required maxlength="48" autocomplete="username" autocapitalize="none" spellcheck="false"></div>
-<label for="codigo">Código de jogo</label>
-<div class="field"><input id="codigo" type="password" required maxlength="400" autocomplete="off" spellcheck="false"></div>
+<label for="senha">Senha de jogo</label>
+<div class="field"><input id="senha" type="password" required maxlength="64" autocomplete="off" spellcheck="false"></div>
 <button>Entrar</button>
 <p id="resultado" role="status"></p>
 </form>

@@ -1,4 +1,4 @@
-import { contaDaSessao } from './credenciais.js?v=2';
+import { contaDaSessao } from './credenciais.js?v=3';
 
 export async function contaEditorial() {
   try {
