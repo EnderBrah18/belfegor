@@ -440,3 +440,62 @@ body:has(.bf-statusbar) { padding-bottom:3.25rem; }
 @media (max-width:1150px) and (min-width:981px), (max-width:760px) {
   .personnel-overview { grid-template-columns:minmax(0,1fr); }
 }
+
+.bf-console .intercom-layout { gap:1rem; padding-top:1rem; grid-template-columns:minmax(10rem,12rem) minmax(0,1fr) minmax(15rem,19rem); }
+.intercom-main { display:grid; align-content:start; gap:.75rem; }
+.intercom-breadcrumb,.intercom-box { border:1px solid #56b7cc; border-radius:.45rem; background:#091f2b; }
+.intercom-breadcrumb { padding:.4rem .7rem; font-size:.9rem; }
+.intercom-breadcrumb span { margin-inline:.35rem; color:#84e2ee; }
+.intercom-main .intercom-hero { min-height:8rem; padding:1rem 1.35rem; border:1px solid #56b7cc; border-radius:.45rem; background:linear-gradient(90deg,#071a25 10%,#071a25cc 48%,#071a2533),url("../imagens/grande-atrio.jpg") center 48% / cover; }
+.intercom-hero h1 { margin:0 0 .3rem; font-size:clamp(1.55rem,3vw,2.6rem); }
+.intercom-hero p { margin:.15rem 0; }
+.intercom-hero .kicker { color:#ffcf72; text-transform:uppercase; font-weight:750; font-size:.9rem; }
+.intercom-tabs { display:flex; flex-wrap:wrap; gap:.4rem; }
+.intercom-tabs button { flex:1 0 auto; font-size:.875rem; padding:.45rem .6rem; }
+.intercom-tabs button,.intercom-pages button,.intercom-filter-actions [type=reset] { color:#e1f2f8; background:#102f3e; border:1px solid #4896aa; }
+.intercom-tabs button[aria-pressed=true] { color:#fff5dc; border-color:#ffc76b; background:#473521; box-shadow:0 0 .5rem #e7aa4b88,inset .15rem 0 #ffca70; }
+.intercom-box { overflow:hidden; min-width:0; }
+.intercom-box h2 { margin:0; padding:.55rem .65rem; color:#8ae4f0; font-size:1rem; }
+.intercom-box h2 span { color:#eef8fb; margin-inline-start:.25rem; }
+.intercom-rail { display:grid; gap:.7rem; margin-top:2.45rem; align-content:start; }
+.intercom-rail .intercom-box h2,#fixados-titulo { background:#102c3a; border-bottom:1px solid #498397; }
+#fixados,.intercom-rail dl,#filtros-comunicados,#intercom-destaque { margin:0; padding:.55rem .7rem; }
+.intercom-rail dl > div { display:flex; justify-content:space-between; gap:.3rem; border-bottom:1px solid #31596b; padding:.25rem 0; font-size:.875rem; }
+.intercom-rail dd { margin:0; font-weight:700; }
+.intercom-rail dt::before { content:""; display:inline-block; width:.48rem; height:.48rem; margin-right:.5rem; border-radius:50%; background:#79e2ee; }
+.intercom-rail dl > div:nth-child(2) dt::before { background:#ff7979; }
+.intercom-rail dl > div:nth-child(3) dt::before { background:#ffcf72; }
+#filtros-comunicados { display:grid; gap:.4rem; }
+#filtros-comunicados label { display:grid; grid-template-columns:5rem minmax(0,1fr); gap:.3rem; align-items:center; font-size:.88rem; }
+#filtros-comunicados :is(input,select) { width:100%; min-width:0; padding:.3rem .45rem; background:#071b26; color:#eaf5f8; border:1px solid #4a91a4; border-radius:.25rem; font:inherit; }
+.intercom-filter-actions,.intercom-pages { display:flex; gap:.35rem; align-items:center; }
+.intercom-filter-actions button,.intercom-pages button { padding:.25rem .5rem; font-size:.85rem; }
+.intercom-pages button:disabled { opacity:.45; cursor:default; }
+.intercom-list-head { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:.25rem; padding-right:.4rem; border-bottom:1px solid #498397; }
+.intercom-row { border-bottom:1px solid #335866; }
+.intercom-row:last-child { border-bottom:0; }
+.intercom-row summary { cursor:pointer; list-style:none; display:grid; grid-template-columns:.6rem minmax(4.5rem,auto) minmax(0,1fr) auto; gap:.55rem; align-items:center; padding:.55rem .65rem; font-size:.875rem; }
+.intercom-row summary::-webkit-details-marker { display:none; }
+.intercom-row summary:hover,.intercom-row[open] summary { background:#123747; }
+.intercom-row strong,.intercom-row small { display:block; }
+.intercom-row p { margin:.2rem 0; overflow-wrap:anywhere; }
+.intercom-row .com-dot { width:.52rem; height:.52rem; border-radius:50%; border:1px solid #8ae4f0; }
+.intercom-row[data-novo=true] .com-dot { background:#66dfef; }
+.intercom-row code { color:#b7e2eb; font-size:.8rem; }
+.intercom-tag { border:1px solid #5396a8; border-radius:.25rem; padding:.1rem .3rem; white-space:nowrap; }
+.intercom-row-body { padding:.5rem .65rem .65rem 1.85rem; background:#0d2936; }
+.intercom-row[data-arquivado=true] { background:#142b35; }
+#fixados .intercom-row { margin:.35rem 0; border:1px solid #e6b760; border-radius:.33rem; background:#102d39; }
+#fixados .intercom-row code,#fixados-titulo { color:#ffd482; }
+#fixados .intercom-tag { border-color:#e6b760; color:#ffe2a2; }
+.intercom-access { border-color:#e6b760; }
+.intercom-access p { margin:.5rem .7rem; font-size:.9rem; }
+#intercom-na { border:1px solid #d0a758; border-radius:.25rem; padding:.3rem .45rem; }
+.intercom-empty { margin:.65rem; }
+@media(min-width:981px) { .intercom-layout .intercom-main,.intercom-layout .intercom-rail { min-width:0; } }
+@media(max-width:980px) { .bf-console .intercom-layout { grid-template-columns:minmax(10rem,12rem) minmax(0,1fr); } .intercom-rail { grid-column:2; margin-top:0; } }
+@media(max-width:680px) { .bf-console .intercom-layout { display:block; } .intercom-row summary { grid-template-columns:.55rem minmax(0,1fr) auto; } .intercom-row summary code { grid-column:2; } .intercom-row summary .com-text { grid-column:2; } }
+
+#intercom-destaque .intercom-row summary { grid-template-columns:.55rem minmax(0,1fr); }
+#intercom-destaque .com-text,#intercom-destaque .intercom-tag { grid-column:2; }
+#intercom-destaque .intercom-tag { justify-self:start; }
