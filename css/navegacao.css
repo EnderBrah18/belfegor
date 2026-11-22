@@ -3,3 +3,16 @@
 .bf-nav a { display:block; padding:.5rem .65rem; color:#d0e1eb; text-decoration:none; border-radius:.25rem; }
 .bf-nav a:hover,.bf-nav a[aria-current=page] { background:#294454; color:#e8ffff; }
 @media print { .bf-nav { display:none; } }
+
+.bf-header { padding:0; display:block; color:#e8eff4; background:#192735; border:0; border-top:4px solid #79c5cd; font:1rem/1.5 system-ui,sans-serif; }
+.bf-header-inner { width:min(72rem,calc(100% - 2rem)); margin-inline:auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:.75rem 1.5rem; padding-block:1rem; }
+.bf-brand { color:#f2f6fa; font-weight:750; text-decoration:none; }
+.bf-subtitle { display:block; color:#b9ccd7; font-size:.875rem; }
+.bf-account { display:flex; flex-wrap:wrap; align-items:center; gap:.45rem .6rem; min-width:0; max-width:100%; }
+.bf-account a,.bf-account button { font:inherit; font-weight:600; color:#dcf5f8; text-decoration:none; background:#253b4a; border:1px solid #557182; border-radius:.25rem; padding:.35rem .65rem; overflow-wrap:anywhere; }
+.bf-account button { cursor:pointer; }
+.bf-account [hidden] { display:none; }
+.bf-account-status { margin:0; flex-basis:100%; color:#d0e1eb; font-size:.875rem; }
+.bf-header :focus-visible,.bf-nav :focus-visible { outline:3px solid #9fe2ea; outline-offset:3px; }
+.bf-nav { font:1rem/1.5 system-ui,sans-serif; }
+@media print { .bf-account { display:none; } }

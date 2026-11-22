@@ -5,10 +5,6 @@ body { margin:0; }
 a { color:#9fe2ea; }
 :focus-visible { outline:3px solid #9fe2ea; outline-offset:3px; }
 .frame { width:min(72rem,calc(100% - 2rem)); margin-inline:auto; }
-.mast { border-top:4px solid #79c5cd; background:#192735; }
-.mast .frame { display:flex; justify-content:space-between; flex-wrap:wrap; align-items:center; gap:.4rem 1rem; padding-block:1rem; }
-.brand { font-weight:750; text-decoration:none; color:#f2f6fa; }
-.mast span,.intro,.meta,.site-footer { color:#b9ccd7; }
 main.frame { min-height:58vh; padding-block:clamp(1.5rem,5vw,4rem); }
 h1,h2,h3 { line-height:1.2; margin:0 0 .75rem; }
 h1 { font-size:clamp(2rem,6vw,4rem); }

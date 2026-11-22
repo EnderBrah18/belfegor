@@ -14,3 +14,5 @@ Sirva a raiz do repositório com um servidor HTTP local, por exemplo `python -m 
 O repositório é público. Publique somente materiais liberados para jogadores. Uma página ausente da navegação permanece acessível pelo endereço e pelo código-fonte.
 
 O Registro Funcional está em `cadastro.html`. A ficha permanece no navegador, na chave `belfegor-ficha-v1`. Mantenha a mesma origem para aproveitar dados locais existentes. A exportação em JSON permite transportar a ficha entre origens ou navegadores.
+
+O botão Entrar usa o Registro Funcional salvo no navegador. A sessão vale na aba atual e pode ser encerrada sem apagar a ficha. Patente e NA personalizam a orientação de circulação. Esse perfil é narrativo e editável no navegador. A hospedagem estática não autentica jogadores nem restringe o acesso aos arquivos publicados.
