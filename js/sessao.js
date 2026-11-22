@@ -8,6 +8,8 @@ const sair = painel.querySelector('[data-bf-logout]');
 const aviso = painel.querySelector('[data-bf-status]');
 const diretorio = document.querySelector('[data-bf-diretorio]');
 const avisos = document.querySelector('[data-bf-avisos]');
+const paginaPerfil = document.querySelector('[data-bf-profile-page]');
+const acessoPerfil = document.querySelector('[data-bf-profile-guest]');
 let geracao = 0;
 
 function texto(tag, valor) {
@@ -24,6 +26,15 @@ function mostrar(conta) {
   perfil.textContent = conta ? [conta.nome, conta.patente, conta.acesso].join(' · ') : '';
   if (conta) perfil.title = conta.profissao;
   else perfil.removeAttribute('title');
+
+  if (paginaPerfil) {
+    paginaPerfil.hidden = !conta;
+    acessoPerfil.hidden = Boolean(conta);
+    paginaPerfil.querySelector('[data-bf-profile-name]').textContent = conta?.nome ?? '';
+    for (const campo of paginaPerfil.querySelectorAll('[data-bf-field]')) {
+      campo.textContent = conta?.[campo.dataset.bfField] ?? '';
+    }
+  }
 
   if (diretorio) {
     diretorio.hidden = !conta;
