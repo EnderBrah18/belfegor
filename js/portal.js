@@ -38,7 +38,7 @@ async function mostrarLista(destino) {
       resumo.textContent = registro.resumo;
       const meta = document.createElement('p');
       meta.className = 'meta';
-      meta.textContent = [registro.codigo, registro.setor, registro.revisao && 'Revisão ' + registro.revisao].filter(Boolean).join(' · ');
+      meta.textContent = [registro.codigo, registro.setor, registro.referencia, registro.situacao, registro.revisao && 'Revisão ' + registro.revisao].filter(Boolean).join(' · ');
       item.append(titulo, meta, resumo);
       lista.append(item);
     }

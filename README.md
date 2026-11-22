@@ -6,7 +6,7 @@ Intranet ficcional para o RPG A Queda da Torre de Babel. Site estático em HTML,
 
 Sirva a raiz do repositório com um servidor HTTP local, por exemplo `python -m http.server 8000`. As listagens consultam JSON por HTTP. No GitHub Pages, use a raiz da branch `main` como fonte e mantenha os caminhos relativos.
 
-- `dados/comunicados.json` alimenta o mural, o Intercom e a busca. Insira avisos novos no início da lista e use `edicao` com o valor `recente` ou `historico`.
+- `dados/comunicados.json` alimenta o mural, o Intercom e a busca. Insira avisos novos no início da lista e use `edicao` com o valor `recente` ou `historico`. Use `referencia` para situar o aviso no expediente e `situacao` para indicar, por exemplo, Em vigor ou Encerrado.
 - `dados/documentos.json` alimenta Biblioteca e Terminal. Use códigos únicos e atualize a revisão ao substituir um documento.
 - Coloque páginas de documentos em `documentos/` e imagens em `imagens/`.
 
