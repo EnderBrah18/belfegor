@@ -18,10 +18,11 @@ let geracao = 0;
 
 async function mostrarLista(destino, conta, atual) {
   try {
-    const { registros, limite, edicao } = destino.dataset;
+    const { registros, limite, edicao, categoria } = destino.dataset;
     const dados = await consultar(registros);
     if (atual !== geracao) return;
-    const itens = dados.filter(registro => visivel(registro, conta) && (!edicao || registro.edicao === edicao));
+    const itens = dados.filter(registro => visivel(registro, conta) && (!edicao || registro.edicao === edicao) &&
+      (!categoria || registro.categoria === categoria));
     if (!itens.length) {
       destino.textContent = 'Nenhum registro disponível.';
       return;

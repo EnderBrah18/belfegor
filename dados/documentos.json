@@ -13,7 +13,8 @@
       "departamentos": [
         "Pesquisa e Ciência"
       ]
-    }
+    },
+    "categoria": "procedimento"
   },
   {
     "codigo": "BF-VIS-01",
@@ -45,7 +46,9 @@
     "setor": "S.I.G.M.A.",
     "revisao": "02",
     "resumo": "Procedimentos de embarque no Grande Átrio de Triagem.",
-    "href": "documentos/rotina-de-embarque.html"
+    "href": "documentos/rotina-de-embarque.html",
+    "categoria": "procedimento",
+    "situacao": "Em vigor"
   },
   {
     "codigo": "BF-OP-01",
@@ -53,6 +56,28 @@
     "setor": "S.I.G.M.A.",
     "revisao": "03",
     "resumo": "Como registrar serviços pendentes e movimentação de material compartilhado.",
-    "href": "documentos/passagem-de-turno.html"
+    "href": "documentos/passagem-de-turno.html",
+    "categoria": "procedimento",
+    "situacao": "Em vigor"
+  },
+  {
+    "codigo": "BF-REG-01",
+    "titulo": "Conferência de material compartilhado",
+    "resumo": "O turno anterior encerrou a conferência de material compartilhado. Os próximos empréstimos voltam a ser lançados no terminal da unidade.",
+    "href": "documentos/registro-de-material.html",
+    "setor": "S.I.G.M.A.",
+    "categoria": "registro",
+    "referencia": "Turno anterior",
+    "situacao": "Encerrado"
+  },
+  {
+    "codigo": "BF-REG-02",
+    "titulo": "Conferência dos itinerários do Átrio",
+    "resumo": "Os itinerários foram conferidos nos painéis do Grande Átrio. Antes de embarcar, confirme a plataforma no painel de circulação.",
+    "href": "documentos/registro-de-itinerarios.html",
+    "setor": "S.I.G.M.A.",
+    "categoria": "registro",
+    "referencia": "Turno anterior",
+    "situacao": "Encerrado"
   }
 ]
