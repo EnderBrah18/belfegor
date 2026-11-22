@@ -1,6 +1,10 @@
 import { buscarConta, chaveSessao } from './credenciais.js';
 
 const painel = document.querySelector('[data-bf-account]');
+const menu = painel.querySelector('.bf-account-menu');
+const resumo = menu.querySelector('summary');
+const identificacao = menu.querySelector('[data-bf-account-id]');
+const funcao = menu.querySelector('[data-bf-account-role]');
 const cadastro = painel.querySelector('[data-bf-register]');
 const entrar = painel.querySelector('[data-bf-login]');
 const perfil = painel.querySelector('[data-bf-profile]');
@@ -23,7 +27,9 @@ function mostrar(conta) {
   entrar.hidden = Boolean(conta);
   perfil.hidden = !conta;
   sair.hidden = !conta;
-  perfil.textContent = conta ? [conta.nome, conta.patente, conta.acesso].join(' · ') : '';
+  identificacao.textContent = conta?.identificador ?? 'Visitante';
+  funcao.textContent = conta ? [conta.profissao, conta.patente, conta.acesso].filter(Boolean).join(' · ') : 'Acesso público';
+  perfil.textContent = conta ? 'Ver perfil · ' + conta.nome : '';
   if (conta) perfil.title = conta.profissao;
   else perfil.removeAttribute('title');
 
@@ -86,7 +92,17 @@ sair.addEventListener('click', () => {
   localStorage.removeItem(chaveSessao);
   aviso.hidden = true;
   mostrar(null);
-  entrar.focus();
+  menu.open = false;
+  resumo.focus();
+});
+document.addEventListener('click', evento => {
+  if (menu.open && !menu.contains(evento.target)) menu.open = false;
+});
+menu.addEventListener('keydown', evento => {
+  if (evento.key === 'Escape' && menu.open) {
+    menu.open = false;
+    resumo.focus();
+  }
 });
 addEventListener('pageshow', consultar);
 addEventListener('storage', evento => {
