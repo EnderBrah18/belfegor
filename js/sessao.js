@@ -1,4 +1,4 @@
-import { buscarConta, chaveSessao } from './credenciais.js';
+import { contaDaSessao, chaveSessao } from './credenciais.js?v=2';
 
 const painel = document.querySelector('[data-bf-account]');
 const menu = painel.querySelector('.bf-account-menu');
@@ -64,14 +64,14 @@ async function consultar() {
   const atual = ++geracao;
   aviso.hidden = true;
   try {
-    const sessao = JSON.parse(localStorage.getItem(chaveSessao));
+    const sessao = localStorage.getItem(chaveSessao);
     if (!sessao) {
       mostrar(null);
       return;
     }
-    const conta = await buscarConta(sessao.usuario);
+    const conta = await contaDaSessao();
     if (atual !== geracao) return;
-    if (!conta?.ativo || conta.verificador !== sessao.verificador) {
+    if (!conta) {
       localStorage.removeItem(chaveSessao);
       mostrar(null);
       aviso.textContent = 'Credencial desativada ou atualizada. Consulte o GM.';

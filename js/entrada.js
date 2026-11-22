@@ -1,8 +1,8 @@
-import { assinatura, buscarConta, chaveSessao } from './credenciais.js';
+import { validarCodigo, chaveSessao } from './credenciais.js?v=2';
 
 const form = document.getElementById('entrada');
 const usuario = document.getElementById('usuario');
-const senha = document.getElementById('senha');
+const codigo = document.getElementById('codigo');
 const resultado = document.getElementById('resultado');
 const botao = form.querySelector('button');
 
@@ -11,17 +11,18 @@ form.addEventListener('submit', async evento => {
   botao.disabled = true;
   resultado.textContent = 'Consultando credencial…';
   try {
-    const conta = await buscarConta(usuario.value.trim().toLowerCase());
-    if (!conta?.ativo || conta.verificador !== await assinatura(senha.value)) {
+    const credencial = codigo.value.trim();
+    const conta = await validarCodigo(credencial, usuario.value.trim().toLowerCase());
+    if (!conta) {
       resultado.textContent = 'Credencial inválida ou desativada. Confira os dados com o GM.';
       return;
     }
-    localStorage.setItem(chaveSessao, JSON.stringify({ usuario: conta.usuario, verificador: conta.verificador }));
+    localStorage.setItem(chaveSessao, credencial);
     location.assign('index.html');
   } catch {
     resultado.textContent = 'Não foi possível consultar o cadastro. Tente novamente.';
   } finally {
-    senha.value = '';
+    codigo.value = '';
     botao.disabled = false;
   }
 });

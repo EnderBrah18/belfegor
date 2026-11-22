@@ -1,4 +1,7 @@
-const raizPortal = new URL('../', document.currentScript.src);
+import { contaEditorial, visivel } from './visibilidade.js?v=2';
+import { chaveSessao } from './credenciais.js?v=2';
+
+const raizPortal = new URL('../', import.meta.url);
 const fontes = new Map();
 
 function consultar(arquivo) {
@@ -11,11 +14,14 @@ function consultar(arquivo) {
   return fontes.get(arquivo);
 }
 
-async function mostrarLista(destino) {
+let geracao = 0;
+
+async function mostrarLista(destino, conta, atual) {
   try {
     const { registros, limite, edicao } = destino.dataset;
     const dados = await consultar(registros);
-    const itens = edicao ? dados.filter(registro => registro.edicao === edicao) : dados;
+    if (atual !== geracao) return;
+    const itens = dados.filter(registro => visivel(registro, conta) && (!edicao || registro.edicao === edicao));
     if (!itens.length) {
       destino.textContent = 'Nenhum registro disponível.';
       return;
@@ -44,8 +50,39 @@ async function mostrarLista(destino) {
     }
     destino.replaceChildren(lista);
   } catch {
-    destino.textContent = 'Não foi possível consultar os registros.';
+    if (atual === geracao) destino.textContent = 'Não foi possível consultar os registros.';
   }
 }
 
-document.querySelectorAll('[data-registros]').forEach(mostrarLista);
+const listas = [...document.querySelectorAll('[data-registros]')];
+const documento = document.querySelector('[data-documento]');
+const estado = document.querySelector('[data-documento-estado]');
+
+async function atualizar() {
+  const atual = ++geracao;
+  listas.forEach(lista => lista.replaceChildren());
+  if (documento) documento.hidden = true;
+  const conta = await contaEditorial();
+  if (atual !== geracao) return;
+  listas.forEach(lista => mostrarLista(lista, conta, atual));
+  if (!documento) return;
+  try {
+    const catalogo = await consultar('documentos');
+    if (atual !== geracao) return;
+    const item = catalogo.find(registro => registro.codigo === documento.dataset.documento);
+    const permitido = Boolean(item && visivel(item, conta));
+    documento.hidden = !permitido;
+    estado.hidden = permitido;
+    estado.textContent = permitido ? '' : 'Documento indisponível para sua credencial.';
+  } catch {
+    if (atual === geracao) {
+      estado.hidden = false;
+      estado.textContent = 'Não foi possível consultar o documento.';
+    }
+  }
+}
+
+addEventListener('pageshow', evento => { if (evento.persisted) atualizar(); });
+addEventListener('storage', evento => { if (!evento.key || evento.key === chaveSessao) atualizar(); });
+document.querySelector('[data-bf-logout]')?.addEventListener('click', () => queueMicrotask(atualizar));
+atualizar();

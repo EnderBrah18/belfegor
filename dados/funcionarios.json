@@ -1,12 +1,13 @@
 [
   {
     "usuario": "lilith.moreau",
-    "verificador": "ded8c048eee532c49f229389356db2576f20de97de24e3aed5b944dcce949a13",
     "nome": "Lilith Moreau",
     "identificador": "BF-56620",
     "profissao": "Especialista em Anomalias",
     "patente": "G-2",
     "acesso": "NA-3",
-    "ativo": true
+    "ativo": true,
+    "emissao": 1,
+    "departamento": "Pesquisa e Ciência"
   }
 ]

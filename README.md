@@ -14,21 +14,12 @@ O repositório é público. Publique somente materiais liberados para jogadores.
 
 O Registro Funcional está em `cadastro.html`. A ficha permanece no navegador, na chave `belfegor-ficha-v1`. Mantenha a mesma origem para aproveitar dados locais existentes. A exportação em JSON permite transportar a ficha entre origens ou navegadores.
 
-## Emitir uma credencial
+## Credenciais e perfis
 
-O jogador preenche o Registro Funcional, baixa o crachá e a ficha e envia os documentos ao GM. O GM registra os dados aprovados em `dados/funcionarios.json`, com um objeto por funcionário.
+O GM confere a ficha enviada pelo jogador e cadastra os dados fictícios aprovados em `dados/funcionarios.json`. Cada conta tem `usuario`, `nome`, `identificador`, `profissao`, `departamento`, `patente`, `acesso`, `ativo` e `emissao`. `avisos` é uma lista opcional. Informe a patente e o NA no formato G-0 a G-6 e NA-0 a NA-6.
 
-Execute `node scripts/emitir-credencial.mjs` para gerar uma senha exclusiva do RPG. Entregue o usuário e a senha em privado. Copie somente o verificador para o cadastro.
+Gere o código com `node scripts/emitir-credencial.mjs <chave-privada.pem> <usuario> <emissao>`. Entregue o código em privado. Guarde a chave de emissão em local privado. A chave pública do portal permite conferir os códigos emitidos.
 
-| Campo | Valor |
-| --- | --- |
-| `usuario` | Usuário único em minúsculas |
-| `verificador` | Verificador gerado pelo script |
-| `nome`, `identificador`, `profissao` | Dados fictícios da ficha aprovada |
-| `patente`, `acesso` | Códigos como G-2 e NA-3 |
-| `ativo` | Booleano. Use false para desativar |
-| `avisos` | Lista opcional de mensagens |
+Editar o perfil ou os avisos não altera o código. Para revogar o código de um funcionário, aumente `emissao` antes de gerar o próximo ou desative a conta. O navegador verifica o perfil atual ao consultar a sessão.
 
-Publique as alterações de perfil para aplicá-las na próxima consulta do portal. Se o verificador mudar, o jogador precisará entrar com a nova credencial. Salvar ou editar uma ficha no navegador não altera o cadastro aprovado.
-
-O portal é estático. Os perfis, verificadores e avisos são visíveis no repositório público. Use apenas dados fictícios e senhas longas geradas para uso exclusivo no RPG. A credencial aplica regras narrativas e não protege arquivos ou mensagens confidenciais.
+Veja as [regras de visibilidade editorial](dados/VISIBILIDADE.md). A interface aplica as regras narrativas em um site público. Publique somente conteúdo já liberado para jogadores.
