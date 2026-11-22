@@ -1,5 +1,5 @@
-import { contaEditorial, visivel } from './visibilidade.js?v=2';
-import { chaveSessao } from './credenciais.js?v=2';
+import { contaEditorial, visivel } from './visibilidade.js?v=3';
+import { chaveSessao } from './credenciais.js?v=3';
 
 const resultado = document.getElementById('resultado');
 const entrada = document.getElementById('busca-global');

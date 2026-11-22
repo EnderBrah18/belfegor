@@ -1,4 +1,4 @@
-import { contaDaSessao, chaveSessao } from './credenciais.js?v=2';
+import { contaDaSessao, chaveSessao } from './credenciais.js?v=3';
 
 const painel = document.querySelector('[data-bf-account]');
 const menu = painel.querySelector('.bf-account-menu');

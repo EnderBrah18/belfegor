@@ -7,7 +7,8 @@
     "patente": "G-2",
     "acesso": "NA-3",
     "ativo": true,
-    "emissao": 1,
-    "departamento": "Pesquisa e Ciência"
+    "departamento": "Pesquisa e Ciência",
+    "senha": "11518",
+    "revisao": 1
   }
 ]
