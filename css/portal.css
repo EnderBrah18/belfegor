@@ -652,3 +652,22 @@ body:has(.bf-statusbar) { padding-bottom:3.25rem; }
 @media(max-width:1160px) { .registros-workspace { grid-template-columns:minmax(0,1fr); } }
 @media(max-width:980px) { .bf-console .arquivo-registros { grid-template-columns:minmax(10rem,12rem) minmax(0,1fr); } }
 @media(max-width:680px) { .bf-console .arquivo-registros { display:block; } #registro-filtros { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+
+.arquivo-icone { width:1.1em; height:1.1em; color:#a9e6f0; fill:none; stroke:currentColor; stroke-linecap:round; stroke-linejoin:round; stroke-width:1.75; vertical-align:-.16em; flex:none; margin-inline-end:.3em; }
+.intercom-tabs [aria-pressed="true"] .arquivo-icone,#fixados .arquivo-icone,.intercom-access .arquivo-icone { color:#ffd27c; }
+.intercom-filter-actions button:not([type=reset]) .arquivo-icone,.registro-acoes button:not([type=reset]) .arquivo-icone { color:inherit; }
+.arquivo-busca { display:block; position:relative; }
+.arquivo-busca .arquivo-icone { position:absolute; top:50%; left:.45rem; transform:translateY(-50%); pointer-events:none; }
+#filtros-comunicados .arquivo-busca input,#registro-filtros .arquivo-busca input { padding-inline-start:1.9rem; }
+.intercom-rail dt:has(.arquivo-icone)::before { content:none; }
+.intercom-row summary { grid-template-columns:.6rem 1rem minmax(4.5rem,auto) minmax(0,1fr) auto; }
+.intercom-row summary > .arquivo-icone { margin:0; }
+#intercom-destaque .intercom-row summary { grid-template-columns:.55rem 1rem minmax(0,1fr); }
+#intercom-destaque .com-text,#intercom-destaque .intercom-tag { grid-column:3; }
+.intercom-pages .arquivo-icone { margin:0; }
+#registro-resumo > div:nth-child(2) .arquivo-icone { color:#ff7979; }
+#registro-resumo > div:nth-child(3) .arquivo-icone { color:#ffcf72; }
+@media(max-width:680px) {
+  .intercom-row summary { grid-template-columns:.55rem 1rem minmax(0,1fr) auto; }
+  .intercom-row summary code,.intercom-row summary .com-text { grid-column:3; }
+}
