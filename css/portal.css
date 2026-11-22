@@ -331,3 +331,5 @@ body:has(.bf-statusbar) { padding-bottom:3.25rem; }
 
 .bf-bell { position:relative; width:.95rem; height:.95rem; border:2px solid #c9edf7; border-radius:55% 55% 26% 26%; transform:translateY(-.1rem); }
 .bf-bell::after { content:""; position:absolute; bottom:-.33rem; left:calc(50% - .13rem); width:.26rem; height:.18rem; border-radius:0 0 50% 50%; background:#c9edf7; }
+
+.ai-name small { display:block; margin-inline-start:1.2rem; }
