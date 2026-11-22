@@ -1,3 +1,4 @@
+import { iconeArquivo } from './icones-arquivo.js';
 import { contaEditorial, visivel } from './visibilidade.js?v=3';
 import { chaveSessao } from './credenciais.js?v=3';
 
@@ -44,7 +45,7 @@ function linha(aviso, fixado = false) {
   const texto = elemento('span', undefined, 'com-text');
   texto.append(elemento('strong', aviso.titulo), elemento('small', aviso.resumo ?? ''));
   const etiqueta = fixado ? 'Prioridade: ' + (aviso.prioridade ?? 'Rotina') : aviso.arquivado ? 'Arquivado' : aviso.categoria ?? 'Oficiais';
-  resumo.append(ponto, elemento('code', aviso.codigo), texto, elemento('small', etiqueta, 'intercom-tag'));
+  resumo.append(ponto, iconeArquivo(fixado ? 'pin' : 'file'), elemento('code', aviso.codigo), texto, elemento('small', etiqueta, 'intercom-tag'));
 
   const corpo = elemento('div', undefined, 'intercom-row-body');
   corpo.append(elemento('p', [aviso.setor, aviso.referencia, aviso.situacao].filter(Boolean).join(' · ')));
@@ -68,7 +69,9 @@ function resumo() {
   ];
   $('resumo-comunicados').replaceChildren(...valores.map(([nome, total]) => {
     const item = elemento('div');
-    item.append(elemento('dt', nome), elemento('dd', String(total)));
+    const dt = elemento('dt', nome);
+    dt.prepend(iconeArquivo({'Não lidos':'inbox','Prioridade alta':'alert','Prioridade média':'alert','Atualizações operacionais':'gear','Arquivados':'box'}[nome]));
+    item.append(dt, elemento('dd', String(total)));
     return item;
   }));
 }

@@ -1,3 +1,4 @@
+import { iconeArquivo } from './icones-arquivo.js';
 import { contaEditorial, visivel } from './visibilidade.js?v=3';
 import { chaveSessao } from './credenciais.js?v=3';
 
@@ -46,7 +47,9 @@ function detalhe(item) {
     return;
   }
   const cab = el('h2');
-  cab.append(el('span',item.codigo + ' — ' + item.titulo),el('small',nivel(item)));
+  const titulo = el('span',item.codigo + ' — ' + item.titulo);
+  titulo.prepend(iconeArquivo('folder'));
+  cab.append(titulo,el('small',nivel(item)));
   const corpo = el('div',undefined,'registro-ficha-body');
   const dados = el('dl');
   for (const [rotulo,valor] of [['Tipo',tipo(item)],['Setor',item.setor],['Responsável',item.responsavel],['Data/Hora',periodo(item)],['Status',status(item)]]) {
@@ -57,12 +60,15 @@ function detalhe(item) {
     dados.append(campo);
   }
   const resumo = el('section',undefined,'registro-ficha-box');
-  resumo.append(el('h3','▤ Resumo do Registro'),el('p',item.resumo ?? 'Resumo indisponível.'));
+  const resumoTitulo = el('h3','Resumo do Registro');
+  resumoTitulo.prepend(iconeArquivo('file'));
+  resumo.append(resumoTitulo,el('p',item.resumo ?? 'Resumo indisponível.'));
   if (item.href) resumo.append(link(item.href,'Abrir registro completo'));
   const secoes = el('div',undefined,'intercom-tabs registro-ficha-tabs');
   const paineis = [['auditoria','Histórico de Auditoria'],['circulacao','Circulação'],['anexos','Anexos (' + (item.anexos?.length ?? 0) + ')']];
   for (const [id,titulo] of paineis) {
     const botao = el('button',titulo);
+    botao.prepend(iconeArquivo({auditoria:'history',circulacao:'sector',anexos:'link'}[id]));
     botao.type = 'button';
     botao.setAttribute('aria-pressed',String(secao === id));
     botao.addEventListener('click',() => {
@@ -122,6 +128,7 @@ function desenhar() {
     tr.dataset.codigo = r.codigo;
     const id = el('td');
     const botao = el('button',r.codigo);
+    botao.prepend(iconeArquivo('file'));
     botao.type = 'button';
     botao.setAttribute('aria-pressed',tr.dataset.ativo);
     botao.addEventListener('click',() => {
@@ -165,13 +172,16 @@ function preencherPaineis() {
   ];
   $('registro-resumo').replaceChildren(...valores.map(([rotulo,total]) => {
     const item = el('div');
-    item.append(el('dt',rotulo),el('dd',String(total)));
+    const dt = el('dt',rotulo);
+    dt.prepend(iconeArquivo({'Total de registros':'list','Incidentes':'alert','Anomalias':'flask','Operacionais':'check','Restritos':'lock'}[rotulo]));
+    item.append(dt,el('dd',String(total)));
     return item;
   }));
   const destaque = registros.filter(r => r.destaqueArquivo);
   $('registro-destaques').replaceChildren(...destaque.map(r => {
     const item = el('div');
     const botao = el('button',r.codigo + ' · ' + r.titulo);
+    botao.prepend(iconeArquivo('file'));
     botao.type = 'button';
     botao.addEventListener('click',() => {
       form.reset();
