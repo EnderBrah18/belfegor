@@ -43,7 +43,13 @@
   font:inherit;
 }
 .registration textarea { min-height:6rem; resize:vertical; }
-.registration input[type=checkbox] { width:auto; margin:.3rem 0 0; accent-color:#79c5cd; }
+.registration input[type=checkbox] {
+  flex:0 0 auto;
+  align-self:flex-start;
+  width:auto;
+  margin:.3rem 0 0;
+  accent-color:#79c5cd;
+}
 .registration input[readonly] { color:#b9ccd7; }
 .registration :is(.editor,.guidance) h3 { margin:1.15rem 0 .55rem; }
 .muted { color:#b9ccd7; font-size:.9rem; }
