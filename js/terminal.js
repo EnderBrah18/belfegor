@@ -29,7 +29,7 @@ async function buscar() {
     for (const registro of registros) {
       const item = document.createElement('li');
       const titulo = document.createElement('a');
-      titulo.href = registro.href || 'intercom.html';
+      titulo.href = registro.href || 'intercom.html?v=mural';
       titulo.textContent = registro.codigo + ' · ' + registro.titulo;
       const resumo = document.createElement('p');
       resumo.textContent = registro.resumo;
