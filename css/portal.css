@@ -1,4 +1,4 @@
-@import url("navegacao.css");
+@import url("navegacao.css?v=3");
 :root { color-scheme:dark; font:100%/1.6 system-ui,sans-serif; background:#101923; color:#e8eff4; }
 * { box-sizing:border-box; }
 body { margin:0; }
@@ -24,3 +24,10 @@ input { flex:1 1 14rem; min-width:0; font:inherit; padding:.55rem .7rem; border:
 .site-footer { border-top:1px solid #3d5363; padding-block:1rem; }
 .skip { position:absolute; left:1rem; top:-10rem; background:#101923; padding:.5rem; }
 .skip:focus { top:.5rem; }
+
+/* Mantém legíveis páginas do portal ainda armazenadas no formato anterior. */
+.mast { border-top:4px solid #79c5cd; background:#192735; }
+.mast .frame { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:.5rem 1rem; padding-block:1rem; }
+.mast .brand { color:#f2f6fa; font-weight:750; text-decoration:none; }
+.mast span { color:#b9ccd7; }
+.bf-nav li:has(> a[href="cadastro.html"]), .bf-nav li:has(> a[href="../cadastro.html"]) { display:none; }
