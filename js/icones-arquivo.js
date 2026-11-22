@@ -1,4 +1,4 @@
-const sprite = new URL('../imagens/icones-arquivo.svg', import.meta.url);
+const sprite = new URL('../imagens/icones-arquivo.svg?v=3', import.meta.url);
 
 export function iconeArquivo(id) {
   const ns = 'http://www.w3.org/2000/svg';

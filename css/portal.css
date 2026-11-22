@@ -753,3 +753,6 @@ body:has(.bf-statusbar) { padding-bottom:3.25rem; }
 @media(max-width:1390px) { .biblioteca-categorias { grid-template-columns:repeat(4,minmax(0,1fr)); } }
 @media(max-width:1050px) { .biblioteca-corpo { grid-template-columns:minmax(0,1fr); } .biblioteca-rail { grid-template-columns:repeat(auto-fit,minmax(min(100%,13rem),1fr)); } }
 @media(max-width:680px) { .bf-console .biblioteca-layout { display:block; } .biblioteca-categorias { grid-template-columns:repeat(2,minmax(0,1fr)); } .bib-linha { grid-template-columns:auto minmax(0,1fr) auto; } .bib-linha .bib-texto { grid-column:2; } .bib-linha .intercom-tag { grid-column:2; justify-self:start; } .bib-linha .bib-marca { grid-column:3; grid-row:1; } }
+
+.bib-capa { background:radial-gradient(ellipse at center,#294552 0,#102936 63%,#081b29 100%); }
+.bib-capa .arquivo-icone { filter:drop-shadow(0 0 .4rem #d9a85483); }
