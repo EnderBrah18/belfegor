@@ -6,5 +6,21 @@
     "setor": "S.I.G.M.A.",
     "revisao": "01",
     "href": "documentos/guia-de-consulta.html"
+  },
+  {
+    "codigo": "BF-TR-01",
+    "titulo": "Circulação e embarque",
+    "setor": "S.I.G.M.A.",
+    "revisao": "02",
+    "resumo": "Procedimentos de embarque no Grande Átrio de Triagem.",
+    "href": "documentos/rotina-de-embarque.html"
+  },
+  {
+    "codigo": "BF-OP-01",
+    "titulo": "Passagem de turno",
+    "setor": "S.I.G.M.A.",
+    "revisao": "03",
+    "resumo": "Como registrar serviços pendentes e movimentação de material compartilhado.",
+    "href": "documentos/passagem-de-turno.html"
   }
 ]

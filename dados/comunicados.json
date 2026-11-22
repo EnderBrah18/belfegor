@@ -4,21 +4,30 @@
     "titulo": "Credenciais no início do turno",
     "resumo": "Tenha o crachá à mão ao passar pelas catracas do Grande Átrio. Encaminhe divergências de lotação ao atendimento.",
     "setor": "E.C.H.O.",
-    "edicao": "recente"
+    "edicao": "recente",
+    "referencia": "Turno atual",
+    "situacao": "Em vigor",
+    "href": "documentos/rotina-de-embarque.html"
   },
   {
     "codigo": "ECHO-04",
     "titulo": "Retirada de material de bancada",
     "resumo": "Registre a retirada e a devolução de material compartilhado no terminal da unidade.",
     "setor": "E.C.H.O.",
-    "edicao": "recente"
+    "edicao": "recente",
+    "referencia": "Turno anterior",
+    "situacao": "Em vigor",
+    "href": "documentos/passagem-de-turno.html"
   },
   {
     "codigo": "ECHO-03",
     "titulo": "Consulta aos itinerários internos",
     "resumo": "Antes do embarque, confira o destino nos painéis do Grande Átrio de Triagem.",
     "setor": "E.C.H.O.",
-    "edicao": "historico"
+    "edicao": "historico",
+    "referencia": "Arquivo de transporte",
+    "situacao": "Orientação incorporada",
+    "href": "documentos/rotina-de-embarque.html"
   },
   {
     "codigo": "ECHO-01",
@@ -26,6 +35,18 @@
     "resumo": "O terminal de admissão está disponível para preenchimento da ficha e emissão do crachá.",
     "href": "cadastro.html",
     "setor": "E.C.H.O.",
-    "edicao": "historico"
+    "edicao": "historico",
+    "referencia": "Arquivo de admissão",
+    "situacao": "Em vigor"
+  },
+  {
+    "codigo": "ECHO-02",
+    "titulo": "Conferência de material compartilhado",
+    "resumo": "A conferência de fim de turno foi encerrada. Os próximos empréstimos voltam a ser registrados no terminal da unidade.",
+    "setor": "E.C.H.O.",
+    "edicao": "historico",
+    "referencia": "Arquivo de operações",
+    "situacao": "Encerrado",
+    "href": "documentos/passagem-de-turno.html"
   }
 ]
