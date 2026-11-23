@@ -113,7 +113,7 @@ function ficha(item) {
     }
     painel.append(bloco('Documentos relacionados',lista));
   }
-  if (item.href) painel.append(link(item,'Abrir procedimento completo'));
+  if (item.href) painel.append(link({...item, href:item.href + '?origem=procedimentos'},'Abrir procedimento completo'));
 }
 
 function lista() {

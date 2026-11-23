@@ -1,8 +1,11 @@
+import { renderizarOperacional } from './documento-operacional.js';
 import { contaEditorial, visivel } from './visibilidade.js?v=3';
 import { chaveSessao } from './credenciais.js?v=3';
 
 const $ = id => document.getElementById(id);
 const leitor = $('doc-leitor');
+const operacional = $('op-leitor');
+const origem = new URLSearchParams(location.search).get('origem');
 const estado = $('doc-estado');
 const codigo = leitor.dataset.codigo;
 let itemAtual = null;
@@ -111,6 +114,7 @@ async function carregar() {
   itemAtual = null;
   escopo = '';
   leitor.hidden = true;
+  if (operacional) operacional.hidden = true;
   estado.hidden = false;
   estado.textContent = 'Consultando documento…';
   $('doc-acao-estado').textContent = '';
@@ -131,10 +135,23 @@ async function carregar() {
     try { localStorage.setItem(escopo,JSON.stringify(registro)); } catch {}
     botaoFavorito(registro);
     estado.hidden = true;
+    if (operacional?.dataset.origem === origem) {
+      const origemLink = document.querySelector('.bf-sidebar a[href="../' + origem + '.html"]');
+      document.querySelector('.bf-sidebar [aria-current="page"]')?.removeAttribute('aria-current');
+      origemLink?.setAttribute('aria-current','page');
+      const trilha = leitor.previousElementSibling?.previousElementSibling;
+      if (trilha?.classList.contains('intercom-breadcrumb')) trilha.hidden = true;
+      renderizarOperacional(operacional,item,catalogo,$('doc-texto'));
+      operacional.hidden = false;
+      return;
+    }
     leitor.hidden = false;
     if (location.hash.startsWith('#secao-')) document.getElementById(location.hash.slice(1))?.scrollIntoView();
   } catch {
-    if (atual === geracao) estado.textContent = 'Não foi possível consultar o documento.';
+    if (atual === geracao) {
+      estado.hidden = false;
+      estado.textContent = 'Não foi possível consultar o documento.';
+    }
   }
 }
 $('doc-favoritar').addEventListener('click',() => {
