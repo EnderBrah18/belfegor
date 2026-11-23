@@ -63,7 +63,7 @@ function detalhe(item) {
   const resumoTitulo = el('h3','Resumo do Registro');
   resumoTitulo.prepend(iconeArquivo('file'));
   resumo.append(resumoTitulo,el('p',item.resumo ?? 'Resumo indisponível.'));
-  if (item.href) resumo.append(link(item.href,'Abrir registro completo'));
+  if (item.href) resumo.append(link(item.href + (item.categoria === 'procedimento' ? '?origem=procedimentos' : '?origem=registros'),'Abrir registro completo'));
   const secoes = el('div',undefined,'intercom-tabs registro-ficha-tabs');
   const paineis = [['auditoria','Histórico de Auditoria'],['circulacao','Circulação'],['anexos','Anexos (' + (item.anexos?.length ?? 0) + ')']];
   for (const [id,titulo] of paineis) {
