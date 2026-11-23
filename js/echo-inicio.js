@@ -1,3 +1,4 @@
+import { abrirComunicado, chaveComunicado, obterConjunto } from './comunicado-estado.js';
 import { contaEditorial, visivel } from './visibilidade.js?v=3';
 import { chaveSessao } from './credenciais.js?v=3';
 import { iconeArquivo } from './icones-arquivo.js';
@@ -33,7 +34,7 @@ function desenhar() {
   for (const aviso of itens.slice(0,4)) {
     const item = elemento('a',undefined,'echo-aviso');
     const novo = !lidos.has(aviso.codigo);
-    item.href = aviso.href || 'intercom.html?v=mural';
+    item.href = abrirComunicado(aviso.codigo);
     item.dataset.novo = String(novo);
     item.dataset.arquivado = String(Boolean(aviso.arquivado));
     item.dataset.prioridade = aviso.prioridade ?? '';
@@ -69,7 +70,8 @@ async function carregar() {
     if (!resposta.ok) throw Error('Catálogo');
     const dados = await resposta.json();
     if (atual !== geracao) return;
-    avisos = dados.filter(item => visivel(item,conta));
+    const arquivos = obterConjunto(chaveComunicado('arquivados',conta));
+    avisos = dados.filter(item => visivel(item,conta)).map(item => ({...item, arquivado:item.arquivado || arquivos.has(item.codigo)}));
     chave = 'belfegor-comunicados-lidos:' + (conta?.usuario ?? 'visitante');
     atualizarLidos();
     desenhar();

@@ -1,3 +1,4 @@
+import { abrirComunicado } from './comunicado-estado.js';
 import { contaEditorial, visivel } from './visibilidade.js?v=3';
 import { chaveSessao } from './credenciais.js?v=3';
 
@@ -33,9 +34,9 @@ async function mostrarLista(destino, conta, atual) {
     for (const registro of itens.slice(0, limite ? Number(limite) : itens.length)) {
       const item = document.createElement('li');
       const titulo = document.createElement('h3');
-      if (registro.href) {
+      if (registro.href || registros === 'comunicados') {
         const link = document.createElement('a');
-        link.href = new URL(registro.href, raizPortal);
+        link.href = new URL(registros === 'comunicados' ? abrirComunicado(registro.codigo) : registro.href, raizPortal);
         link.textContent = registro.titulo;
         titulo.append(link);
       } else {
