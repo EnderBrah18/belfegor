@@ -1,3 +1,4 @@
+import { abrirComunicado } from './comunicado-estado.js';
 import { contaEditorial, visivel } from './visibilidade.js?v=3';
 import { chaveSessao } from './credenciais.js?v=3';
 
@@ -38,7 +39,7 @@ async function buscar() {
     for (const registro of registros) {
       const item = document.createElement('li');
       const titulo = document.createElement('a');
-      titulo.href = registro.href || 'intercom.html?v=mural';
+      titulo.href = registro.codigo.startsWith('ECHO-') || registro.edicao ? abrirComunicado(registro.codigo) : registro.href;
       titulo.textContent = registro.codigo + ' · ' + registro.titulo;
       const resumo = document.createElement('p');
       resumo.textContent = registro.resumo;

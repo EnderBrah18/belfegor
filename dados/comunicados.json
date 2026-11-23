@@ -29,7 +29,24 @@
     "edicao": "recente",
     "categoria": "Oficiais",
     "prioridade": "Média",
-    "fixado": true
+    "fixado": true,
+    "destinatarios": "Visitantes e funcionários",
+    "corpo": [
+      "Prezados visitantes e funcionários,",
+      "O balcão do Grande Átrio está aberto para receber pessoas com visita agendada e orientar quem chega ao complexo pela primeira vez.",
+      "Se houver alteração no ponto de encontro, confirme o encaminhamento no balcão antes de seguir às catracas."
+    ],
+    "quadro": {
+      "titulo": "Orientações no atendimento",
+      "itens": [
+        "Tenha à mão o nome da pessoa ou equipe que vai recebê-lo.",
+        "Em caso de espera, permaneça na área indicada pelo atendimento."
+      ]
+    },
+    "relacionados": [
+      "BF-VIS-02",
+      "BF-VIS-01"
+    ]
   },
   {
     "codigo": "ECHO-07",
@@ -43,7 +60,24 @@
     "categoria": "Operacionais",
     "prioridade": "Alta",
     "fixado": true,
-    "destaque": true
+    "destaque": true,
+    "destinatarios": "Usuários do transporte interno",
+    "corpo": [
+      "Prezados usuários do transporte interno,",
+      "Os painéis de embarque do Grande Átrio estão disponíveis para consulta antes da circulação até as plataformas."
+    ],
+    "quadro": {
+      "titulo": "Antes de embarcar",
+      "itens": [
+        "Confira o destino nos painéis do Grande Átrio de Triagem.",
+        "Mantenha o crachá à mão nas catracas.",
+        "Siga a sinalização local caso haja alteração no itinerário."
+      ]
+    },
+    "relacionados": [
+      "BF-TR-01",
+      "BF-REG-02"
+    ]
   },
   {
     "codigo": "ECHO-06",

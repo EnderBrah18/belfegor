@@ -1,3 +1,4 @@
+import { abrirComunicado, chaveComunicado, obterConjunto } from './comunicado-estado.js';
 import { iconeArquivo } from './icones-arquivo.js';
 import { contaEditorial, visivel } from './visibilidade.js?v=3';
 import { chaveSessao } from './credenciais.js?v=3';
@@ -49,11 +50,9 @@ function linha(aviso, fixado = false) {
 
   const corpo = elemento('div', undefined, 'intercom-row-body');
   corpo.append(elemento('p', [aviso.setor, aviso.referencia, aviso.situacao].filter(Boolean).join(' · ')));
-  if (aviso.href) {
-    const link = elemento('a', 'Consultar documento');
-    link.href = aviso.href;
-    corpo.append(link);
-  }
+  const link = elemento('a', 'Ler comunicado completo');
+  link.href = abrirComunicado(aviso.codigo);
+  corpo.append(link);
   el.append(resumo, corpo);
   el.addEventListener('toggle', () => { if (el.open) marcaLeitura(aviso.codigo); });
   return el;
@@ -106,7 +105,8 @@ async function carregar() {
     const dados = await resposta.json();
     if (atual !== consulta) return;
     conta = perfil;
-    catalogo = dados.filter(item => visivel(item, conta));
+    const arquivos = obterConjunto(chaveComunicado('arquivados',conta));
+    catalogo = dados.filter(item => visivel(item, conta)).map(item => ({...item, arquivado:item.arquivado || arquivos.has(item.codigo)}));
     try { lidos = new Set(JSON.parse(localStorage.getItem(chaveLeitura()) ?? '[]')); } catch { lidos = new Set(); }
     for (const [campo, chave] of [['setor','setor'],['status','situacao']]) {
       const select = filtros.elements[campo];
