@@ -9,3 +9,5 @@ Use `{"naExato":6}` para mostrar uma entrada apenas a NA-6. Use `naMinimo` quand
 Mantenha a mesma regra para um comunicado e o documento vinculado. Na página de um documento de consulta limitada, indique o código do catálogo em `data-documento` e inclua a mensagem com `data-documento-estado`. A lotação vem do campo `departamento` no perfil aprovado pelo GM.
 
 A visibilidade é narrativa. Publique apenas conteúdo que possa ser lido publicamente.
+
+A conta ativa do Administrador, com G-7 e NA-7 simultâneos, consulta todos os itens do portal, inclusive os com critérios exatos ou de departamento. A combinação é reservada ao Administrador e fica fora do formulário de cadastro.
