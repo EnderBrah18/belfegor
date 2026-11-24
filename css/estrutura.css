@@ -1,4 +1,5 @@
-.estrutura-layout {
+.bf-console .estrutura-layout {
+  display: grid;
   width: min(100% - 2rem, 106rem);
   grid-template-columns: minmax(11rem, 13rem) minmax(0, 1fr) minmax(14rem, 18rem);
   gap: clamp(.75rem, 1.35vw, 1.5rem);
@@ -70,10 +71,10 @@
   .estrutura-autoridade .estrutura-botao { grid-column: 2; justify-self: start; }
 }
 @media (max-width: 1060px) {
-  .estrutura-layout { grid-template-columns: minmax(10rem, 12rem) minmax(0,1fr); }
+  .bf-console .estrutura-layout { grid-template-columns: minmax(10rem, 12rem) minmax(0,1fr); }
   .estrutura-layout .dashboard-rail { grid-column: 2; }
 }
 @media (max-width: 770px) {
-  .estrutura-layout, .estrutura-colunas, .estrutura-atalhos { grid-template-columns: minmax(0,1fr); }
+  .bf-console .estrutura-layout, .estrutura-colunas, .estrutura-atalhos { grid-template-columns: minmax(0,1fr); }
   .estrutura-layout .dashboard-rail { grid-column: auto; }
 }
