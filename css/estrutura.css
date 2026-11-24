@@ -79,3 +79,20 @@
   .bf-console .estrutura-layout, .estrutura-colunas, .estrutura-atalhos { grid-template-columns: minmax(0,1fr); }
   .estrutura-layout .dashboard-rail { grid-column: auto; }
 }
+
+.estrutura-credenciais > div {
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr);
+  gap: .75rem;
+  align-items: start;
+  padding-block: .65rem;
+}
+.estrutura-credenciais dt { color: #a8edf8; font-weight: 700; }
+.estrutura-credenciais dd { text-align: start; }
+.estrutura-credenciais dd span {
+  display: block;
+  margin-top: .2rem;
+  color: #c0dbe6;
+  font-weight: 400;
+  line-height: 1.45;
+}
