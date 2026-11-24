@@ -16,7 +16,8 @@
 }
 .estrutura-hero h1 { margin: .4rem 0; font-size: clamp(2rem, 3.3vw, 3.45rem); line-height: 1.1; }
 .estrutura-hero .kicker { color: #ffe18a; }
-.estrutura-icon, .estrutura-nav-icon { flex: none; width: 1.35rem; height: 1.35rem; color: #a8edf8; }
+.estrutura-icon, .estrutura-nav-icon { flex: none; width: 1.35rem; height: 1.35rem; color: #a8edf8; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.estrutura-icon { --estrutura-colunas-traco: currentColor; }
 .estrutura-nav-icon { width: 1rem; height: 1rem; }
 .estrutura-layout [hidden] { display: none !important; }
 .estrutura-abas { display: flex; flex-wrap: wrap; gap: .45rem; }
