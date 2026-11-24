@@ -23,9 +23,20 @@ const elemento = (tag, texto, classe) => {
   if (classe) no.className = classe;
   return no;
 };
-function botao(texto, acao) {
+function icone(traco) {
+  const ns = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(ns,'svg');
+  for (const [chave,valor] of Object.entries({class:'rgi-icon',viewBox:'0 0 24 24',width:'16',height:'16','aria-hidden':'true',focusable:'false',fill:'none',stroke:'currentColor','stroke-width':'1.7','stroke-linecap':'round','stroke-linejoin':'round'})) svg.setAttribute(chave,valor);
+  const caminho = document.createElementNS(ns,'path');
+  caminho.setAttribute('d',traco);
+  svg.append(caminho);
+  return svg;
+}
+
+function botao(texto, acao, traco) {
   const no = elemento('button', texto, 'estrutura-botao');
   no.type = 'button';
+  if (traco) no.prepend(icone(traco));
   no.addEventListener('click', acao);
   return no;
 }
@@ -72,7 +83,7 @@ function atoNormativo(ato) {
   ]);
 }
 
-function cartao(ato) {
+function cartao(ato, indice) {
   const no = elemento('article',null,'rgi-ato');
   const [ , condicao, cor ] = regimes[ato.regime];
   no.dataset.rgiCor = cor;
@@ -85,17 +96,24 @@ function cartao(ato) {
       ['Abrangência',abrangencia(ato)],['Entrada em vigor',data(ato.inicio) || 'Conforme registro'],
       ['Vigência',data(ato.fim) || 'Indeterminada']
     ]),
-    elemento('h4','Disposições vigentes'),disposicoes(ato),
-    botao('Consultar ato normativo',() => atoNormativo(ato))
+    tituloDisposicoes(),disposicoes(ato)
   );
+  if (indice > 0) no.append(botao('Consultar ato normativo',() => atoNormativo(ato),"M5 3h9l5 5v13H5zM14 3v6h5M8 13h8m-8 4h8"));
   return no;
+}
+
+function tituloDisposicoes() {
+  const titulo = elemento('h4','Disposições vigentes','rgi-subtitulo');
+  titulo.prepend(icone("M8 5h12M8 12h12M8 19h12M4 5h.01M4 12h.01M4 19h.01"));
+  return titulo;
 }
 
 function renderizar() {
   const atos = atosPara(previa ?? publicados, conta);
   const vigentes = atos.filter(ato => situacao(ato) === 'Em vigor');
   if (!vigentes.some(ato => ato.escopo === 'Institucional')) vigentes.unshift(ordinario);
-  painel.replaceChildren(...vigentes.map(cartao),botao('Histórico de regimes',() => {
+  const acoes = elemento('div',null,'rgi-acoes rgi-consultas');
+  acoes.append(botao('Consultar ato normativo',() => atoNormativo(vigentes[0]),"M5 3h9l5 5v13H5zM14 3v6h5M8 13h8m-8 4h8"),botao('Histórico de regimes',() => {
     const registros = [...atos].reverse().map(ato => {
       const registro = elemento('article',null,'rgi-registro');
       registro.append(elemento('h3',nomeRegime(ato)),
@@ -104,7 +122,8 @@ function renderizar() {
       return registro;
     });
     consultar('Histórico de regimes',registros.length ? registros : [elemento('p','Nenhum ato registrado.')]);
-  }));
+  },"M3 12a9 9 0 1 1 2.5 6M3 8v4h4m5-5v5l3 2"));
+  painel.replaceChildren(...vigentes.map(cartao),acoes);
   if (vigentes.length > 1) painel.prepend(elemento('p','Consulte cada ato vigente para verificar sua abrangência e suas competências.','rgi-rotulo'));
   if (podeGerir) {
     if (previa) painel.prepend(elemento('p','Prévia local · alterações pendentes de publicação.','rgi-rotulo'));
