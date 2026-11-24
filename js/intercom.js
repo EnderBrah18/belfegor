@@ -1,3 +1,4 @@
+import { lerCatalogo } from './governanca.js';
 import { abrirComunicado, chaveComunicado, obterConjunto } from './comunicado-estado.js';
 import { iconeArquivo } from './icones-arquivo.js';
 import { contaEditorial, visivel } from './visibilidade.js?v=3';
@@ -100,9 +101,8 @@ async function carregar() {
   for (const id of ['fixados','lista-comunicados','resumo-comunicados','intercom-destaque']) $(id).replaceChildren();
   $('intercom-na').textContent = 'Consultando credencial…';
   try {
-    const [resposta, perfil] = await Promise.all([fetch('dados/comunicados.json', {cache:'no-store'}), contaEditorial()]);
-    if (!resposta.ok) throw new Error('Catálogo indisponível');
-    const dados = await resposta.json();
+    const perfil = await contaEditorial();
+    const dados = await lerCatalogo('comunicados',perfil);
     if (atual !== consulta) return;
     conta = perfil;
     const arquivos = obterConjunto(chaveComunicado('arquivados',conta));

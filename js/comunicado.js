@@ -1,3 +1,4 @@
+import { lerCatalogo } from './governanca.js';
 import { contaEditorial, visivel } from './visibilidade.js?v=3';
 import { chaveSessao } from './credenciais.js?v=3';
 import { iconeArquivo } from './icones-arquivo.js?v=3';
@@ -111,7 +112,8 @@ async function carregar() {
   $('com-resposta').hidden = true;
   $('com-acao-estado').textContent = '';
   try {
-    const [comunicados,documentos,conta] = await Promise.all([dados('comunicados'),dados('documentos'),contaEditorial()]);
+    const contaAtual = contaEditorial();
+    const [comunicados,documentos,conta] = await Promise.all([contaAtual.then(perfil => lerCatalogo('comunicados',perfil)),dados('documentos'),contaAtual]);
     if (versao !== geracao) return;
     const aviso = comunicados.find(a => a.codigo === codigo && visivel(a,conta));
     if (!aviso) { estado.textContent = 'Comunicado indisponível para sua credencial.'; return; }

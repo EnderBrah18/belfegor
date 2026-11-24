@@ -1,5 +1,7 @@
 import { contaEditorial } from './visibilidade.js?v=3';
 
+import { consultaReservada as podeConsultarAdministrador } from './governanca.js';
+
 const abas = [...document.querySelectorAll('.estrutura-abas a')];
 const detalhes = [...document.querySelectorAll('[data-estrutura-detalhe]')];
 const autoridades = document.getElementById('autoridades');
@@ -21,10 +23,7 @@ window.addEventListener('hashchange', apresentar);
 apresentar();
 
 const conta = await contaEditorial();
-const consultaReservada = conta?.ativo && (
-  (conta.patente === 'G-6' && conta.acesso === 'NA-6') ||
-  (conta.patente === 'G-7' && conta.acesso === 'NA-7')
-);
+const consultaReservada = podeConsultarAdministrador(conta);
 if (consultaReservada) {
   for (const elemento of document.querySelectorAll('[data-estrutura-reservado]')) elemento.hidden = false;
 }

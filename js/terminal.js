@@ -1,3 +1,4 @@
+import { lerCatalogo } from './governanca.js';
 import { abrirComunicado } from './comunicado-estado.js';
 import { contaEditorial, visivel } from './visibilidade.js?v=3';
 import { chaveSessao } from './credenciais.js?v=3';
@@ -19,13 +20,8 @@ async function buscar() {
   entrada.value = termo;
   resultado.textContent = 'Consultando registros…';
   try {
-    const conta = contaEditorial();
-    const fontes = await Promise.all(['documentos', 'comunicados'].map(async nome => {
-      const resposta = await fetch('dados/' + nome + '.json');
-      if (!resposta.ok) throw new Error('Catálogo indisponível');
-      return resposta.json();
-    }));
-    const perfil = await conta;
+    const perfil = await contaEditorial();
+    const fontes = await Promise.all(['documentos', 'comunicados'].map(nome => lerCatalogo(nome,perfil)));
     if (atual !== geracao) return;
     const chave = normalizar(termo);
     const registros = fontes.flat().filter(item => visivel(item, perfil) && normalizar(item.codigo + ' ' + item.titulo).includes(chave));

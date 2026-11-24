@@ -1,3 +1,4 @@
+import { lerCatalogo } from './governanca.js';
 import { abrirComunicado } from './comunicado-estado.js';
 import { contaEditorial, visivel } from './visibilidade.js?v=3';
 import { chaveSessao } from './credenciais.js?v=3';
@@ -20,7 +21,7 @@ let geracao = 0;
 async function mostrarLista(destino, conta, atual) {
   try {
     const { registros, limite, edicao, categoria } = destino.dataset;
-    const dados = await consultar(registros);
+    const dados = await (registros === 'comunicados' ? lerCatalogo(registros,conta) : consultar(registros));
     if (atual !== geracao) return;
     const itens = dados.filter(registro => visivel(registro, conta) && (!edicao || registro.edicao === edicao) &&
       (!categoria || registro.categoria === categoria));

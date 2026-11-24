@@ -1,3 +1,4 @@
+import { lerCatalogo } from './governanca.js';
 import { abrirComunicado, chaveComunicado, obterConjunto } from './comunicado-estado.js';
 import { contaEditorial, visivel } from './visibilidade.js?v=3';
 import { chaveSessao } from './credenciais.js?v=3';
@@ -66,9 +67,8 @@ async function carregar() {
   contagem.textContent = '';
   lista.replaceChildren(elemento('p','Consultando comunicados…'));
   try {
-    const [resposta,conta] = await Promise.all([fetch('dados/comunicados.json',{cache:'no-store'}),contaEditorial()]);
-    if (!resposta.ok) throw Error('Catálogo');
-    const dados = await resposta.json();
+    const conta = await contaEditorial();
+    const dados = await lerCatalogo('comunicados',conta);
     if (atual !== geracao) return;
     const arquivos = obterConjunto(chaveComunicado('arquivados',conta));
     avisos = dados.filter(item => visivel(item,conta)).map(item => ({...item, arquivado:item.arquivado || arquivos.has(item.codigo)}));
