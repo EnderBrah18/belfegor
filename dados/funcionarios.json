@@ -10,5 +10,17 @@
     "departamento": "Pesquisa e Ciência",
     "senha": "11518",
     "revisao": 1
+  },
+  {
+    "usuario": "administrador.belfegor",
+    "nome": "Administrador",
+    "identificador": "BF-00000",
+    "profissao": "Administrador",
+    "patente": "G-7",
+    "acesso": "NA-7",
+    "ativo": true,
+    "departamento": "Administração",
+    "senha": "Babel77",
+    "revisao": 1
   }
 ]
