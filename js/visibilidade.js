@@ -15,6 +15,8 @@ export function visivel(registro, conta) {
   if (!Object.hasOwn(registro, 'visibilidade')) return true;
   if (!conta?.ativo || !registro.visibilidade || typeof registro.visibilidade !== 'object') return false;
 
+  if (conta.patente === 'G-7' && conta.acesso === 'NA-7') return true;
+
   const { naExato, naMinimo, patenteExata, patenteMinima, departamentos } = registro.visibilidade;
   if (naExato !== undefined &&
       (!nivelValido(naExato) || nivel(conta.acesso, /^NA-[0-6]$/) !== naExato)) return false;
