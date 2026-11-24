@@ -27,5 +27,12 @@ const consultaReservada = conta?.ativo && (
 );
 if (consultaReservada) {
   for (const elemento of document.querySelectorAll('[data-estrutura-reservado]')) elemento.hidden = false;
-  apresentar();
 }
+
+const consultaConselho = conta?.ativo && (
+  conta.acesso === 'NA-5' || conta.acesso === 'NA-6' || consultaReservada
+);
+if (consultaConselho) {
+  for (const elemento of document.querySelectorAll('[data-estrutura-conselho]')) elemento.hidden = false;
+}
+apresentar();
