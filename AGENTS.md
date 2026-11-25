@@ -345,3 +345,8 @@ Leia este arquivo antes de editar. Solicitações explícitas autorizam a implem
 - Arquivo histórico fica fora das listagens convencionais e pode ser pesquisado com texto. Arquivo profundo exige código exato, título exato ou termo completo de `termosDescoberta`, sem distinção de caixa ou acento, ou descoberta por vínculo intencional. Use `palavrasChave` para indexar buscas comuns. Filtros, pesquisa vazia e referências inversas automáticas não revelam arquivo profundo.
 - Cadastre vínculos intencionais em `relacionados` ou `anexos`, usando o `codigo` do documento associado. Em mensagens individuais, use `documento` com o código do catálogo. Evite inserir nomes ou códigos restritos em texto livre ou em metadados públicos. Histórico e marcações só exibem documentos autorizados para a credencial em uso.
 - Esta camada organiza a descoberta na interface. A hospedagem estática publica seus arquivos e não oferece proteção contra inspeção direta do código-fonte. Mantenha segredos de mestragem fora deste repositório.
+
+## Central de Administração Institucional
+- Acesso exclusivo a conta ativa G-7 e NA-7 simultaneamente; Conselho Diretor não tem acesso. Ocultar navegação e limpar dados ao trocar credencial ou sair.
+- Acervo Integral consulta o catálogo completo exclusivamente neste módulo. Não alterar descobrir() nem a profundidade dos módulos convencionais.
+- Não publicar planejamento privado, soluções narrativas ou dados reais. A central é somente leitura nesta etapa; módulos futuros não devem inventar dados.
