@@ -18,7 +18,9 @@
       "BF-SIG-NOR-0002",
       "BF-SIG-REG-0003"
     ],
-    "profundidade": 2
+    "profundidade": 2,
+    "publicadoEm": "17/02/1886 10:20",
+    "atualizadoEm": "08/01/1899 15:40"
   },
   {
     "codigo": "BF-SIG-NOR-0002",
@@ -39,7 +41,9 @@
       "BF-SIG-NOR-0001",
       "BF-SIG-REG-0003"
     ],
-    "profundidade": 2
+    "profundidade": 2,
+    "publicadoEm": "09/03/1886 14:15",
+    "atualizadoEm": "19/01/1899 11:25"
   },
   {
     "codigo": "BF-SIG-REG-0003",
@@ -60,7 +64,9 @@
       "BF-SIG-NOR-0001",
       "BF-SIG-NOR-0002"
     ],
-    "profundidade": 2
+    "profundidade": 2,
+    "publicadoEm": "22/03/1886 09:35",
+    "atualizadoEm": "23/01/1899 16:10"
   },
   {
     "codigo": "BF-PC-01",
@@ -97,7 +103,8 @@
       "BF-OP-01"
     ],
     "acervo": "Pesquisa e Ciência",
-    "profundidade": 2
+    "profundidade": 2,
+    "publicadoEm": "14/08/1894 08:45"
   },
   {
     "codigo": "BF-VIS-01",
@@ -106,7 +113,8 @@
     "setor": "S.I.G.M.A.",
     "revisao": "01",
     "href": "documentos/orientacoes-a-visitantes.html",
-    "profundidade": 2
+    "profundidade": 2,
+    "publicadoEm": "06/05/1897 13:20"
   },
   {
     "codigo": "BF-VIS-02",
@@ -115,7 +123,8 @@
     "setor": "S.I.G.M.A.",
     "revisao": "01",
     "href": "documentos/atendimento-no-atrio.html",
-    "profundidade": 2
+    "profundidade": 2,
+    "publicadoEm": "07/05/1897 09:10"
   },
   {
     "codigo": "BF-GUIA-01",
@@ -125,7 +134,8 @@
     "revisao": "01",
     "href": "documentos/guia-de-consulta.html",
     "destaqueBiblioteca": true,
-    "profundidade": 2
+    "profundidade": 2,
+    "publicadoEm": "15/01/1898 10:30"
   },
   {
     "codigo": "BF-TR-01",
@@ -156,7 +166,9 @@
       "BF-VIS-01",
       "BF-REG-02"
     ],
-    "profundidade": 2
+    "profundidade": 2,
+    "publicadoEm": "21/07/1896 11:15",
+    "atualizadoEm": "03/02/1900 14:20"
   },
   {
     "codigo": "BF-OP-01",
@@ -185,7 +197,9 @@
     "relacionados": [
       "BF-REG-01"
     ],
-    "profundidade": 2
+    "profundidade": 2,
+    "publicadoEm": "10/09/1892 09:25",
+    "atualizadoEm": "16/04/1900 16:40"
   },
   {
     "codigo": "BF-REG-01",
@@ -194,14 +208,15 @@
     "href": "documentos/registro-de-material.html",
     "setor": "S.I.G.M.A.",
     "categoria": "registro",
-    "referencia": "Turno anterior",
+    "referencia": "12/06/1900 06:48",
     "situacao": "Encerrado",
     "tipo": "Operacional",
     "circulacao": [
       "Registro do turno anterior vinculado ao procedimento BF-OP-01."
     ],
     "destaqueArquivo": true,
-    "profundidade": 1
+    "profundidade": 1,
+    "publicadoEm": "12/06/1900 06:48"
   },
   {
     "codigo": "BF-REG-02",
@@ -210,7 +225,7 @@
     "href": "documentos/registro-de-itinerarios.html",
     "setor": "S.I.G.M.A.",
     "categoria": "registro",
-    "referencia": "Turno anterior",
+    "referencia": "12/06/1900 07:12",
     "situacao": "Encerrado",
     "destaqueManual": true,
     "tipo": "Circulação",
@@ -218,7 +233,8 @@
       "Registro do turno anterior vinculado ao procedimento BF-TR-01."
     ],
     "destaqueArquivo": true,
-    "profundidade": 1
+    "profundidade": 1,
+    "publicadoEm": "12/06/1900 07:12"
   },
   {
     "codigo": "BF-LOG-PRO-0001",
@@ -257,17 +273,17 @@
         "Mantenha a remessa sem confirmação se houver falta, dano ou divergência de identificação. Encaminhe o registro à Logística. Se houver indício de falha da estação, solicite avaliação de Engenharia antes de nova tentativa."
       ]
     ],
-    "publicadoEm": "18/04/1895",
-    "atualizadoEm": "05/09/1899",
+    "publicadoEm": "18/04/1895 10:15",
+    "atualizadoEm": "05/09/1899 16:35",
     "historico": [
       {
-        "quando": "05/09/1899",
+        "quando": "05/09/1899 16:35",
         "acao": "Rev. 02",
         "descricao": "Confirmação de entrega pela estação receptora após a conferência.",
         "responsavel": "Logística"
       },
       {
-        "quando": "18/04/1895",
+        "quando": "18/04/1895 10:15",
         "acao": "Rev. 01",
         "descricao": "Publicação do fluxo inicial de transferência.",
         "responsavel": "Logística"
@@ -292,8 +308,8 @@
     "visibilidade": {
       "naMinimo": 1
     },
-    "referencia": "Arquivo dos primeiros ensaios",
-    "publicadoEm": "20/08/1893",
+    "referencia": "20/08/1893 11:42",
+    "publicadoEm": "20/08/1893 11:42",
     "profundidade": 3,
     "palavrasChave": [
       "histórico de transferência",
@@ -317,8 +333,8 @@
     "visibilidade": {
       "naMinimo": 2
     },
-    "publicadoEm": "20/08/1893",
-    "atualizadoEm": "21/10/1898",
+    "publicadoEm": "20/08/1893 16:20",
+    "atualizadoEm": "21/10/1898 15:50",
     "profundidade": 2
   },
   {
@@ -328,8 +344,8 @@
     "setor": "Engenharia",
     "categoria": "registro",
     "acervo": "Engenharia",
-    "publicadoEm": "12/06/1900",
-    "referencia": "12/06/1900",
+    "publicadoEm": "12/06/1900 08:26",
+    "referencia": "12/06/1900 08:26",
     "revisao": "01",
     "situacao": "Encerrado",
     "resumo": "A inspeção de rotina verificou que os terminais de origem e destino estavam disponíveis para conferência de remessas.",
@@ -348,8 +364,8 @@
     "href": "documentos/isolamento-estacao.html",
     "setor": "Logística",
     "categoria": "procedimento",
-    "publicadoEm": "18/04/1895",
-    "referencia": "18/04/1895",
+    "publicadoEm": "18/04/1895 14:30",
+    "referencia": "18/04/1895 14:30",
     "revisao": "01",
     "situacao": "Em vigor",
     "grupo": "Logística",
@@ -379,8 +395,8 @@
     "href": "documentos/parecer-confirmacao-entrega.html",
     "setor": "Logística",
     "categoria": "relatorio",
-    "publicadoEm": "04/09/1899",
-    "referencia": "04/09/1899",
+    "publicadoEm": "04/09/1899 15:18",
+    "referencia": "04/09/1899 15:18",
     "revisao": "01",
     "resumo": "O registro de partida já permitia acompanhar o despacho. A confirmação precisava distinguir a chegada registrada da entrega efetivamente conferida.",
     "relacionados": [
@@ -397,8 +413,8 @@
     "href": "documentos/auditoria-entregas.html",
     "setor": "Logística",
     "categoria": "registro",
-    "publicadoEm": "11/06/1900",
-    "referencia": "11/06/1900",
+    "publicadoEm": "11/06/1900 17:24",
+    "referencia": "11/06/1900 17:24",
     "revisao": "01",
     "situacao": "Encerrado",
     "resumo": "Conferir se o registro de partida, a chegada e a confirmação no destino aparecem como eventos distintos.",
@@ -411,7 +427,7 @@
     },
     "auditoria": [
       {
-        "quando": "11/06/1900",
+        "quando": "11/06/1900 17:24",
         "acao": "Conferência de registros",
         "responsavel": "Logística"
       }
@@ -424,8 +440,8 @@
     "href": "documentos/requisicao-transferencia.html",
     "setor": "Logística",
     "categoria": "registro",
-    "publicadoEm": "10/06/1900",
-    "referencia": "10/06/1900",
+    "publicadoEm": "10/06/1900 09:37",
+    "referencia": "10/06/1900 09:37",
     "revisao": "01",
     "situacao": "Encerrado",
     "resumo": "Requisição de transferência de materiais de manutenção. A identificação da remessa deve constar nos terminais de origem e destino.",
@@ -442,8 +458,8 @@
     "titulo": "Guia de consulta da rede de cargas",
     "href": "documentos/guia-rede-cargas.html",
     "setor": "Logística",
-    "publicadoEm": "23/03/1897",
-    "referencia": "23/03/1897",
+    "publicadoEm": "23/03/1897 11:05",
+    "referencia": "23/03/1897 11:05",
     "revisao": "01",
     "resumo": "A Rede de Transferência de Cargas atende remessas entre setores e instalações. O transporte de pessoas segue os meios de circulação da instalação.",
     "relacionados": [
@@ -483,8 +499,8 @@
     "setor": "Engenharia",
     "categoria": "relatorio",
     "acervo": "Engenharia",
-    "publicadoEm": "07/08/1896",
-    "referencia": "07/08/1896",
+    "publicadoEm": "07/08/1896 13:46",
+    "referencia": "07/08/1896 13:46",
     "revisao": "01",
     "resumo": "Compare identificação, quantidade e condição registrada da carga antes do despacho e após a chegada.",
     "relacionados": [
@@ -502,8 +518,8 @@
     "href": "documentos/conciliacao-remessa.html",
     "setor": "Logística",
     "categoria": "registro",
-    "publicadoEm": "05/09/1899",
-    "referencia": "05/09/1899",
+    "publicadoEm": "05/09/1899 10:52",
+    "referencia": "05/09/1899 10:52",
     "revisao": "01",
     "situacao": "Encerrado",
     "resumo": "Confirme se origem e destino se referem à mesma identificação de remessa. Um registro de despacho não encerra a conferência.",
@@ -526,8 +542,8 @@
     "setor": "Engenharia",
     "categoria": "relatorio",
     "acervo": "Engenharia",
-    "publicadoEm": "21/10/1898",
-    "referencia": "21/10/1898",
+    "publicadoEm": "21/10/1898 11:40",
+    "referencia": "21/10/1898 11:40",
     "revisao": "01",
     "resumo": "Avaliar as condições para receber novas remessas após suspensão preventiva da estação.",
     "relacionados": [
