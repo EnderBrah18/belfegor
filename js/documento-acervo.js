@@ -1,5 +1,5 @@
 import { renderizarOperacional } from './documento-operacional.js';
-import { contaEditorial, visivel } from './visibilidade.js?v=3';
+import { contaEditorial, visivel, aplicarVisibilidadeSuperior } from './visibilidade.js?v=4';
 import { chaveSessao } from './credenciais.js?v=3';
 
 const $ = id => document.getElementById(id);
@@ -67,10 +67,12 @@ function metadados(item, catalogo) {
 }
 function indice() {
   const destino = $('doc-capitulos');
+  destino.replaceChildren();
   let secao = 0;
   let subseq = 0;
   let subsecoes;
   for (const heading of $('doc-texto').querySelectorAll('h2,h3')) {
+    if (heading.closest('[data-estrutura-conselho][hidden],[data-estrutura-reservado][hidden]')) continue;
     const principal = heading.tagName === 'H2' || !secao;
     if (principal) { secao++; subseq = 0; }
     else subseq++;
@@ -127,6 +129,8 @@ async function carregar() {
     const catalogo = dados.filter(d => visivel(d,conta));
     const item = catalogo.find(d => d.codigo === codigo);
     if (!item) { estado.textContent = 'Documento indisponível para sua credencial.'; return; }
+    aplicarVisibilidadeSuperior(conta);
+    indice();
     itemAtual = item;
     escopo = 'belfegor-biblioteca:' + (conta?.usuario ?? 'visitante');
     metadados(item,catalogo);
@@ -182,5 +186,4 @@ addEventListener('storage',evento => {
   else if (evento.key === escopo && itemAtual) botaoFavorito(preferencias());
 });
 document.querySelector('[data-bf-logout]').addEventListener('click',() => queueMicrotask(carregar));
-indice();
 carregar();
