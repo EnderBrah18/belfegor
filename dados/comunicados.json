@@ -1,11 +1,29 @@
 [
   {
+    "codigo": "BF-LOG-COM-0002",
+    "titulo": "Manutenção programada da estação receptora",
+    "resumo": "A estação terá uma janela de inspeção. Consulte a disponibilidade antes do despacho.",
+    "setor": "Logística",
+    "edicao": "recente",
+    "referencia": "12/06 · Ano 400",
+    "situacao": "Programado",
+    "categoria": "Operacionais",
+    "prioridade": "Rotina",
+    "corpo": [
+      "A inspeção está programada para 18/06, Ano 400. Durante a janela, confirme a disponibilidade com a Logística antes de registrar novos despachos. A retomada será informada após a inspeção."
+    ],
+    "relacionados": [
+      "BF-LOG-PRO-0001",
+      "BF-ENG-REG-0001"
+    ]
+  },
+  {
     "codigo": "BF-LOG-COM-0001",
     "titulo": "Conferência de remessas na estação receptora",
     "resumo": "A confirmação de entrega cabe à estação que recebe a carga.",
     "setor": "Logística",
     "edicao": "recente",
-    "referencia": "Expediente",
+    "referencia": "12/06 · Ano 400",
     "situacao": "Em vigor",
     "categoria": "Operacionais",
     "prioridade": "Rotina",

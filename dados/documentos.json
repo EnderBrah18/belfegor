@@ -219,10 +219,12 @@
     "resumo": "Como registrar uma remessa, confirmar sua chegada e encaminhar divergências.",
     "relacionados": [
       "BF-LOG-REG-0001",
-      "BF-ENG-REL-0001"
+      "BF-ENG-REL-0001",
+      "BF-LOG-PAR-0001",
+      "BF-LOG-PRO-0002"
     ],
     "href": "documentos/transferencia-de-cargas.html",
-    "revisao": "01",
+    "revisao": "02",
     "visibilidade": {
       "naMinimo": 1
     },
@@ -243,6 +245,22 @@
         "Encaminhar divergências",
         "Mantenha a remessa sem confirmação se houver falta, dano ou divergência de identificação. Encaminhe o registro à Logística. Se houver indício de falha da estação, solicite avaliação de Engenharia antes de nova tentativa."
       ]
+    ],
+    "publicadoEm": "18/04 · Ano 395",
+    "atualizadoEm": "05/09 · Ano 399",
+    "historico": [
+      {
+        "quando": "05/09 · Ano 399",
+        "acao": "Rev. 02",
+        "descricao": "Confirmação de entrega pela estação receptora após a conferência.",
+        "responsavel": "Logística"
+      },
+      {
+        "quando": "18/04 · Ano 395",
+        "acao": "Rev. 01",
+        "descricao": "Publicação do fluxo inicial de transferência.",
+        "responsavel": "Logística"
+      }
     ]
   },
   {
@@ -262,7 +280,8 @@
     "visibilidade": {
       "naMinimo": 1
     },
-    "referencia": "Arquivo de operações"
+    "referencia": "Arquivo dos primeiros ensaios",
+    "publicadoEm": "20/08 · Ano 393"
   },
   {
     "codigo": "BF-ENG-REL-0001",
@@ -277,9 +296,212 @@
       "BF-LOG-REG-0001"
     ],
     "href": "documentos/infraestrutura-de-teletransporte.html",
-    "revisao": "01",
+    "revisao": "02",
     "visibilidade": {
       "naMinimo": 2
+    },
+    "publicadoEm": "20/08 · Ano 393",
+    "atualizadoEm": "21/10 · Ano 398"
+  },
+  {
+    "codigo": "BF-ENG-REG-0001",
+    "titulo": "Inspeção e liberação de rota",
+    "href": "documentos/inspecao-rota.html",
+    "setor": "Engenharia",
+    "categoria": "registro",
+    "acervo": "Engenharia",
+    "publicadoEm": "12/06 · Ano 400",
+    "referencia": "12/06 · Ano 400",
+    "revisao": "01",
+    "situacao": "Encerrado",
+    "resumo": "A inspeção de rotina verificou que os terminais de origem e destino estavam disponíveis para conferência de remessas.",
+    "relacionados": [
+      "BF-ENG-REL-0001",
+      "BF-LOG-PRO-0001"
+    ],
+    "visibilidade": {
+      "naMinimo": 1
+    }
+  },
+  {
+    "codigo": "BF-LOG-PRO-0002",
+    "titulo": "Isolamento de estação por divergência de remessa",
+    "href": "documentos/isolamento-estacao.html",
+    "setor": "Logística",
+    "categoria": "procedimento",
+    "publicadoEm": "18/04 · Ano 395",
+    "referencia": "18/04 · Ano 395",
+    "revisao": "01",
+    "situacao": "Em vigor",
+    "grupo": "Logística",
+    "resumo": "Suspenda novos despachos pela estação quando a divergência indicar falha de rota.",
+    "relacionados": [
+      "BF-LOG-PRO-0001",
+      "BF-ENG-REL-0001"
+    ],
+    "visibilidade": {
+      "naMinimo": 1
+    },
+    "etapas": [
+      [
+        "Isolar a transferência",
+        "Suspenda novos despachos pela estação quando a divergência indicar falha de rota."
+      ],
+      [
+        "Restabelecer o serviço",
+        "Engenharia avalia a disponibilidade e comunica o resultado à Logística. Registre a decisão antes de retomar despachos."
+      ]
+    ]
+  },
+  {
+    "codigo": "BF-LOG-PAR-0001",
+    "titulo": "Parecer sobre a confirmação de entrega",
+    "href": "documentos/parecer-confirmacao-entrega.html",
+    "setor": "Logística",
+    "categoria": "relatorio",
+    "publicadoEm": "04/09 · Ano 399",
+    "referencia": "04/09 · Ano 399",
+    "revisao": "01",
+    "resumo": "O registro de partida já permitia acompanhar o despacho. A confirmação precisava distinguir a chegada registrada da entrega efetivamente conferida.",
+    "relacionados": [
+      "BF-LOG-PRO-0001"
+    ],
+    "visibilidade": {
+      "naMinimo": 1
+    }
+  },
+  {
+    "codigo": "BF-LOG-AUD-0001",
+    "titulo": "Auditoria de entregas pendentes",
+    "href": "documentos/auditoria-entregas.html",
+    "setor": "Logística",
+    "categoria": "registro",
+    "publicadoEm": "11/06 · Ano 400",
+    "referencia": "11/06 · Ano 400",
+    "revisao": "01",
+    "situacao": "Encerrado",
+    "resumo": "Conferir se o registro de partida, a chegada e a confirmação no destino aparecem como eventos distintos.",
+    "relacionados": [
+      "BF-LOG-PRO-0001",
+      "BF-LOG-PAR-0001"
+    ],
+    "visibilidade": {
+      "naMinimo": 2
+    },
+    "auditoria": [
+      {
+        "quando": "11/06 · Ano 400",
+        "acao": "Conferência de registros",
+        "responsavel": "Logística"
+      }
+    ]
+  },
+  {
+    "codigo": "BF-LOG-REQ-0001",
+    "titulo": "Requisição intersetorial de transferência",
+    "href": "documentos/requisicao-transferencia.html",
+    "setor": "Logística",
+    "categoria": "registro",
+    "publicadoEm": "10/06 · Ano 400",
+    "referencia": "10/06 · Ano 400",
+    "revisao": "01",
+    "situacao": "Encerrado",
+    "resumo": "Requisição de transferência de materiais de manutenção. A identificação da remessa deve constar nos terminais de origem e destino.",
+    "relacionados": [
+      "BF-LOG-PRO-0001"
+    ],
+    "visibilidade": {
+      "naMinimo": 1
+    }
+  },
+  {
+    "codigo": "BF-LOG-NOR-0001",
+    "titulo": "Guia de consulta da rede de cargas",
+    "href": "documentos/guia-rede-cargas.html",
+    "setor": "Logística",
+    "publicadoEm": "23/03 · Ano 397",
+    "referencia": "23/03 · Ano 397",
+    "revisao": "01",
+    "resumo": "A Rede de Transferência de Cargas atende remessas entre setores e instalações. O transporte de pessoas segue os meios de circulação da instalação.",
+    "relacionados": [
+      "BF-LOG-PRO-0001",
+      "BF-ENG-REL-0001"
+    ]
+  },
+  {
+    "codigo": "BF-ENG-REL-0002",
+    "titulo": "Estabilização de corredor artificial",
+    "href": "documentos/estabilizacao-corredor.html",
+    "setor": "Engenharia",
+    "categoria": "relatorio",
+    "acervo": "Engenharia",
+    "publicadoEm": "Ano 391",
+    "referencia": "Ano 391",
+    "revisao": "01",
+    "resumo": "A operação depende de um corredor protegido entre pontos conectados. A transferência bem-sucedida de uma carga sustenta a aplicação em logística.",
+    "relacionados": [
+      "BF-LOG-REG-0001",
+      "BF-ENG-REL-0001"
+    ],
+    "visibilidade": {
+      "naMinimo": 2
+    }
+  },
+  {
+    "codigo": "BF-ENG-REL-0003",
+    "titulo": "Integridade pós-transferência",
+    "href": "documentos/integridade-pos-transferencia.html",
+    "setor": "Engenharia",
+    "categoria": "relatorio",
+    "acervo": "Engenharia",
+    "publicadoEm": "07/08 · Ano 396",
+    "referencia": "07/08 · Ano 396",
+    "revisao": "01",
+    "resumo": "Compare identificação, quantidade e condição registrada da carga antes do despacho e após a chegada.",
+    "relacionados": [
+      "BF-ENG-REL-0001",
+      "BF-LOG-PRO-0001"
+    ],
+    "visibilidade": {
+      "naMinimo": 2
+    }
+  },
+  {
+    "codigo": "BF-LOG-REG-0002",
+    "titulo": "Conciliação de remessa em revisão",
+    "href": "documentos/conciliacao-remessa.html",
+    "setor": "Logística",
+    "categoria": "registro",
+    "publicadoEm": "05/09 · Ano 399",
+    "referencia": "05/09 · Ano 399",
+    "revisao": "01",
+    "situacao": "Encerrado",
+    "resumo": "Confirme se origem e destino se referem à mesma identificação de remessa. Um registro de despacho não encerra a conferência.",
+    "relacionados": [
+      "BF-LOG-PRO-0001",
+      "BF-LOG-AUD-0001"
+    ],
+    "visibilidade": {
+      "naMinimo": 3
+    }
+  },
+  {
+    "codigo": "BF-ENG-PAR-0001",
+    "titulo": "Parecer de disponibilidade de estação",
+    "href": "documentos/parecer-estacao.html",
+    "setor": "Engenharia",
+    "categoria": "relatorio",
+    "acervo": "Engenharia",
+    "publicadoEm": "21/10 · Ano 398",
+    "referencia": "21/10 · Ano 398",
+    "revisao": "01",
+    "resumo": "Avaliar as condições para receber novas remessas após suspensão preventiva da estação.",
+    "relacionados": [
+      "BF-ENG-REL-0001",
+      "BF-LOG-PRO-0002"
+    ],
+    "visibilidade": {
+      "naMinimo": 3
     }
   }
 ]

@@ -115,6 +115,7 @@ function lista() {
     linha.dataset.restrito = String(Boolean(item.visibilidade));
     const texto = el('div',undefined,'bib-texto');
     texto.append(abrir(item,item.titulo),el('p',item.resumo));
+    if (item.publicadoEm) texto.append(el('small',item.publicadoEm));
     const marcar = el('button',undefined,'bib-marca');
     marcar.type = 'button';
     marcar.setAttribute('aria-label','Marcar ' + item.titulo);
