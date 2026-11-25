@@ -330,3 +330,11 @@ Primeiro:
 5. Sugira melhorias estruturais sem modificar o código.
 6. Aguarde minhas próximas instruções antes de implementar alterações.
 Todas as futuras propostas e implementações devem respeitar essas diretrizes, salvo quando eu determinar explicitamente uma exceção.
+
+
+## Padrão obrigatório de manutenção
+Leia este arquivo antes de editar. Solicitações explícitas autorizam a implementação solicitada. ChatGPT deve consultar este arquivo pelo conector antes de editar.
+- Centralize estilos compartilhados em css/portal.css. Reutilize componentes editoriais, títulos, códigos, listas, notas, fichas e fluxos; preserve paleta, navegação, responsividade e impressão. CSS setorial apenas para necessidades específicas.
+- Preserve a regra da Estrutura Institucional: detalhes G-6/NA-6 visíveis a contas ativas NA-5 ou NA-6 ou consulta reservada; G-7/NA-7 somente G-6+NA-6 ou G-7+NA-7. Use os marcadores data-estrutura-conselho e data-estrutura-reservado inicialmente hidden. Aplique também a filtros, índices, metadados e impressão. Não confunda menção pública ao Conselho com detalhes de credenciais.
+- GitHub Pages oferece ocultação narrativa, não segurança real. Não publique segredos reais.
+- Verifique visitante, credenciais ordinárias, superiores, logout, mobile e impressão; informe testes não realizados. Não crie os nove registros científicos sem solicitação.
