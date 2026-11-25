@@ -1,5 +1,65 @@
 [
   {
+    "codigo": "BF-SIG-NOR-0001",
+    "titulo": "Manual de Classificação Institucional",
+    "resumo": "Critérios de avaliação, níveis e designações excepcionais.",
+    "setor": "S.I.G.M.A.",
+    "revisao": "01",
+    "situacao": "Em revisão",
+    "href": "documentos/manual-classificacao.html",
+    "categoria": "manual",
+    "acervo": "Normas e Manuais",
+    "palavrasChave": [
+      "documentação",
+      "classificação",
+      "manual"
+    ],
+    "relacionados": [
+      "BF-SIG-NOR-0002",
+      "BF-SIG-REG-0003"
+    ]
+  },
+  {
+    "codigo": "BF-SIG-NOR-0002",
+    "titulo": "Manual de Redação e Gestão Documental",
+    "resumo": "Diretrizes de elaboração, identificação, circulação e revisão documental.",
+    "setor": "S.I.G.M.A.",
+    "revisao": "01",
+    "situacao": "Em revisão",
+    "href": "documentos/manual-redacao.html",
+    "categoria": "manual",
+    "acervo": "Normas e Manuais",
+    "palavrasChave": [
+      "documentação",
+      "classificação",
+      "manual"
+    ],
+    "relacionados": [
+      "BF-SIG-NOR-0001",
+      "BF-SIG-REG-0003"
+    ]
+  },
+  {
+    "codigo": "BF-SIG-REG-0003",
+    "titulo": "Caderno de Modelos Documentais",
+    "resumo": "Estruturas de preenchimento para registros, relatórios e demais documentos.",
+    "setor": "S.I.G.M.A.",
+    "revisao": "01",
+    "situacao": "Em revisão",
+    "href": "documentos/caderno-modelos.html",
+    "categoria": "manual",
+    "acervo": "Normas e Manuais",
+    "palavrasChave": [
+      "documentação",
+      "classificação",
+      "manual"
+    ],
+    "relacionados": [
+      "BF-SIG-NOR-0001",
+      "BF-SIG-NOR-0002"
+    ]
+  },
+  {
     "codigo": "BF-PC-01",
     "titulo": "Conferência de instrumentos",
     "resumo": "Verificações de rotina antes de retomar um ensaio.",
