@@ -1,3 +1,4 @@
+import { compararRecentes, documentoRecente } from './expediente-datas.js';
 import { contaEditorial, visivel } from './visibilidade.js?v=3';
 import { chaveSessao } from './credenciais.js?v=3';
 import { iconeArquivo } from './icones-arquivo.js?v=3';
@@ -13,7 +14,7 @@ let local = inicial;
 let escopo = '';
 let documentos = [];
 let categoria = '';
-let modo = 'catalogo';
+let modo = 'recentes';
 let termo = '';
 let filtros = new FormData(form);
 let pagina = 0;
@@ -77,7 +78,7 @@ function leitura() {
   }) : [el('p','Nenhum documento em leitura.')]));
 }
 function destaque() {
-  const item = documentos.find(d => d.destaqueBiblioteca);
+  const item = documentos.find(d => d.destaqueBiblioteca && documentoRecente(d));
   const painel = $('bib-destaque');
   painel.replaceChildren();
   if (!item) { painel.append(el('p','Nenhum documento em destaque.')); return; }
@@ -93,7 +94,9 @@ function destaque() {
 function resultados() {
   const fonte = modo === 'historico' ? local.historico.map(codigo => documentos.find(d => d.codigo === codigo)).filter(Boolean) : documentos;
   const chave = normalizar(termo);
+  const consulta = chave || categoria || [...filtros.values()].some(Boolean);
   return fonte.filter(d =>
+    (modo !== 'recentes' || consulta || documentoRecente(d)) &&
     (modo !== 'marcados' || local.marcados.includes(d.codigo)) &&
     (!categoria || d.acervo === categoria) &&
     (!filtros.get('setor') || d.setor === filtros.get('setor')) &&
@@ -109,7 +112,7 @@ function lista() {
   $('bib-contagem').textContent = visiveis.length ? 'Exibindo ' + (inicio + 1) + '–' + (inicio + visiveis.length) + ' de ' + itens.length : '0 itens';
   $('bib-anterior').disabled = pagina === 0;
   $('bib-proxima').disabled = inicio + tamanho >= itens.length;
-  document.querySelector('[data-bib-titulo]').textContent = ({catalogo:'Adições Recentes ao Acervo',marcados:'Minhas marcações',historico:'Histórico de consulta'})[modo];
+  document.querySelector('[data-bib-titulo]').textContent = ({recentes:'Adições Recentes ao Acervo',catalogo:'Catálogo geral',marcados:'Minhas marcações',historico:'Histórico de consulta'})[modo];
   $('bib-lista').replaceChildren(...(visiveis.length ? visiveis.map(item => {
     const linha = el('article',undefined,'bib-linha');
     linha.dataset.restrito = String(Boolean(item.visibilidade));
@@ -150,7 +153,7 @@ async function carregar() {
     if (!r.ok) throw Error('Catálogo');
     const dados = await r.json();
     if (atual !== consulta) return;
-    documentos = dados.filter(d => d.href && visivel(d,perfil));
+    documentos = dados.filter(d => d.href && visivel(d,perfil)).sort(compararRecentes);
     escopo = 'belfegor-biblioteca:' + (perfil?.usuario ?? 'visitante');
     ler();
     for (const botao of categorias) {
@@ -193,5 +196,5 @@ addEventListener('storage',evento => {
   else if (evento.key === escopo) { ler(); leitura(); lista(); }
 });
 document.querySelector('[data-bf-logout]').addEventListener('click',() => queueMicrotask(carregar));
-selecionarModo('catalogo');
+selecionarModo('recentes');
 carregar();

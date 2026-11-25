@@ -15,7 +15,8 @@
     "relacionados": [
       "BF-LOG-PRO-0001",
       "BF-ENG-REG-0001"
-    ]
+    ],
+    "publicadoEm": "12/06/1900 14:32"
   },
   {
     "codigo": "BF-LOG-COM-0001",
@@ -38,7 +39,8 @@
     ],
     "visibilidade": {
       "naMinimo": 1
-    }
+    },
+    "publicadoEm": "12/06/1900 14:15"
   },
   {
     "codigo": "ECHO-09",
@@ -57,7 +59,8 @@
       ]
     },
     "categoria": "Pesquisa",
-    "prioridade": "Média"
+    "prioridade": "Média",
+    "publicadoEm": "12/06/1900 13:45"
   },
   {
     "codigo": "ECHO-08",
@@ -87,7 +90,8 @@
     "relacionados": [
       "BF-VIS-02",
       "BF-VIS-01"
-    ]
+    ],
+    "publicadoEm": "12/06/1900 08:00"
   },
   {
     "codigo": "ECHO-07",
@@ -118,7 +122,8 @@
     "relacionados": [
       "BF-TR-01",
       "BF-REG-02"
-    ]
+    ],
+    "publicadoEm": "11/06/1900 17:50"
   },
   {
     "codigo": "ECHO-06",
@@ -131,7 +136,8 @@
     "edicao": "historico",
     "categoria": "Operacionais",
     "prioridade": "Rotina",
-    "arquivado": true
+    "arquivado": true,
+    "publicadoEm": "11/06/1900 16:30"
   },
   {
     "codigo": "ECHO-05",

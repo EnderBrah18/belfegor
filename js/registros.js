@@ -1,3 +1,4 @@
+import { compararRecentes, documentoRecente } from './expediente-datas.js';
 import { iconeArquivo } from './icones-arquivo.js';
 import { contaEditorial, visivel } from './visibilidade.js?v=3';
 import { chaveSessao } from './credenciais.js?v=3';
@@ -107,7 +108,8 @@ function naVisao(item) {
 }
 function filtrados() {
   const termo = normalizar((criterios.get('termo') ?? '').trim());
-  return catalogo.filter(item => naVisao(item) &&
+  const consulta = termo || visao !== 'registro' || [...criterios.values()].some(Boolean);
+  return catalogo.filter(item => naVisao(item) && (consulta || documentoRecente(item)) &&
     (!criterios.get('setor') || item.setor === criterios.get('setor')) &&
     (!criterios.get('tipo') || tipo(item) === criterios.get('tipo')) &&
     (!criterios.get('na') || nivel(item) === criterios.get('na')) &&
@@ -177,7 +179,7 @@ function preencherPaineis() {
     item.append(dt,el('dd',String(total)));
     return item;
   }));
-  const destaque = registros.filter(r => r.destaqueArquivo);
+  const destaque = registros.filter(r => r.destaqueArquivo && documentoRecente(r));
   $('registro-destaques').replaceChildren(...destaque.map(r => {
     const item = el('div');
     const botao = el('button',r.codigo + ' · ' + r.titulo);
@@ -215,7 +217,7 @@ async function carregar() {
     if (!r.ok) throw Error('Catálogo indisponível');
     const dados = await r.json();
     if (atual !== geracao) return;
-    catalogo = dados.filter(item => visivel(item,conta));
+    catalogo = dados.filter(item => visivel(item,conta)).sort(compararRecentes);
     for (const [nome,extrair] of [['setor',d => d.setor],['tipo',tipo],['periodo',periodo]]) {
       const select = form.elements[nome];
       const anterior = select.value;

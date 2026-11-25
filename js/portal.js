@@ -1,3 +1,4 @@
+import { compararRecentes, avisoRecente, documentoRecente, quandoExpediente } from './expediente-datas.js';
 import { lerCatalogo } from './governanca.js';
 import { abrirComunicado } from './comunicado-estado.js';
 import { contaEditorial, visivel } from './visibilidade.js?v=3';
@@ -24,7 +25,8 @@ async function mostrarLista(destino, conta, atual) {
     const dados = await (registros === 'comunicados' ? lerCatalogo(registros,conta) : consultar(registros));
     if (atual !== geracao) return;
     const itens = dados.filter(registro => visivel(registro, conta) && (!edicao || registro.edicao === edicao) &&
-      (!categoria || registro.categoria === categoria));
+      (!categoria || registro.categoria === categoria) &&
+      (edicao === 'recente' ? avisoRecente(registro) : edicao === 'historico' || (registros === 'documentos' && limite) ? documentoRecente(registro) : true)).sort(compararRecentes);
     if (!itens.length) {
       destino.textContent = 'Nenhum registro disponível.';
       return;
@@ -47,7 +49,7 @@ async function mostrarLista(destino, conta, atual) {
       resumo.textContent = registro.resumo;
       const meta = document.createElement('p');
       meta.className = 'meta';
-      meta.textContent = [registro.codigo, registro.setor, registro.referencia, registro.situacao, registro.revisao && 'Revisão ' + registro.revisao].filter(Boolean).join(' · ');
+      meta.textContent = [registro.codigo, registro.setor, edicao === 'recente' ? quandoExpediente(registro) : registro.referencia, registro.situacao, registro.revisao && 'Revisão ' + registro.revisao].filter(Boolean).join(' · ');
       item.append(titulo, meta, resumo);
       lista.append(item);
     }

@@ -1,3 +1,4 @@
+import { compararRecentes, avisoRecente, quandoExpediente } from './expediente-datas.js';
 import { lerCatalogo } from './governanca.js';
 import { abrirComunicado, chaveComunicado, obterConjunto } from './comunicado-estado.js';
 import { contaEditorial, visivel } from './visibilidade.js?v=3';
@@ -26,10 +27,10 @@ function atualizarLidos() {
 }
 
 function desenhar() {
-  const novas = avisos.filter(a => !a.arquivado && !lidos.has(a.codigo));
+  const novas = avisos.filter(a => avisoRecente(a) && !lidos.has(a.codigo));
   contagem.textContent = novas.length ? '(' + novas.length + ')' : '';
-  const itens = filtro === 'arquivo' ? avisos.filter(a => a.arquivado)
-    : filtro === 'novas' ? novas : avisos.filter(a => !a.arquivado);
+  const itens = filtro === 'arquivo' ? avisos.filter(a => !avisoRecente(a))
+    : filtro === 'novas' ? novas : avisos.filter(avisoRecente);
   lista.replaceChildren();
 
   for (const aviso of itens.slice(0,4)) {
@@ -45,7 +46,7 @@ function desenhar() {
     texto.append(elemento('strong',aviso.titulo),elemento('small',[aviso.codigo,aviso.categoria].filter(Boolean).join(' · ')));
     const meta = elemento('span',undefined,'echo-aviso-meta');
     if (novo) meta.append(elemento('span',undefined,'echo-ponto'));
-    if (aviso.referencia) meta.append(elemento('small',aviso.referencia));
+    if (aviso.referencia) meta.append(elemento('small',quandoExpediente(aviso)));
     item.append(marca,texto,meta);
     item.addEventListener('click', () => {
       if (!chave) return;
@@ -71,7 +72,7 @@ async function carregar() {
     const dados = await lerCatalogo('comunicados',conta);
     if (atual !== geracao) return;
     const arquivos = obterConjunto(chaveComunicado('arquivados',conta));
-    avisos = dados.filter(item => visivel(item,conta)).map(item => ({...item, arquivado:item.arquivado || arquivos.has(item.codigo)}));
+    avisos = dados.filter(item => visivel(item,conta)).map(item => ({...item, arquivado:item.arquivado || arquivos.has(item.codigo)})).sort(compararRecentes);
     chave = 'belfegor-comunicados-lidos:' + (conta?.usuario ?? 'visitante');
     atualizarLidos();
     desenhar();

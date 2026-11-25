@@ -1,3 +1,4 @@
+import { compararRecentes, documentoRecente } from './expediente-datas.js';
 import { contaEditorial, visivel } from './visibilidade.js?v=3';
 import { chaveSessao } from './credenciais.js?v=3';
 
@@ -145,7 +146,8 @@ function lista() {
     (!setor || d.setor === setor) && (!na || nivel(d) === na) &&
     (!status.length || status.includes(d.situacao)) &&
     normalizar([d.codigo,d.titulo,d.resumo].filter(Boolean).join(' ')).includes(termo))
-    .sort((a,b) => campo === 'revisao' ? String(b.revisao ?? '').localeCompare(String(a.revisao ?? ''),'pt-BR',{numeric:true}) :
+    .filter(d => campo !== 'recentes' || visao !== 'manual' || grupo || termo || setor || na || documentoRecente(d))
+    .sort((a,b) => campo === 'recentes' || campo === 'revisao' ? compararRecentes(a,b) :
       String(a[campo] ?? '').localeCompare(String(b[campo] ?? ''),'pt-BR',{numeric:true}));
   const item = itens.find(d => d.codigo === selecionado) ?? itens[0];
   selecionado = item?.codigo ?? '';
@@ -184,7 +186,7 @@ async function carregar() {
     setor.replaceChildren(setor.options[0],...setores.map(x => new Option(x,x)));
     setor.value = setores.includes(preferido) ? preferido : '';
     filtros = new FormData(form);
-    const destaque = documentos.find(d => d.destaqueManual);
+    const destaque = documentos.find(d => d.destaqueManual && documentoRecente(d));
     if (destaque) $('proc-destaque').append(el('strong',destaque.codigo + ' · ' + destaque.titulo),
       el('p',destaque.resumo),link(destaque,'Ver registro'));
     else $('proc-destaque').append(el('p','Nenhum registro em destaque.'));
@@ -198,7 +200,7 @@ const abas = [...document.querySelectorAll('[data-visao]')];
 for (const botao of abas) botao.addEventListener('click', () => {
   visao = botao.dataset.visao;
   grupo = '';
-  ordem.value = visao === 'revisoes' ? 'revisao' : 'codigo';
+  ordem.value = visao === 'revisoes' ? 'revisao' : 'recentes';
   abas.forEach(item => item.setAttribute('aria-pressed', String(item === botao)));
   lista();
 });
