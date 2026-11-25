@@ -1,6 +1,5 @@
-import { contaEditorial } from './visibilidade.js?v=3';
+import { contaEditorial, aplicarVisibilidadeSuperior } from './visibilidade.js?v=4';
 
-import { consultaReservada as podeConsultarAdministrador } from './governanca.js';
 
 const abas = [...document.querySelectorAll('.estrutura-abas a')];
 const detalhes = [...document.querySelectorAll('[data-estrutura-detalhe]')];
@@ -22,16 +21,6 @@ function apresentar() {
 window.addEventListener('hashchange', apresentar);
 apresentar();
 
-const conta = await contaEditorial();
-const consultaReservada = podeConsultarAdministrador(conta);
-if (consultaReservada) {
-  for (const elemento of document.querySelectorAll('[data-estrutura-reservado]')) elemento.hidden = false;
-}
-
-const consultaConselho = conta?.ativo && (
-  conta.acesso === 'NA-5' || conta.acesso === 'NA-6' || consultaReservada
-);
-if (consultaConselho) {
-  for (const elemento of document.querySelectorAll('[data-estrutura-conselho]')) elemento.hidden = false;
-}
+aplicarVisibilidadeSuperior(await contaEditorial());
 apresentar();
+window.addEventListener('bf-credencial-atualizada', apresentar);
