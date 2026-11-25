@@ -1,5 +1,28 @@
 [
   {
+    "codigo": "BF-LOG-COM-0001",
+    "titulo": "Conferência de remessas na estação receptora",
+    "resumo": "A confirmação de entrega cabe à estação que recebe a carga.",
+    "setor": "Logística",
+    "edicao": "recente",
+    "referencia": "Expediente",
+    "situacao": "Em vigor",
+    "categoria": "Operacionais",
+    "prioridade": "Rotina",
+    "destinatarios": "Equipes que utilizam a Rede de Transferência de Cargas",
+    "corpo": [
+      "Antes de despachar materiais, equipamentos ou suprimentos pela Rede de Transferência de Cargas, confira a identificação da remessa e o destino indicado.",
+      "A estação receptora deve registrar a chegada após conferir o material. Se a identificação ou a quantidade divergir, deixe a entrega sem confirmação e encaminhe o registro à Logística.",
+      "O serviço é exclusivo para cargas. O deslocamento de funcionários continua pelos meios de circulação indicados para cada instalação."
+    ],
+    "relacionados": [
+      "BF-LOG-PRO-0001"
+    ],
+    "visibilidade": {
+      "naMinimo": 1
+    }
+  },
+  {
     "codigo": "ECHO-09",
     "titulo": "Conferência de bancada no início do expediente",
     "resumo": "Pesquisadores devem registrar a condição dos instrumentos antes de retomar ensaios.",

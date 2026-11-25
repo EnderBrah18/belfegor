@@ -208,5 +208,78 @@
       "Registro do turno anterior vinculado ao procedimento BF-TR-01."
     ],
     "destaqueArquivo": true
+  },
+  {
+    "codigo": "BF-LOG-PRO-0001",
+    "titulo": "Transferência e recebimento de cargas",
+    "setor": "Logística",
+    "categoria": "procedimento",
+    "grupo": "Logística",
+    "situacao": "Em vigor",
+    "resumo": "Como registrar uma remessa, confirmar sua chegada e encaminhar divergências.",
+    "relacionados": [
+      "BF-LOG-REG-0001",
+      "BF-ENG-REL-0001"
+    ],
+    "href": "documentos/transferencia-de-cargas.html",
+    "revisao": "01",
+    "visibilidade": {
+      "naMinimo": 1
+    },
+    "etapas": [
+      [
+        "Preparar a remessa",
+        "Registre a descrição, a quantidade, a origem e o destino. Identifique a unidade responsável pelo recebimento e consulte a disponibilidade da rota antes do despacho."
+      ],
+      [
+        "Despachar a carga",
+        "A estação de origem confere a identificação da remessa e registra a partida. O serviço destina-se a materiais, equipamentos e suprimentos. O transporte de pessoas é proibido."
+      ],
+      [
+        "Confirmar o recebimento",
+        "A estação receptora compara o material recebido com a identificação e a quantidade registradas. Confirme a entrega após a conferência."
+      ],
+      [
+        "Encaminhar divergências",
+        "Mantenha a remessa sem confirmação se houver falta, dano ou divergência de identificação. Encaminhe o registro à Logística. Se houver indício de falha da estação, solicite avaliação de Engenharia antes de nova tentativa."
+      ]
+    ]
+  },
+  {
+    "codigo": "BF-LOG-REG-0001",
+    "titulo": "Primeira transferência artificial de carga",
+    "setor": "Logística",
+    "categoria": "registro",
+    "tipo": "Operacional",
+    "situacao": "Encerrado",
+    "resumo": "Registro histórico do primeiro ensaio artificial bem-sucedido com uma carga de teste.",
+    "relacionados": [
+      "BF-LOG-PRO-0001",
+      "BF-ENG-REL-0001"
+    ],
+    "href": "documentos/primeira-transferencia-de-carga.html",
+    "revisao": "01",
+    "visibilidade": {
+      "naMinimo": 1
+    },
+    "referencia": "Arquivo de operações"
+  },
+  {
+    "codigo": "BF-ENG-REL-0001",
+    "titulo": "Infraestrutura do Sistema de Teletransporte",
+    "setor": "Engenharia",
+    "categoria": "relatorio",
+    "acervo": "Engenharia",
+    "situacao": "Em vigor",
+    "resumo": "Referência técnica sobre estações fixas, limites de operação e encaminhamento de falhas.",
+    "relacionados": [
+      "BF-LOG-PRO-0001",
+      "BF-LOG-REG-0001"
+    ],
+    "href": "documentos/infraestrutura-de-teletransporte.html",
+    "revisao": "01",
+    "visibilidade": {
+      "naMinimo": 2
+    }
   }
 ]
