@@ -1,9 +1,12 @@
+import { descobrir, camada } from './descoberta-documental.js';
 import { compararRecentes, avisoRecente, quandoExpediente } from './expediente-datas.js';
 import { lerCatalogo } from './governanca.js';
 import { abrirComunicado, chaveComunicado, obterConjunto } from './comunicado-estado.js';
 import { iconeArquivo } from './icones-arquivo.js';
-import { contaEditorial, visivel } from './visibilidade.js?v=3';
+import { contaEditorial } from './visibilidade.js?v=3';
 import { chaveSessao } from './credenciais.js?v=3';
+
+const ehRecente = item => camada(item) === 1 && avisoRecente(item);
 
 const $ = id => document.getElementById(id);
 const filtros = $('filtros-comunicados');
@@ -61,12 +64,13 @@ function linha(aviso, fixado = false) {
 }
 
 function resumo() {
+  const listaveis = catalogo.filter(item => descobrir(item,conta));
   const valores = [
-    ['Não lidos', catalogo.filter(r => !lidos.has(r.codigo)).length],
-    ['Prioridade alta', catalogo.filter(r => r.prioridade === 'Alta').length],
-    ['Prioridade média', catalogo.filter(r => r.prioridade === 'Média').length],
-    ['Atualizações operacionais', catalogo.filter(r => r.categoria === 'Operacionais').length],
-    ['Arquivados', catalogo.filter(r => r.arquivado).length]
+    ['Não lidos', listaveis.filter(r => !lidos.has(r.codigo)).length],
+    ['Prioridade alta', listaveis.filter(r => r.prioridade === 'Alta').length],
+    ['Prioridade média', listaveis.filter(r => r.prioridade === 'Média').length],
+    ['Atualizações operacionais', listaveis.filter(r => r.categoria === 'Operacionais').length],
+    ['Arquivados', listaveis.filter(r => r.arquivado).length]
   ];
   $('resumo-comunicados').replaceChildren(...valores.map(([nome, total]) => {
     const item = elemento('div');
@@ -81,10 +85,10 @@ function corresponde(item) {
   const busca = normalizar(criterios.get('busca') ?? '');
   const grupos = [['periodo','edicao'],['prioridade','prioridade'],['setor','setor'],['status','situacao']];
   const consulta = busca || categoria || grupos.some(([campo]) => criterios.get(campo));
-  return (consulta || avisoRecente(item)) &&
-    (!categoria || (categoria === 'Arquivados' ? !avisoRecente(item) : item.categoria === categoria)) &&
-    grupos.every(([campo, chave]) => !criterios.get(campo) || item[chave] === criterios.get(campo)) &&
-    normalizar([item.codigo, item.titulo, item.resumo, item.setor].filter(Boolean).join(' ')).includes(busca);
+  return (busca ? descobrir(item,conta,'busca',busca) : descobrir(item,conta)) &&
+    (consulta || ehRecente(item)) &&
+    (!categoria || (categoria === 'Arquivados' ? !ehRecente(item) : item.categoria === categoria)) &&
+    grupos.every(([campo, chave]) => !criterios.get(campo) || item[chave] === criterios.get(campo));
 }
 
 function listar() {
@@ -109,21 +113,21 @@ async function carregar() {
     if (atual !== consulta) return;
     conta = perfil;
     const arquivos = obterConjunto(chaveComunicado('arquivados',conta));
-    catalogo = dados.filter(item => visivel(item, conta)).map(item => ({...item, arquivado:item.arquivado || arquivos.has(item.codigo)})).sort(compararRecentes);
+    catalogo = dados.filter(item => descobrir(item,conta,'direto')).map(item => ({...item, arquivado:item.arquivado || arquivos.has(item.codigo)})).sort(compararRecentes);
     try { lidos = new Set(JSON.parse(localStorage.getItem(chaveLeitura()) ?? '[]')); } catch { lidos = new Set(); }
     for (const [campo, chave] of [['setor','setor'],['status','situacao']]) {
       const select = filtros.elements[campo];
-      const valores = [...new Set(catalogo.map(item => item[chave]).filter(Boolean))].sort();
+      const valores = [...new Set(catalogo.filter(item => descobrir(item,conta)).map(item => item[chave]).filter(Boolean))].sort();
       select.replaceChildren(select.options[0], ...valores.map(valor => new Option(valor, valor)));
     }
     filtros.reset();
     criterios = new FormData(filtros);
     pagina = 0;
-    const fixados = catalogo.filter(item => item.fixado && avisoRecente(item));
+    const fixados = catalogo.filter(item => item.fixado && ehRecente(item));
     $('fixados').replaceChildren(...(fixados.length ? fixados.map(item => linha(item, true)) : [elemento('p', 'Nenhum comunicado fixado.', 'intercom-empty')]));
     $('intercom-na').textContent = conta ? 'Seu NA atual: ' + conta.acesso : 'Acesso público · Visitante';
 
-    const destaque = catalogo.find(item => item.destaque && avisoRecente(item));
+    const destaque = catalogo.find(item => item.destaque && ehRecente(item));
     if (destaque) $('intercom-destaque').append(linha(destaque));
     else $('intercom-destaque').append(elemento('p', 'Nenhum comunicado especial.'));
     resumo();

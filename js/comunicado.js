@@ -1,5 +1,6 @@
+import { descobrir } from './descoberta-documental.js';
 import { lerCatalogo } from './governanca.js';
-import { contaEditorial, visivel } from './visibilidade.js?v=3';
+import { contaEditorial } from './visibilidade.js?v=3';
 import { chaveSessao } from './credenciais.js?v=3';
 import { iconeArquivo } from './icones-arquivo.js?v=3';
 import { chaveComunicado, obterConjunto, alterarConjunto } from './comunicado-estado.js';
@@ -65,7 +66,7 @@ function corpo(aviso) {
 function relacionados(aviso, documentos, conta) {
   const painel = $('com-relacionados');
   const codigos = new Set(aviso.relacionados ?? []);
-  const itens = documentos.filter(d => d.href && visivel(d,conta) && (codigos.has(d.codigo) || d.href === aviso.href));
+  const itens = documentos.filter(d => d.href && descobrir(d,conta,'referencia') && (codigos.has(d.codigo) || d.href === aviso.href));
   painel.replaceChildren(...itens.map(item => {
     const a = el('a',undefined,'com-doc-link');
     a.href = item.href;
@@ -115,7 +116,7 @@ async function carregar() {
     const contaAtual = contaEditorial();
     const [comunicados,documentos,conta] = await Promise.all([contaAtual.then(perfil => lerCatalogo('comunicados',perfil)),dados('documentos'),contaAtual]);
     if (versao !== geracao) return;
-    const aviso = comunicados.find(a => a.codigo === codigo && visivel(a,conta));
+    const aviso = comunicados.find(a => a.codigo === codigo && descobrir(a,conta,'direto'));
     if (!aviso) { estado.textContent = 'Comunicado indisponível para sua credencial.'; return; }
     atual = { conta };
     try { alterarConjunto(chaveComunicado('lidos',conta),codigo); } catch {}

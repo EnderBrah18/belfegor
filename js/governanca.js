@@ -72,7 +72,7 @@ export async function comunicadosGovernanca(conta) {
       return {
         codigo: aviso.id, titulo:'Alteração do regime administrativo', resumo,
         corpo:[resumo, 'Consulte as determinações na seção Estrutura Institucional da rede interna.'],
-        setor:'S.I.G.M.A.', categoria:'Operacionais', prioridade:'Rotina', edicao:'recente',
+        setor:'S.I.G.M.A.', categoria:'Operacionais', prioridade:'Rotina', edicao:'recente', profundidade:1,
         referencia: new Date(aviso.quando).toLocaleDateString('pt-BR'), situacao:aviso.acao
       };
     }));

@@ -1,6 +1,7 @@
+import { descobrir, anexosAutorizados } from './descoberta-documental.js';
 import { compararRecentes, documentoRecente } from './expediente-datas.js';
 import { iconeArquivo } from './icones-arquivo.js';
-import { contaEditorial, visivel } from './visibilidade.js?v=3';
+import { contaEditorial } from './visibilidade.js?v=3';
 import { chaveSessao } from './credenciais.js?v=3';
 
 const $ = id => document.getElementById(id);
@@ -9,6 +10,8 @@ const abas = [...document.querySelectorAll('[data-reg-visao]')];
 const normalizar = texto => texto.normalize('NFD').replace(/\p{M}/gu,'').toLowerCase();
 const tamanho = 10;
 let catalogo = [];
+let catalogoCompleto = [];
+let credencial = null;
 let criterios = new FormData(form);
 let visao = 'registro';
 let secao = 'auditoria';
@@ -66,7 +69,8 @@ function detalhe(item) {
   resumo.append(resumoTitulo,el('p',item.resumo ?? 'Resumo indisponível.'));
   if (item.href) resumo.append(link(item.href + (item.categoria === 'procedimento' ? '?origem=procedimentos' : '?origem=registros'),'Abrir registro completo'));
   const secoes = el('div',undefined,'intercom-tabs registro-ficha-tabs');
-  const paineis = [['auditoria','Histórico de Auditoria'],['circulacao','Circulação'],['anexos','Anexos (' + (item.anexos?.length ?? 0) + ')']];
+  const anexos = anexosAutorizados(item,catalogoCompleto,credencial);
+  const paineis = [['auditoria','Histórico de Auditoria'],['circulacao','Circulação'],['anexos','Anexos (' + anexos.length + ')']];
   for (const [id,titulo] of paineis) {
     const botao = el('button',titulo);
     botao.prepend(iconeArquivo({auditoria:'history',circulacao:'sector',anexos:'link'}[id]));
@@ -81,7 +85,7 @@ function detalhe(item) {
   }
   const detalheSecao = el('section',undefined,'registro-ficha-box');
   function preencherDetalhes() {
-    const itens = Array.isArray(item[secao]) ? item[secao] : [];
+    const itens = secao === 'anexos' ? anexos : Array.isArray(item[secao]) ? item[secao] : [];
     const titulo = paineis.find(p => p[0] === secao)[1];
     detalheSecao.replaceChildren(el('h3',titulo));
     if (!itens.length) detalheSecao.append(el('p','Nenhuma informação publicada nesta seção.'));
@@ -109,12 +113,11 @@ function naVisao(item) {
 function filtrados() {
   const termo = normalizar((criterios.get('termo') ?? '').trim());
   const consulta = termo || visao !== 'registro' || [...criterios.values()].some(Boolean);
-  return catalogo.filter(item => naVisao(item) && (consulta || documentoRecente(item)) &&
+  return (termo ? catalogoCompleto : catalogo).filter(item => descobrir(item,credencial,termo ? 'busca' : 'listagem',termo) && naVisao(item) && (consulta || documentoRecente(item)) &&
     (!criterios.get('setor') || item.setor === criterios.get('setor')) &&
     (!criterios.get('tipo') || tipo(item) === criterios.get('tipo')) &&
     (!criterios.get('na') || nivel(item) === criterios.get('na')) &&
-    (!criterios.get('periodo') || periodo(item) === criterios.get('periodo')) &&
-    normalizar([item.codigo,item.titulo,item.resumo,item.setor].filter(Boolean).join(' ')).includes(termo));
+    (!criterios.get('periodo') || periodo(item) === criterios.get('periodo')));
 }
 function desenhar() {
   const itens = filtrados();
@@ -217,7 +220,9 @@ async function carregar() {
     if (!r.ok) throw Error('Catálogo indisponível');
     const dados = await r.json();
     if (atual !== geracao) return;
-    catalogo = dados.filter(item => visivel(item,conta)).sort(compararRecentes);
+    credencial = conta;
+    catalogoCompleto = dados.sort(compararRecentes);
+    catalogo = catalogoCompleto.filter(item => descobrir(item,conta));
     for (const [nome,extrair] of [['setor',d => d.setor],['tipo',tipo],['periodo',periodo]]) {
       const select = form.elements[nome];
       const anterior = select.value;

@@ -1,3 +1,4 @@
+import { descobrir } from './descoberta-documental.js';
 import { aplicarVisibilidadeSuperior } from './visibilidade.js?v=4';
 import { contaDaSessao, chaveSessao } from './credenciais.js?v=3';
 
@@ -27,11 +28,16 @@ function texto(tag, valor) {
   return elemento;
 }
 
-function mensagensDoPerfil(conta) {
+function mensagensDoPerfil(conta, catalogo) {
   if (!Array.isArray(conta?.avisos)) return [];
   return conta.avisos
     .map(aviso => typeof aviso === 'string' ? { texto: aviso } : aviso)
-    .filter(aviso => typeof aviso?.texto === 'string' && aviso.texto.trim());
+    .flatMap(aviso => {
+      if (typeof aviso?.texto !== 'string' || !aviso.texto.trim()) return [];
+      if (!aviso.documento) return [aviso];
+      const alvo = catalogo.find(item => item.codigo === aviso.documento);
+      return descobrir(alvo,conta,'mensagem') && alvo.href ? [{...aviso,destino:alvo.href}] : [];
+    });
 }
 
 function preencherMensagens(destino, mensagens) {
@@ -41,6 +47,11 @@ function preencherMensagens(destino, mensagens) {
     if (mensagem.titulo) item.append(texto('strong', mensagem.titulo));
     if (mensagem.quando) item.append(texto('p', mensagem.quando));
     item.append(texto('p', mensagem.texto));
+    if (mensagem.destino) {
+      const link = texto('a','Consultar documento');
+      link.href = new URL('../' + mensagem.destino,import.meta.url);
+      item.append(link);
+    }
     lista.append(item);
   }
   destino.append(lista);
@@ -57,10 +68,10 @@ function mostrarCentral(conta, mensagens) {
   else caixa.append(texto('p', conta ? 'Você não tem mensagens recentes.' : 'Entre no portal para consultar suas mensagens.'));
 }
 
-function mostrar(conta) {
+function mostrar(conta, catalogo = []) {
   aplicarVisibilidadeSuperior(conta);
   window.dispatchEvent(new Event('bf-credencial-atualizada'));
-  const mensagens = mensagensDoPerfil(conta);
+  const mensagens = mensagensDoPerfil(conta,catalogo);
   mostrarCentral(conta, mensagens);
   cadastro.hidden = Boolean(conta);
   entrar.hidden = Boolean(conta);
@@ -119,7 +130,9 @@ async function consultar() {
       aviso.hidden = false;
       return;
     }
-    mostrar(conta);
+    const catalogo = conta.avisos?.some?.(item => item?.documento)
+      ? await fetch(new URL('../dados/documentos.json',import.meta.url),{cache:'no-store'}).then(r => r.ok ? r.json() : []).catch(() => []) : [];
+    if (atual === geracao) mostrar(conta,catalogo);
   } catch {
     if (atual !== geracao) return;
     mostrar(null);

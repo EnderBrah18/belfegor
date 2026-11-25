@@ -1,12 +1,12 @@
+import { descobrir } from './descoberta-documental.js';
 import { lerCatalogo } from './governanca.js';
 import { abrirComunicado } from './comunicado-estado.js';
-import { contaEditorial, visivel } from './visibilidade.js?v=3';
+import { contaEditorial } from './visibilidade.js?v=3';
 import { chaveSessao } from './credenciais.js?v=3';
 
 const resultado = document.getElementById('resultado');
 const entrada = document.getElementById('busca-global');
-const termo = new URLSearchParams(location.search).get('codigo')?.trim().slice(0, 64) ?? '';
-const normalizar = valor => valor.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase();
+const termo = new URLSearchParams(location.search).get('codigo')?.trim().slice(0, 160) ?? '';
 
 let geracao = 0;
 
@@ -23,8 +23,7 @@ async function buscar() {
     const perfil = await contaEditorial();
     const fontes = await Promise.all(['documentos', 'comunicados'].map(nome => lerCatalogo(nome,perfil)));
     if (atual !== geracao) return;
-    const chave = normalizar(termo);
-    const registros = fontes.flat().filter(item => visivel(item, perfil) && normalizar(item.codigo + ' ' + item.titulo).includes(chave));
+    const registros = fontes.flat().filter(item => descobrir(item,perfil,'busca',termo));
     if (!registros.length) {
       resultado.textContent = 'Nenhum resultado para “' + termo + '”.';
       return;

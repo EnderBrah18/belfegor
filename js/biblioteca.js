@@ -1,5 +1,6 @@
+import { descobrir } from './descoberta-documental.js';
 import { compararRecentes, documentoRecente } from './expediente-datas.js';
-import { contaEditorial, visivel } from './visibilidade.js?v=3';
+import { contaEditorial } from './visibilidade.js?v=3';
 import { chaveSessao } from './credenciais.js?v=3';
 import { iconeArquivo } from './icones-arquivo.js?v=3';
 
@@ -13,6 +14,7 @@ const inicial = { marcados:[], historico:[], progresso:{} };
 let local = inicial;
 let escopo = '';
 let documentos = [];
+let credencial = null;
 let categoria = '';
 let modo = 'recentes';
 let termo = '';
@@ -78,7 +80,7 @@ function leitura() {
   }) : [el('p','Nenhum documento em leitura.')]));
 }
 function destaque() {
-  const item = documentos.find(d => d.destaqueBiblioteca && documentoRecente(d));
+  const item = documentos.find(d => d.destaqueBiblioteca && descobrir(d,credencial) && documentoRecente(d));
   const painel = $('bib-destaque');
   painel.replaceChildren();
   if (!item) { painel.append(el('p','Nenhum documento em destaque.')); return; }
@@ -95,14 +97,16 @@ function resultados() {
   const fonte = modo === 'historico' ? local.historico.map(codigo => documentos.find(d => d.codigo === codigo)).filter(Boolean) : documentos;
   const chave = normalizar(termo);
   const consulta = chave || categoria || [...filtros.values()].some(Boolean);
+  const pessoal = modo === 'marcados' || modo === 'historico';
   return fonte.filter(d =>
+    descobrir(d,credencial,pessoal ? 'pessoal' : chave ? 'busca' : 'listagem',termo) &&
     (modo !== 'recentes' || consulta || documentoRecente(d)) &&
     (modo !== 'marcados' || local.marcados.includes(d.codigo)) &&
     (!categoria || d.acervo === categoria) &&
     (!filtros.get('setor') || d.setor === filtros.get('setor')) &&
     (!filtros.get('tipo') || tipo(d) === filtros.get('tipo')) &&
-    (!filtros.get('acesso') || (d.visibilidade ? 'restrito' : 'publico') === filtros.get('acesso')) &&
-    normalizar([d.codigo,d.titulo,d.resumo,d.setor,tipo(d)].filter(Boolean).join(' ')).includes(chave)
+    (!filtros.get('acesso') || (d.visibilidade ? 'restrito' : 'publico') === filtros.get('acesso'))
+    && (!pessoal || !chave || descobrir(d,credencial,'busca',termo))
   );
 }
 function lista() {
@@ -153,18 +157,20 @@ async function carregar() {
     if (!r.ok) throw Error('Catálogo');
     const dados = await r.json();
     if (atual !== consulta) return;
-    documentos = dados.filter(d => d.href && visivel(d,perfil)).sort(compararRecentes);
+    credencial = perfil;
+    documentos = dados.filter(d => d.href && descobrir(d,perfil,'direto')).sort(compararRecentes);
+    const listaveis = documentos.filter(d => descobrir(d,perfil));
     escopo = 'belfegor-biblioteca:' + (perfil?.usuario ?? 'visitante');
     ler();
     for (const botao of categorias) {
       const c = botao.dataset.bibCategoria;
-      const qtd = documentos.filter(d => !c || d.acervo === c).length;
+      const qtd = listaveis.filter(d => !c || d.acervo === c).length;
       botao.querySelector('[data-bib-total]').textContent = qtd + (qtd === 1 ? ' item' : ' itens');
     }
     for (const [campo,obter] of [['setor',d => d.setor],['tipo',tipo]]) {
       const select = form.elements[campo];
       const anterior = select.value;
-      const valores = [...new Set(documentos.map(obter).filter(Boolean))].sort();
+      const valores = [...new Set(listaveis.map(obter).filter(Boolean))].sort();
       select.replaceChildren(select.options[0],...valores.map(v => new Option(v,v)));
       select.value = valores.includes(anterior) ? anterior : '';
     }

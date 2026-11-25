@@ -1,7 +1,8 @@
+import { descobrir, aplicarVinculos } from './descoberta-documental.js';
 import { compararRecentes, avisoRecente, documentoRecente, quandoExpediente } from './expediente-datas.js';
 import { lerCatalogo } from './governanca.js';
 import { abrirComunicado } from './comunicado-estado.js';
-import { contaEditorial, visivel } from './visibilidade.js?v=3';
+import { contaEditorial } from './visibilidade.js?v=3';
 import { chaveSessao } from './credenciais.js?v=3';
 
 const raizPortal = new URL('../', import.meta.url);
@@ -24,7 +25,7 @@ async function mostrarLista(destino, conta, atual) {
     const { registros, limite, edicao, categoria } = destino.dataset;
     const dados = await (registros === 'comunicados' ? lerCatalogo(registros,conta) : consultar(registros));
     if (atual !== geracao) return;
-    const itens = dados.filter(registro => visivel(registro, conta) && (!edicao || registro.edicao === edicao) &&
+    const itens = dados.filter(registro => descobrir(registro, conta, edicao === 'recente' || categoria ? 'expediente' : 'listagem') && (!edicao || registro.edicao === edicao) &&
       (!categoria || registro.categoria === categoria) &&
       (edicao === 'recente' ? avisoRecente(registro) : edicao === 'historico' || (registros === 'documentos' && limite) ? documentoRecente(registro) : true)).sort(compararRecentes);
     if (!itens.length) {
@@ -67,15 +68,23 @@ async function atualizar() {
   const atual = ++geracao;
   listas.forEach(lista => lista.replaceChildren());
   if (documento) documento.hidden = true;
+  const referencias = document.querySelectorAll('[data-referencia-documental]');
+  for (const referencia of referencias) referencia.hidden = true;
   const conta = await contaEditorial();
   if (atual !== geracao) return;
   listas.forEach(lista => mostrarLista(lista, conta, atual));
+  if (referencias.length) {
+    Promise.all([consultar('documentos'),lerCatalogo('comunicados',conta)])
+      .then(fontes => { if (atual === geracao) aplicarVinculos(document,fontes.flat(),conta); })
+      .catch(() => {});
+  }
   if (!documento) return;
   try {
     const catalogo = await consultar('documentos');
     if (atual !== geracao) return;
     const item = catalogo.find(registro => registro.codigo === documento.dataset.documento);
-    const permitido = Boolean(item && visivel(item, conta));
+    const permitido = descobrir(item, conta, 'direto');
+    if (permitido) aplicarVinculos(documento,catalogo,conta);
     documento.hidden = !permitido;
     estado.hidden = permitido;
     estado.textContent = permitido ? '' : 'Documento indisponível para sua credencial.';

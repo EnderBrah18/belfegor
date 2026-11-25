@@ -338,3 +338,10 @@ Leia este arquivo antes de editar. Solicitações explícitas autorizam a implem
 - Preserve a regra da Estrutura Institucional: detalhes G-6/NA-6 visíveis a contas ativas NA-5 ou NA-6 ou consulta reservada; G-7/NA-7 somente G-6+NA-6 ou G-7+NA-7. Use os marcadores data-estrutura-conselho e data-estrutura-reservado inicialmente hidden. Aplique também a filtros, índices, metadados e impressão. Não confunda menção pública ao Conselho com detalhes de credenciais.
 - GitHub Pages oferece ocultação narrativa, não segurança real. Não publique segredos reais.
 - Verifique visitante, credenciais ordinárias, superiores, logout, mobile e impressão; informe testes não realizados. Não crie os nove registros científicos sem solicitação.
+
+## Profundidade documental
+- Use `profundidade` no catálogo. 1 é Expediente, 2 é Acervo ativo, 3 é Arquivo histórico e 4 é Arquivo profundo. A ausência do campo mantém compatibilidade com acervo ativo. Data, situação e autorização são critérios independentes.
+- Use o módulo `js/descoberta-documental.js` antes de apresentar títulos, resumos, contadores, filtros, recomendações, referências e anexos. Reaplique `visivel` em cada destino e mantenha o leitor direto condicionado à credencial.
+- Arquivo histórico fica fora das listagens convencionais e pode ser pesquisado com texto. Arquivo profundo exige código exato, título exato ou termo completo de `termosDescoberta`, sem distinção de caixa ou acento, ou descoberta por vínculo intencional. Use `palavrasChave` para indexar buscas comuns. Filtros, pesquisa vazia e referências inversas automáticas não revelam arquivo profundo.
+- Cadastre vínculos intencionais em `relacionados` ou `anexos`, usando o `codigo` do documento associado. Em mensagens individuais, use `documento` com o código do catálogo. Evite inserir nomes ou códigos restritos em texto livre ou em metadados públicos. Histórico e marcações só exibem documentos autorizados para a credencial em uso.
+- Esta camada organiza a descoberta na interface. A hospedagem estática publica seus arquivos e não oferece proteção contra inspeção direta do código-fonte. Mantenha segredos de mestragem fora deste repositório.

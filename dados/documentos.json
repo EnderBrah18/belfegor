@@ -17,7 +17,8 @@
     "relacionados": [
       "BF-SIG-NOR-0002",
       "BF-SIG-REG-0003"
-    ]
+    ],
+    "profundidade": 2
   },
   {
     "codigo": "BF-SIG-NOR-0002",
@@ -37,7 +38,8 @@
     "relacionados": [
       "BF-SIG-NOR-0001",
       "BF-SIG-REG-0003"
-    ]
+    ],
+    "profundidade": 2
   },
   {
     "codigo": "BF-SIG-REG-0003",
@@ -57,7 +59,8 @@
     "relacionados": [
       "BF-SIG-NOR-0001",
       "BF-SIG-NOR-0002"
-    ]
+    ],
+    "profundidade": 2
   },
   {
     "codigo": "BF-PC-01",
@@ -93,7 +96,8 @@
     "relacionados": [
       "BF-OP-01"
     ],
-    "acervo": "Pesquisa e Ciência"
+    "acervo": "Pesquisa e Ciência",
+    "profundidade": 2
   },
   {
     "codigo": "BF-VIS-01",
@@ -101,7 +105,8 @@
     "resumo": "Chegada, atendimento e circulação pelo Grande Átrio.",
     "setor": "S.I.G.M.A.",
     "revisao": "01",
-    "href": "documentos/orientacoes-a-visitantes.html"
+    "href": "documentos/orientacoes-a-visitantes.html",
+    "profundidade": 2
   },
   {
     "codigo": "BF-VIS-02",
@@ -109,7 +114,8 @@
     "resumo": "Como confirmar visitas combinadas e encaminhar entregas.",
     "setor": "S.I.G.M.A.",
     "revisao": "01",
-    "href": "documentos/atendimento-no-atrio.html"
+    "href": "documentos/atendimento-no-atrio.html",
+    "profundidade": 2
   },
   {
     "codigo": "BF-GUIA-01",
@@ -118,7 +124,8 @@
     "setor": "S.I.G.M.A.",
     "revisao": "01",
     "href": "documentos/guia-de-consulta.html",
-    "destaqueBiblioteca": true
+    "destaqueBiblioteca": true,
+    "profundidade": 2
   },
   {
     "codigo": "BF-TR-01",
@@ -148,7 +155,8 @@
     "relacionados": [
       "BF-VIS-01",
       "BF-REG-02"
-    ]
+    ],
+    "profundidade": 2
   },
   {
     "codigo": "BF-OP-01",
@@ -176,7 +184,8 @@
     ],
     "relacionados": [
       "BF-REG-01"
-    ]
+    ],
+    "profundidade": 2
   },
   {
     "codigo": "BF-REG-01",
@@ -191,7 +200,8 @@
     "circulacao": [
       "Registro do turno anterior vinculado ao procedimento BF-OP-01."
     ],
-    "destaqueArquivo": true
+    "destaqueArquivo": true,
+    "profundidade": 1
   },
   {
     "codigo": "BF-REG-02",
@@ -207,7 +217,8 @@
     "circulacao": [
       "Registro do turno anterior vinculado ao procedimento BF-TR-01."
     ],
-    "destaqueArquivo": true
+    "destaqueArquivo": true,
+    "profundidade": 1
   },
   {
     "codigo": "BF-LOG-PRO-0001",
@@ -261,7 +272,8 @@
         "descricao": "Publicação do fluxo inicial de transferência.",
         "responsavel": "Logística"
       }
-    ]
+    ],
+    "profundidade": 2
   },
   {
     "codigo": "BF-LOG-REG-0001",
@@ -281,7 +293,12 @@
       "naMinimo": 1
     },
     "referencia": "Arquivo dos primeiros ensaios",
-    "publicadoEm": "20/08/1893"
+    "publicadoEm": "20/08/1893",
+    "profundidade": 3,
+    "palavrasChave": [
+      "histórico de transferência",
+      "ensaio de carga"
+    ]
   },
   {
     "codigo": "BF-ENG-REL-0001",
@@ -301,7 +318,8 @@
       "naMinimo": 2
     },
     "publicadoEm": "20/08/1893",
-    "atualizadoEm": "21/10/1898"
+    "atualizadoEm": "21/10/1898",
+    "profundidade": 2
   },
   {
     "codigo": "BF-ENG-REG-0001",
@@ -321,7 +339,8 @@
     ],
     "visibilidade": {
       "naMinimo": 1
-    }
+    },
+    "profundidade": 1
   },
   {
     "codigo": "BF-LOG-PRO-0002",
@@ -351,7 +370,8 @@
         "Restabelecer o serviço",
         "Engenharia avalia a disponibilidade e comunica o resultado à Logística. Registre a decisão antes de retomar despachos."
       ]
-    ]
+    ],
+    "profundidade": 2
   },
   {
     "codigo": "BF-LOG-PAR-0001",
@@ -368,7 +388,8 @@
     ],
     "visibilidade": {
       "naMinimo": 1
-    }
+    },
+    "profundidade": 3
   },
   {
     "codigo": "BF-LOG-AUD-0001",
@@ -394,7 +415,8 @@
         "acao": "Conferência de registros",
         "responsavel": "Logística"
       }
-    ]
+    ],
+    "profundidade": 1
   },
   {
     "codigo": "BF-LOG-REQ-0001",
@@ -412,7 +434,8 @@
     ],
     "visibilidade": {
       "naMinimo": 1
-    }
+    },
+    "profundidade": 1
   },
   {
     "codigo": "BF-LOG-NOR-0001",
@@ -426,7 +449,8 @@
     "relacionados": [
       "BF-LOG-PRO-0001",
       "BF-ENG-REL-0001"
-    ]
+    ],
+    "profundidade": 2
   },
   {
     "codigo": "BF-ENG-REL-0002",
@@ -445,7 +469,12 @@
     ],
     "visibilidade": {
       "naMinimo": 2
-    }
+    },
+    "profundidade": 3,
+    "palavrasChave": [
+      "corredor artificial",
+      "estabilização"
+    ]
   },
   {
     "codigo": "BF-ENG-REL-0003",
@@ -464,7 +493,8 @@
     ],
     "visibilidade": {
       "naMinimo": 2
-    }
+    },
+    "profundidade": 3
   },
   {
     "codigo": "BF-LOG-REG-0002",
@@ -483,7 +513,11 @@
     ],
     "visibilidade": {
       "naMinimo": 3
-    }
+    },
+    "profundidade": 4,
+    "termosDescoberta": [
+      "conciliação intersetorial de remessa"
+    ]
   },
   {
     "codigo": "BF-ENG-PAR-0001",
@@ -502,6 +536,7 @@
     ],
     "visibilidade": {
       "naMinimo": 3
-    }
+    },
+    "profundidade": 3
   }
 ]

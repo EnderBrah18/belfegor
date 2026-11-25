@@ -1,9 +1,12 @@
+import { descobrir, camada } from './descoberta-documental.js';
 import { compararRecentes, avisoRecente, quandoExpediente } from './expediente-datas.js';
 import { lerCatalogo } from './governanca.js';
 import { abrirComunicado, chaveComunicado, obterConjunto } from './comunicado-estado.js';
-import { contaEditorial, visivel } from './visibilidade.js?v=3';
+import { contaEditorial } from './visibilidade.js?v=3';
 import { chaveSessao } from './credenciais.js?v=3';
 import { iconeArquivo } from './icones-arquivo.js';
+
+const ehRecente = item => camada(item) === 1 && avisoRecente(item);
 
 const lista = document.getElementById('echo-lista');
 const contagem = document.getElementById('echo-contagem');
@@ -27,10 +30,10 @@ function atualizarLidos() {
 }
 
 function desenhar() {
-  const novas = avisos.filter(a => avisoRecente(a) && !lidos.has(a.codigo));
+  const novas = avisos.filter(a => ehRecente(a) && !lidos.has(a.codigo));
   contagem.textContent = novas.length ? '(' + novas.length + ')' : '';
-  const itens = filtro === 'arquivo' ? avisos.filter(a => !avisoRecente(a))
-    : filtro === 'novas' ? novas : avisos.filter(avisoRecente);
+  const itens = filtro === 'arquivo' ? avisos.filter(a => camada(a) <= 2 && !ehRecente(a))
+    : filtro === 'novas' ? novas : avisos.filter(ehRecente);
   lista.replaceChildren();
 
   for (const aviso of itens.slice(0,4)) {
@@ -72,7 +75,7 @@ async function carregar() {
     const dados = await lerCatalogo('comunicados',conta);
     if (atual !== geracao) return;
     const arquivos = obterConjunto(chaveComunicado('arquivados',conta));
-    avisos = dados.filter(item => visivel(item,conta)).map(item => ({...item, arquivado:item.arquivado || arquivos.has(item.codigo)})).sort(compararRecentes);
+    avisos = dados.filter(item => descobrir(item,conta,'direto')).map(item => ({...item, arquivado:item.arquivado || arquivos.has(item.codigo)})).sort(compararRecentes);
     chave = 'belfegor-comunicados-lidos:' + (conta?.usuario ?? 'visitante');
     atualizarLidos();
     desenhar();

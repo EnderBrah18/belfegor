@@ -1,4 +1,5 @@
-import { visivel } from './visibilidade.js?v=4';
+import { documentosRelacionados, anexosAutorizados } from './descoberta-documental.js';
+
 import { iconeArquivo } from './icones-arquivo.js?v=3';
 
 function el(tag,texto,classe) {
@@ -76,11 +77,10 @@ export function renderizarOperacional(root,item,catalogo,origem,conta) {
     : [['Código',item.codigo],['Tipo',item.tipo],['Setor responsável',item.setor],['Autor',item.autor ?? item.responsavel],
       ['Data de registro',item.publicadoEm ?? item.referencia],['Última atualização',item.atualizadoEm]]);
 
-  const rel = new Set(item.relacionados ?? []);
-  for (const d of catalogo) if (d.relacionados?.includes(item.codigo)) rel.add(d.codigo);
+  const relacionados = documentosRelacionados(item,catalogo,conta);
   const arquivos = [
-    ...(item.anexos ?? []).filter(a => a?.href && visivel(a,conta)),
-    ...catalogo.filter(d => d.href && rel.has(d.codigo)).map(d => ({...d,titulo:d.codigo + ' — ' + d.titulo}))
+    ...anexosAutorizados(item,catalogo,conta),
+    ...relacionados.map(d => ({...d,titulo:d.codigo + ' — ' + d.titulo}))
   ];
   $('op-arquivos').replaceChildren(...(arquivos.length ? arquivos.map(a => {
     const li = el('li');

@@ -1,5 +1,6 @@
+import { descobrir, documentosRelacionados } from './descoberta-documental.js';
 import { compararRecentes, documentoRecente } from './expediente-datas.js';
-import { contaEditorial, visivel } from './visibilidade.js?v=3';
+import { contaEditorial } from './visibilidade.js?v=3';
 import { chaveSessao } from './credenciais.js?v=3';
 
 const $ = id => document.getElementById(id);
@@ -9,6 +10,8 @@ const ordem = $('proc-ordem');
 const secoes = ['Operação Geral','Pesquisa e Análise','Engenharia','Contenção','Segurança','Logística','Pessoal e Administração','Emergência','Anomalias (Especiais)'];
 const normalizar = valor => valor.normalize('NFD').replace(/\p{M}/gu,'').toLowerCase();
 let documentos = [];
+let catalogo = [];
+let credencial = null;
 let selecionado = '';
 let grupo = '';
 let visao = 'manual';
@@ -101,7 +104,7 @@ function ficha(item) {
     painel.append(bloco('Procedimento operacional',lista));
   }
   if (item.atencao) painel.append(bloco('Atenção',el('p',item.atencao),'proc-atencao'));
-  const relacionados = (item.relacionados ?? []).map(codigo => documentos.find(dado => dado.codigo === codigo)).filter(Boolean);
+  const relacionados = documentosRelacionados(item,catalogo,credencial);
   if (relacionados.length) {
     const lista = el('ul', undefined, 'proc-relacionados');
     for (const dado of relacionados) {
@@ -122,9 +125,10 @@ function lista() {
   const status = filtros.getAll('situacao');
   const setor = filtros.get('setor');
   const na = filtros.get('na');
-  const procedimentos = documentos.filter(d => d.categoria === 'procedimento' &&
+  const procedimentos = (termo ? catalogo : documentos).filter(d => d.categoria === 'procedimento' && descobrir(d,credencial,termo ? 'busca' : 'listagem',termo) &&
     (visao !== 'restritos' || d.visibilidade) && (visao !== 'revisoes' || d.revisao));
-  const grupos = visao === 'setores' ? [...new Set(procedimentos.map(d => d.setor).filter(Boolean))] : secoes;
+  const listaveis = procedimentos.filter(d => descobrir(d,credencial));
+  const grupos = visao === 'setores' ? [...new Set(listaveis.map(d => d.setor).filter(Boolean))] : secoes;
   const obterGrupo = item => visao === 'setores' ? item.setor : item.grupo;
   const menu = $('proc-categorias');
   menu.replaceChildren(...['',...grupos].map(nome => {
@@ -137,7 +141,7 @@ function lista() {
     };
     const rotulo = el('span', nome || 'Todos os Procedimentos');
     rotulo.prepend(icone(marca[nome] ?? 'folder'));
-    botao.replaceChildren(rotulo, el('b',String(procedimentos.filter(d => !nome || obterGrupo(d) === nome).length)));
+    botao.replaceChildren(rotulo, el('b',String(listaveis.filter(d => !nome || obterGrupo(d) === nome).length)));
     botao.addEventListener('click', () => { grupo = nome; lista(); });
     return botao;
   }));
@@ -145,8 +149,7 @@ function lista() {
   const itens = procedimentos.filter(d => (!grupo || obterGrupo(d) === grupo) &&
     (!setor || d.setor === setor) && (!na || nivel(d) === na) &&
     (!status.length || status.includes(d.situacao)) &&
-    normalizar([d.codigo,d.titulo,d.resumo].filter(Boolean).join(' ')).includes(termo))
-    .filter(d => campo !== 'recentes' || visao !== 'manual' || grupo || termo || setor || na || documentoRecente(d))
+    descobrir(d,credencial,termo ? 'busca' : 'listagem',termo))
     .sort((a,b) => campo === 'recentes' || campo === 'revisao' ? compararRecentes(a,b) :
       String(a[campo] ?? '').localeCompare(String(b[campo] ?? ''),'pt-BR',{numeric:true}));
   const item = itens.find(d => d.codigo === selecionado) ?? itens[0];
@@ -179,7 +182,9 @@ async function carregar() {
     if (!r.ok) throw new Error('Manual indisponível');
     const dados = await r.json();
     if (atual !== geracao) return;
-    documentos = dados.filter(item => visivel(item,perfil));
+    credencial = perfil;
+    catalogo = dados;
+    documentos = dados.filter(item => descobrir(item,perfil));
     const setor = form.elements.setor;
     const preferido = setor.value;
     const setores = [...new Set(documentos.filter(x => x.categoria === 'procedimento').map(x => x.setor).filter(Boolean))].sort();

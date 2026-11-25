@@ -1,5 +1,6 @@
-import { renderizarOperacional } from './documento-operacional.js?v=2';
-import { contaEditorial, visivel, aplicarVisibilidadeSuperior } from './visibilidade.js?v=4';
+import { descobrir, documentosRelacionados, aplicarVinculos, anexosAutorizados } from './descoberta-documental.js';
+import { renderizarOperacional } from './documento-operacional.js?v=profundidade';
+import { contaEditorial, aplicarVisibilidadeSuperior } from './visibilidade.js?v=4';
 import { chaveSessao } from './credenciais.js?v=3';
 
 const $ = id => document.getElementById(id);
@@ -40,7 +41,7 @@ function nivel(item) {
   const na = item.visibilidade.naExato ?? item.visibilidade.naMinimo;
   return Number.isInteger(na) ? 'NA-' + na : 'Restrito';
 }
-function metadados(item, catalogo) {
+function metadados(item, catalogo, conta) {
   $('doc-classe').textContent = classificacao(item);
   $('doc-titulo').textContent = item.titulo;
   $('doc-resumo').textContent = item.resumo ?? '';
@@ -59,9 +60,7 @@ function metadados(item, catalogo) {
   const areas = [...new Set([item.acervo,item.grupo,item.setor].filter(Boolean))];
   preencherLista('doc-areas',areas,x => el('span',x));
   preencherLista('doc-tags',Array.isArray(item.palavrasChave) ? item.palavrasChave : [],x => el('span',x));
-  const codigos = new Set(item.relacionados ?? []);
-  const relacionados = catalogo.filter(d => d.href && d.codigo !== item.codigo &&
-    (codigos.has(d.codigo) || d.relacionados?.includes(item.codigo)));
+  const relacionados = documentosRelacionados(item,catalogo,conta);
   preencherLista('doc-relacionados',relacionados,itemLink);
   $('doc-pdf').lastChild.textContent = item.pdf ? 'Baixar (PDF)' : 'Salvar como PDF';
 }
@@ -115,6 +114,7 @@ async function carregar() {
   const atual = ++geracao;
   itemAtual = null;
   escopo = '';
+  document.title = 'Consulta documental | Fundação Belfegor';
   leitor.hidden = true;
   if (operacional) operacional.hidden = true;
   estado.hidden = false;
@@ -126,14 +126,16 @@ async function carregar() {
     if (!r.ok) throw Error('Catálogo indisponível');
     const dados = await r.json();
     if (atual !== geracao) return;
-    const catalogo = dados.filter(d => visivel(d,conta));
-    const item = catalogo.find(d => d.codigo === codigo);
+    const catalogo = dados;
+    const item = catalogo.find(d => d.codigo === codigo && descobrir(d,conta,'direto'));
     if (!item) { estado.textContent = 'Documento indisponível para sua credencial.'; return; }
     aplicarVisibilidadeSuperior(conta);
+    aplicarVinculos($('doc-texto'),catalogo,conta);
     indice();
-    itemAtual = item;
+    document.title = item.titulo + ' | Fundação Belfegor';
+    itemAtual = {...item,pdf:anexosAutorizados({anexos:item.pdf ? [{href:item.pdf}] : []},catalogo,conta)[0]?.href};
     escopo = 'belfegor-biblioteca:' + (conta?.usuario ?? 'visitante');
-    metadados(item,catalogo);
+    metadados(item,catalogo,conta);
     const registro = preferencias();
     registro.historico = [codigo,...registro.historico.filter(x => x !== codigo)].slice(0,50);
     try { localStorage.setItem(escopo,JSON.stringify(registro)); } catch {}
