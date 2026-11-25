@@ -70,6 +70,22 @@ function mostrarCentral(conta, mensagens) {
 
 function mostrar(conta, catalogo = []) {
   aplicarVisibilidadeSuperior(conta);
+  for (const item of document.querySelectorAll('[data-bf-admin-nav]')) item.remove();
+  if (conta?.ativo && conta.patente === 'G-7' && conta.acesso === 'NA-7') {
+    const lista = document.querySelector('.bf-sidebar ul');
+    if (lista) {
+      const li = document.createElement('li');
+      li.dataset.bfAdminNav = '';
+      const a = document.createElement('a');
+      a.href = new URL('../administracao.html',import.meta.url);
+      if (location.pathname === new URL(a.href).pathname) a.setAttribute('aria-current','page');
+      const icone = texto('span','▣');
+      icone.className = 'bf-menu-icon';
+      icone.setAttribute('aria-hidden','true');
+      a.append(icone,texto('span','Central de Administração'));
+      li.append(a); lista.append(li);
+    }
+  }
   window.dispatchEvent(new Event('bf-credencial-atualizada'));
   const mensagens = mensagensDoPerfil(conta,catalogo);
   mostrarCentral(conta, mensagens);
