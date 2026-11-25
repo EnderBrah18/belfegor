@@ -5,12 +5,12 @@
     "resumo": "A estação terá uma janela de inspeção. Consulte a disponibilidade antes do despacho.",
     "setor": "Logística",
     "edicao": "recente",
-    "referencia": "12/06 · Ano 400",
+    "referencia": "12/06/1900",
     "situacao": "Programado",
     "categoria": "Operacionais",
     "prioridade": "Rotina",
     "corpo": [
-      "A inspeção está programada para 18/06, Ano 400. Durante a janela, confirme a disponibilidade com a Logística antes de registrar novos despachos. A retomada será informada após a inspeção."
+      "A inspeção está programada para 18/06, 1900. Durante a janela, confirme a disponibilidade com a Logística antes de registrar novos despachos. A retomada será informada após a inspeção."
     ],
     "relacionados": [
       "BF-LOG-PRO-0001",
@@ -23,7 +23,7 @@
     "resumo": "A confirmação de entrega cabe à estação que recebe a carga.",
     "setor": "Logística",
     "edicao": "recente",
-    "referencia": "12/06 · Ano 400",
+    "referencia": "12/06/1900",
     "situacao": "Em vigor",
     "categoria": "Operacionais",
     "prioridade": "Rotina",
