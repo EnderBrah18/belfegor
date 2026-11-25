@@ -96,3 +96,10 @@
   font-weight: 400;
   line-height: 1.45;
 }
+
+/* Classificações: painéis expansíveis nativos */
+#classificacoes .estrutura-classificacao { margin: 12px 0; border: 1px solid rgba(168,237,248,.24); border-radius: 6px; }
+#classificacoes .estrutura-classificacao > summary { padding: 14px 16px; cursor: pointer; font-weight: 600; color: inherit; }
+#classificacoes .estrutura-classificacao > summary:focus-visible { outline: 2px solid #a8edf8; outline-offset: 2px; }
+#classificacoes .estrutura-classificacao[open] > summary { border-bottom: 1px solid rgba(168,237,248,.24); }
+#classificacoes .estrutura-classificacao-conteudo { padding: 4px 16px 14px; }
