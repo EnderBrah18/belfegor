@@ -1,3 +1,4 @@
+import { visivel } from './visibilidade.js?v=4';
 import { iconeArquivo } from './icones-arquivo.js?v=3';
 
 function el(tag,texto,classe) {
@@ -33,6 +34,7 @@ function secoesOriginais(origem, procedimento) {
   const secoes = [];
   let atual;
   for (const node of origem.children) {
+    if (node.hidden) continue;
     if (node.tagName === 'H2') {
       const titulo = node.textContent.trim();
       atual = { titulo: titulo === 'Consulta' ? (procedimento ? 'Visão Geral' : 'Resumo Executivo') : titulo, nos:[] };
@@ -56,7 +58,7 @@ function destaque(titulo,texto,classe) {
   return quadro;
 }
 
-export function renderizarOperacional(root,item,catalogo,origem) {
+export function renderizarOperacional(root,item,catalogo,origem,conta) {
   const $ = id => root.querySelector('#' + id);
   const procedimento = item.categoria === 'procedimento';
   $('op-titulo').textContent = procedimento ? item.codigo + ' — ' + item.titulo : item.codigo;
@@ -77,7 +79,7 @@ export function renderizarOperacional(root,item,catalogo,origem) {
   const rel = new Set(item.relacionados ?? []);
   for (const d of catalogo) if (d.relacionados?.includes(item.codigo)) rel.add(d.codigo);
   const arquivos = [
-    ...(item.anexos ?? []).filter(a => a?.href),
+    ...(item.anexos ?? []).filter(a => a?.href && visivel(a,conta)),
     ...catalogo.filter(d => d.href && rel.has(d.codigo)).map(d => ({...d,titulo:d.codigo + ' — ' + d.titulo}))
   ];
   $('op-arquivos').replaceChildren(...(arquivos.length ? arquivos.map(a => {
