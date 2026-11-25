@@ -30,3 +30,12 @@ export function visivel(registro, conta) {
       (!Array.isArray(departamentos) || !departamentos.includes(conta.departamento))) return false;
   return true;
 }
+
+export const consultaSuperiorReservada = conta => visivel({visibilidade:{patenteMinima:6,naMinimo:6}},conta);
+export const consultaSuperiorConselho = conta => Boolean(conta?.ativo && (conta.acesso === 'NA-5' || conta.acesso === 'NA-6' || consultaSuperiorReservada(conta)));
+export function aplicarVisibilidadeSuperior(conta, raiz=document) {
+  for (const el of raiz.querySelectorAll('[data-estrutura-conselho],[data-estrutura-reservado]')) {
+    el.hidden = !(el.hasAttribute('data-estrutura-reservado') ? consultaSuperiorReservada(conta) : consultaSuperiorConselho(conta));
+    if (el.tagName === 'OPTION') { el.disabled=el.hidden; if(el.hidden && el.selected) el.parentElement.selectedIndex=0; }
+  }
+}
