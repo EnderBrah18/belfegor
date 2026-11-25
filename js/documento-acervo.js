@@ -1,4 +1,4 @@
-import { renderizarOperacional } from './documento-operacional.js';
+import { renderizarOperacional } from './documento-operacional.js?v=2';
 import { contaEditorial, visivel, aplicarVisibilidadeSuperior } from './visibilidade.js?v=4';
 import { chaveSessao } from './credenciais.js?v=3';
 
@@ -145,7 +145,7 @@ async function carregar() {
       origemLink?.setAttribute('aria-current','page');
       const trilha = leitor.previousElementSibling?.previousElementSibling;
       if (trilha?.classList.contains('intercom-breadcrumb')) trilha.hidden = true;
-      renderizarOperacional(operacional,item,catalogo,$('doc-texto'));
+      renderizarOperacional(operacional,item,catalogo,$('doc-texto'),conta);
       operacional.hidden = false;
       return;
     }
