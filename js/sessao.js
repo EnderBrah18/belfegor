@@ -1,3 +1,4 @@
+import { aplicarVisibilidadeSuperior } from './visibilidade.js?v=4';
 import { contaDaSessao, chaveSessao } from './credenciais.js?v=3';
 
 const painel = document.querySelector('[data-bf-account]');
@@ -57,6 +58,8 @@ function mostrarCentral(conta, mensagens) {
 }
 
 function mostrar(conta) {
+  aplicarVisibilidadeSuperior(conta);
+  window.dispatchEvent(new Event('bf-credencial-atualizada'));
   const mensagens = mensagensDoPerfil(conta);
   mostrarCentral(conta, mensagens);
   cadastro.hidden = Boolean(conta);
