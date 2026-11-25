@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Registros | Fundação Belfegor</title>
-<link rel="stylesheet" href="css/portal.css?v=18">
-<script type="module" src="js/sessao.js?v=11"></script>
+<link rel="stylesheet" href="css/portal.css?v=24">
+<script type="module" src="js/sessao.js?v=12"></script>
 <script type="module" src="js/registros.js?v=3"></script>
 </head>
 <body class="bf-console">
@@ -18,7 +18,7 @@
 <label>ID / Palavra-chave<span class="arquivo-busca"><svg class="arquivo-icone" aria-hidden="true" focusable="false"><use href="imagens/icones-arquivo.svg#search"></use></svg><input name="termo" type="search" placeholder="Ex.: BF-REG-02, embarque…"></span></label>
 <label>Setor<select name="setor"><option value="">Todos os setores</option></select></label>
 <label>Tipo de Registro<select name="tipo"><option value="">Todos</option></select></label>
-<label>Nível de Acesso<select name="na"><option value="">Todos</option><option value="Público">Público</option><option>NA-0</option><option>NA-1</option><option>NA-2</option><option>NA-3</option><option>NA-4</option><option>NA-5</option><option>NA-6</option></select></label>
+<label>Nível de Acesso<select name="na"><option value="">Todos</option><option value="Público">Público</option><option>NA-0</option><option>NA-1</option><option>NA-2</option><option>NA-3</option><option>NA-4</option><option>NA-5</option><option value="NA-6" data-estrutura-conselho hidden disabled>NA-6</option></select></label>
 <label>Período<select name="periodo"><option value="">Todos os períodos</option></select></label>
 <div class="registro-acoes"><button type="reset"><svg class="arquivo-icone" aria-hidden="true" focusable="false"><use href="imagens/icones-arquivo.svg#history"></use></svg>Limpar</button><button><svg class="arquivo-icone" aria-hidden="true" focusable="false"><use href="imagens/icones-arquivo.svg#filter"></use></svg>Aplicar</button></div></form></section>
 <div class="registros-workspace">
