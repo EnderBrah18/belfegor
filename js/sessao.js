@@ -1,3 +1,4 @@
+import { acessoAdministrativo } from './acesso-administrativo.js';
 import { descobrir } from './descoberta-documental.js';
 import { aplicarVisibilidadeSuperior } from './visibilidade.js?v=4';
 import { contaDaSessao, chaveSessao } from './credenciais.js?v=3';
@@ -71,20 +72,31 @@ function mostrarCentral(conta, mensagens) {
 function mostrar(conta, catalogo = []) {
   aplicarVisibilidadeSuperior(conta);
   for (const item of document.querySelectorAll('[data-bf-admin-nav]')) item.remove();
-  if (conta?.ativo && conta.patente === 'G-7' && conta.acesso === 'NA-7') {
+  if (acessoAdministrativo(conta)) {
+    const destino = new URL('../administracao.html',import.meta.url);
+    const linkAdministracao = () => {
+      const link = texto('a','Central de Administração');
+      link.href = destino.href;
+      link.dataset.bfAdminNav = '';
+      if (location.pathname === destino.pathname) link.setAttribute('aria-current','page');
+      return link;
+    };
     const lista = document.querySelector('.bf-sidebar ul');
     if (lista) {
       const li = document.createElement('li');
       li.dataset.bfAdminNav = '';
-      const a = document.createElement('a');
-      a.href = new URL('../administracao.html',import.meta.url);
-      if (location.pathname === new URL(a.href).pathname) a.setAttribute('aria-current','page');
+      const link = linkAdministracao();
+      delete link.dataset.bfAdminNav;
       const icone = texto('span','▣');
       icone.className = 'bf-menu-icon';
       icone.setAttribute('aria-hidden','true');
-      a.append(icone,texto('span','Central de Administração'));
-      li.append(a); lista.append(li);
+      link.replaceChildren(icone,texto('span','Central de Administração'));
+      li.append(link);
+      const estrutura = Array.from(lista.querySelectorAll('a')).find(a => a.pathname === new URL('../estrutura.html',import.meta.url).pathname);
+      if (estrutura) estrutura.closest('li').after(li);
+      else lista.append(li);
     }
+    sair.before(linkAdministracao());
   }
   window.dispatchEvent(new Event('bf-credencial-atualizada'));
   const mensagens = mensagensDoPerfil(conta,catalogo);

@@ -949,3 +949,19 @@ body:has(.bf-statusbar) { padding-bottom:3.25rem; }
 
 [hidden]{display:none!important}
 .doc-texto .estrutura-credenciais > div{display:grid;border-bottom:1px solid #245263}.doc-texto .estrutura-credenciais dd{margin:0}.doc-texto .estrutura-credenciais dd span{display:block;margin-top:.2rem}
+
+/* Central de Administração */
+.admin-main #admin-conteudo:not([hidden]) { display:grid; gap:.9rem; }
+.admin-main #admin-totais { grid-template-columns:repeat(auto-fit,minmax(8rem,1fr)); padding:.65rem; }
+.admin-main #admin-totais button { min-height:3.6rem; padding:.45rem; }
+.admin-filtros { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,9rem),1fr)); align-items:end; gap:.65rem; padding:.75rem; }
+.admin-filtros label { display:grid; align-content:start; gap:.25rem; min-width:0; }
+.admin-filtros :is(input,select) { min-width:0; width:100%; }
+.admin-acoes { display:flex; gap:.4rem; flex-wrap:wrap; }
+.admin-main #admin-integridade, .admin-main #admin-pendencias, .admin-main #admin-conteudo > section > details { margin:.55rem .75rem; }
+.admin-resultado { padding:.75rem; overflow-wrap:anywhere; }
+.admin-resultado + .admin-resultado { border-top:1px solid #315969; }
+.admin-resultado h3 { display:flex; align-items:center; gap:.5rem; font-size:1rem; margin:0 0 .35rem; }
+.admin-resultado p { margin:.3rem 0; }
+.admin-resultado details { margin-top:.55rem; }
+.admin-resultado button { margin:.3rem 0; }
